@@ -1,0 +1,11 @@
+{
+  "name": "xpath-helper",
+  "version": "1.0.0",
+  "description": "A simple and easy to read API to write complicated XPath expression.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "author": "Johann Rebecchi",
+  "license": "ISC"
+}
