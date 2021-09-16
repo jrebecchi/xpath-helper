@@ -1,0 +1,11 @@
+{
+  "extends": [
+      "tslint:recommended",
+      "tslint-config-prettier"
+  ],
+  "rules": {
+      "interface-name": false,
+      "no-console": [false, "log"],
+      "max-classes-per-file": [false]
+  }
+}

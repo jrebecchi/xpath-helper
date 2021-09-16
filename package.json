@@ -1,11 +1,38 @@
 {
   "name": "xpath-helper",
   "version": "1.0.0",
-  "description": "A simple and easy to read API to write complicated XPath expression.",
-  "main": "index.js",
+  "description": "A simple and chainnable API to build complicated XPath queries without the hassle.",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "npm run test"
+    "coverage": "jest --config jest.config.json --coverage --forceExit",
+    "test": "jest --config jest.config.json --forceExit",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "lint": "tslint -p tsconfig.json",
+    "watch": "tsc-watch",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jrebecchi/xpath-helper.git"
   },
   "author": "Johann Rebecchi",
-  "license": "ISC"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jrebecchi/xpath-helper/issues"
+  },
+  "homepage": "https://github.com/jrebecchi/xpath-helper",
+  "dependencies": {
+    "@types/jest": "^27.0.1",
+    "jest": "^27.1.1",
+    "prettier": "^2.3.2",
+    "ts-jest": "^27.0.5",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^4.4.2"
+  }
 }
