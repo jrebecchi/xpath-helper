@@ -60,7 +60,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getDescendant(filterClbk: (filter: Filter) => Filter): XPathHelper {
+  public getDescendant(filterClbk: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "//*"+ this.computeFilter(filterClbk)]);
   }
 
@@ -70,7 +70,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getElement(filterClbk: (filter: Filter) => Filter): XPathHelper {
+  public getElement(filterClbk: FilterClbck): XPathHelper {
     return this.getDescendant(filterClbk);
   }
 
@@ -80,7 +80,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filterClbk
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getDescendantByTag(tag: string, filterClbk?: (filter: Filter) => Filter): XPathHelper {
+  public getDescendantByTag(tag: string, filterClbk?: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "//" + tag + this.computeFilter(filterClbk)]);
   }
 
@@ -91,7 +91,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getElementByTag(tag: string, filterClbk?: (filter: Filter) => Filter): XPathHelper {
+  public getElementByTag(tag: string, filterClbk?: FilterClbck): XPathHelper {
     return this.getDescendantByTag(tag, filterClbk);
   }
 
@@ -101,7 +101,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getDescendantBySVGTag(svgTag: string, filterClbk?: (filter: Filter) => Filter): XPathHelper {
+  public getDescendantBySVGTag(svgTag: string, filterClbk?: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/*[local-name() = '" + svgTag + "']"+ this.computeFilter(filterClbk)]);
   }
 
@@ -112,7 +112,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getElementBySVGTag(svgTag: string, filterClbk?: (filter: Filter) => Filter): XPathHelper {
+  public getElementBySVGTag(svgTag: string, filterClbk?: FilterClbck): XPathHelper {
     return this.getDescendantBySVGTag(svgTag, filterClbk);
   }
 
@@ -126,7 +126,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getDescendantOrSelf(filterClbk: (filter: Filter) => Filter): XPathHelper {
+  public getDescendantOrSelf(filterClbk: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/descendant-or-self::*"+ this.computeFilter(filterClbk)]);
   }
 
@@ -136,7 +136,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getDescendantOrSelfByTag(tag: string, filterClbk?: (filter: Filter) => Filter): XPathHelper {
+  public getDescendantOrSelfByTag(tag: string, filterClbk?: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/descendant-or-self::" + tag + ""+ this.computeFilter(filterClbk)]);
   }
 
@@ -146,7 +146,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getSVGDescendantOrSelfByTag(svgTag: string, filterClbk?: (filter: Filter) => Filter): XPathHelper {
+  public getSVGDescendantOrSelfByTag(svgTag: string, filterClbk?: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/descendant-or-self::*[local-name() = '" + svgTag + "']"+ this.computeFilter(filterClbk)]);
   }
 
@@ -159,7 +159,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getChild(filterClbk: (filter: Filter) => Filter): XPathHelper {
+  public getChild(filterClbk: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/*"+ this.computeFilter(filterClbk)]);
   }
 
@@ -169,7 +169,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getChildByTag(tag: string, filterClbk?: (filter: Filter) => Filter): XPathHelper {
+  public getChildByTag(tag: string, filterClbk?: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/" + tag + ""+ this.computeFilter(filterClbk)]);
   }
 
@@ -179,7 +179,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getChildBySVGTag(svgTag: string, filterClbk?: (filter: Filter) => Filter): XPathHelper {
+  public getChildBySVGTag(svgTag: string, filterClbk?: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/*[local-name() = '" + svgTag + "']"+ this.computeFilter(filterClbk)]);
   }
 
@@ -194,7 +194,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getAncestor(filterClbk: (filter: Filter) => Filter): XPathHelper {
+  public getAncestor(filterClbk: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/ancestor::*"+ this.computeFilter(filterClbk)]);
   }
 
@@ -205,7 +205,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getAncestorByTag(tag: string, filterClbk?: (filter: Filter) => Filter): XPathHelper {
+  public getAncestorByTag(tag: string, filterClbk?: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/ancestor::" + tag + ""+ this.computeFilter(filterClbk)]);
   }
 
@@ -216,7 +216,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getAncestorBySVGTag(svgTag: string, filterClbk?: (filter: Filter) => Filter): XPathHelper {
+  public getAncestorBySVGTag(svgTag: string, filterClbk?: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/ancestor::*[local-name() = '" + svgTag + "']"+ this.computeFilter(filterClbk)]);
   }
 
@@ -230,7 +230,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getAncestorOrSelf(filterClbk: (filter: Filter) => Filter): XPathHelper {
+  public getAncestorOrSelf(filterClbk: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/ancestor-or-self::*"+ this.computeFilter(filterClbk)]);
   }
 
@@ -241,7 +241,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getAncestorOrSelfByTag(tag: string, filterClbk?: (filter: Filter) => Filter): XPathHelper {
+  public getAncestorOrSelfByTag(tag: string, filterClbk?: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/ancestor-or-self::" + tag + ""+ this.computeFilter(filterClbk)]);
   }
 
@@ -252,7 +252,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getAncestorOrSelfBySVGTag(svgTag: string, filterClbk?: (filter: Filter) => Filter): XPathHelper {
+  public getAncestorOrSelfBySVGTag(svgTag: string, filterClbk?: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/ancestor-or-self::*[local-name() = '" + svgTag + "']"+ this.computeFilter(filterClbk)]);
   }
 
@@ -267,7 +267,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getFollowing(filterClbk: (filter: Filter) => Filter): XPathHelper {
+  public getFollowing(filterClbk: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/following::*"+ this.computeFilter(filterClbk)]);
   }
 
@@ -278,7 +278,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getFollowingByTag(tag: string, filterClbk?: (filter: Filter) => Filter): XPathHelper {
+  public getFollowingByTag(tag: string, filterClbk?: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/following::" + tag + ""+ this.computeFilter(filterClbk)]);
   }
 
@@ -288,7 +288,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getFollowingBySVGTag(svgTag: string, filterClbk?: (filter: Filter) => Filter): XPathHelper {
+  public getFollowingBySVGTag(svgTag: string, filterClbk?: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/following::*[local-name() = '" + svgTag + "']"+ this.computeFilter(filterClbk)]);
   }
 
@@ -302,7 +302,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getFollowingSibling(filterClbk: (filter: Filter) => Filter): XPathHelper {
+  public getFollowingSibling(filterClbk: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/following-sibling::*"+ this.computeFilter(filterClbk)]);
   }
 
@@ -313,7 +313,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getFollowingSiblingByTag(tag: string, filterClbk?: (filter: Filter) => Filter): XPathHelper {
+  public getFollowingSiblingByTag(tag: string, filterClbk?: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/following-sibling::" + tag + ""+ this.computeFilter(filterClbk)]);
   }
 
@@ -324,7 +324,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getFollowingSiblingBySVGTag(svgTag: string, filterClbk?: (filter: Filter) => Filter): XPathHelper {
+  public getFollowingSiblingBySVGTag(svgTag: string, filterClbk?: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/following-sibling::*[local-name() = '" + svgTag + "']"+ this.computeFilter(filterClbk)]);
   }
 
@@ -339,7 +339,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getPreceding(filterClbk: (filter: Filter) => Filter): XPathHelper {
+  public getPreceding(filterClbk: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/preceding::*"+ this.computeFilter(filterClbk)]);
   }
 
@@ -350,7 +350,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getPrecedingByTag(tag: string, filterClbk?: (filter: Filter) => Filter): XPathHelper {
+  public getPrecedingByTag(tag: string, filterClbk?: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/preceding::" + tag + ""+ this.computeFilter(filterClbk)]);
   }
 
@@ -361,7 +361,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getPrecedingBySVGTag(svgTag: string, filterClbk?: (filter: Filter) => Filter): XPathHelper {
+  public getPrecedingBySVGTag(svgTag: string, filterClbk?: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/preceding::*[local-name() = '" + svgTag + "']"+ this.computeFilter(filterClbk)]);
   }
 
@@ -375,7 +375,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getPrecedingSibling(filterClbk: (filter: Filter) => Filter): XPathHelper {
+  public getPrecedingSibling(filterClbk: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/preceding-sibling::*"+ this.computeFilter(filterClbk)]);
   }
 
@@ -386,7 +386,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getPrecedingSiblingByTag(tag: string, filterClbk?: (filter: Filter) => Filter): XPathHelper {
+  public getPrecedingSiblingByTag(tag: string, filterClbk?: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/preceding-sibling::" + tag + ""+ this.computeFilter(filterClbk)]);
   }
 
@@ -397,7 +397,7 @@ export default class XPathHelper {
    * @param {FilterClbck} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getPrecedingSiblingBySVGTag(svgTag: string, filterClbk?: (filter: Filter) => Filter): XPathHelper {
+  public getPrecedingSiblingBySVGTag(svgTag: string, filterClbk?: FilterClbck): XPathHelper {
     return new XPathHelper([...this.sb, "/preceding-sibling::*[local-name() = '" + svgTag + "']"+ this.computeFilter(filterClbk)]);
   }
 
@@ -413,7 +413,7 @@ export default class XPathHelper {
     return new XPathHelper([...this.sb, "."]);
   }
 
-  private computeFilter(filterClbk?: (filter: Filter) => Filter): string {
+  private computeFilter(filterClbk?: FilterClbck): string {
     let suffix = "";
     if (filterClbk) {
       const expression = filterClbk(new Filter()).toString();

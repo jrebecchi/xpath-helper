@@ -11,21 +11,21 @@ export class FilterWithClosedExpression {
     }
   }
 
-  and(...filters: FilterClbck[]) {
+  and(...filterClbks: FilterClbck[]) {
     let expression = "";
     if (this.sb.length != 0) {
-      expression += "and "
+      expression += " and "
     }
-    filters.map(filter => expression += filter.toString());
+    filterClbks.map((filterClbk, i) => expression += addOpenrand(filterClbk, " and ", i === filterClbks.length - 1));
     return new FilterWithClosedExpression([...this.sb, expression]);
   }
 
-  or(...filters: FilterClbck[]) {
+  or(...filterClbks: FilterClbck[]) {
     let expression = "";
     if (this.sb.length != 0) {
-      expression += "or "
+      expression += " or "
     }
-    filters.map(filter => expression += filter.toString());
+    filterClbks.map((filterClbk, i) => expression += addOpenrand(filterClbk, " or ", i === filterClbks.length - 1));
     return new FilterWithClosedExpression([...this.sb, expression]);
   }
 
@@ -104,38 +104,6 @@ export default class Filter extends FilterWithClosedExpression {
     return new FilterWithClosedExpression([...this.sb, "text() >=" + value]);
   }
 
-  haschildNode(tag: string) {
-    return new FilterWithClosedExpression([...this.sb, tag]);
-  }
-
-  childNodeValueContains(tag: string, text: string) {
-    return new FilterWithClosedExpression([...this.sb, "contains(" + tag + ", '" + text + "')"]);
-  }
-
-  childNodeValueEquals(tag: string, text: string) {
-    return new FilterWithClosedExpression([...this.sb, tag + " = '" + text + "'"]);
-  }
-
-  childNodeValueNotEquals(tag: string, value: string | number) {
-    return new FilterWithClosedExpression([...this.sb, tag + " != '" + value + "'"]);
-  }
-
-  childNodeValueLessThan(tag: string, value: number) {
-    return new FilterWithClosedExpression([...this.sb, tag + " < " + value]);
-  }
-
-  childNodeValueLessThanOrEqualsTo(tag: string, value: number) {
-    return new FilterWithClosedExpression([...this.sb, tag + " <= " + value]);
-  }
-
-  childNodeValueGreaterThan(tag: string, value: number) {
-    return new FilterWithClosedExpression([...this.sb, tag + " > " + value]);
-  }
-
-  childNodeValueGreaterThanOrEqualsTo(tag: string, value: number) {
-    return new FilterWithClosedExpression([...this.sb, tag + " >= " + value]);
-  }
-
   get(index: number) {
     return new FilterWithClosedExpression([...this.sb, "" + index]);
   }
@@ -148,11 +116,25 @@ export default class Filter extends FilterWithClosedExpression {
     return new FilterWithClosedExpression([...this.sb, "last()"]);
   }
 
-  not(filter: FilterClbck) {
-    return new FilterWithClosedExpression([...this.sb, "not( " + filter.toString() + " )"]);
+  not(filterClbk: FilterClbck) {
+    return new FilterWithClosedExpression([...this.sb, "not( " + addOpenrand(filterClbk) + " )"]);
   }
 
   public empty(): void {
     this.sb = new Array<string>();
   }
+}
+
+function addOpenrand(filterClbk: FilterClbck, separator = "", isLast = true): string {
+  let suffix = "";
+  if (filterClbk) {
+    const expression = filterClbk(new Filter()).toString();
+    if (expression !== "") {
+      suffix = expression;
+      if (!isLast) {
+        suffix += separator;
+      }
+    }
+  }
+  return suffix;
 }
