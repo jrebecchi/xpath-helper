@@ -1,7 +1,10 @@
-export type FilterClbck = (filter: Filter) => Filter;
+export interface Filter {
+  toString(): string;
+  isEmpty(): boolean;
+}
 
-export class FilterWithClosedExpression {
-  protected sb: Array<string>;
+export class FilledFilter implements Filter{
+  protected sb: string[];
 
   constructor(currentPath?: Array<string>) {
     if (currentPath) {
@@ -11,31 +14,39 @@ export class FilterWithClosedExpression {
     }
   }
 
-  and(...filterClbks: FilterClbck[]) {
+  and(...filters: Filter[]) {
     let expression = "";
     if (this.sb.length != 0) {
       expression += " and "
     }
-    filterClbks.map((filterClbk, i) => expression += addOpenrand(filterClbk, " and ", i === filterClbks.length - 1));
-    return new FilterWithClosedExpression([...this.sb, expression]);
+    filters.map((filter, i) => expression += addOpenrand(filter, " and ", i === filters.length - 1));
+    return new FilledFilter([...this.sb, expression]);
   }
 
-  or(...filterClbks: FilterClbck[]) {
+  or(...filters: Filter[]) {
     let expression = "";
     if (this.sb.length != 0) {
       expression += " or "
     }
-    filterClbks.map((filterClbk, i) => expression += addOpenrand(filterClbk, " or ", i === filterClbks.length - 1));
-    return new FilterWithClosedExpression([...this.sb, expression]);
+    filters.map((filter, i) => expression += addOpenrand(filter, " or ", i === filters.length - 1));
+    return new FilledFilter([...this.sb, expression]);
   }
 
   public toString(): string {
     return this.sb.join("");
   }
+
+  public empty(): void {
+    this.sb = new Array<string>();
+  }
+
+  public isEmpty(): boolean {
+    return this.sb.length == 0;
+  }
 }
 
 
-export default class Filter extends FilterWithClosedExpression {
+export default class EmptyFilter extends FilledFilter {
 
   public static ANY_ATTRIBUTE: string = "*"
   public static ANY_CHILD_NODE: string = "."
@@ -45,95 +56,89 @@ export default class Filter extends FilterWithClosedExpression {
   }
 
   hasAttribute(attribute: string) {
-    return new FilterWithClosedExpression([...this.sb, "@" + attribute]);
+    return new FilledFilter([...this.sb, "@" + attribute]);
   }
 
   attributeContains(attribute: string, value: string) {
-    return new FilterWithClosedExpression([...this.sb, "contains(@" + attribute + ", '" + value + "')"]);
+    return new FilledFilter([...this.sb, "contains(@" + attribute + ", '" + value + "')"]);
   }
 
   attributeEquals(attribute: string, value: string | number) {
-    return new FilterWithClosedExpression([...this.sb, "@" + attribute + "='" + value + "'"]);
+    return new FilledFilter([...this.sb, "@" + attribute + "='" + value + "'"]);
   }
 
   attributeNotEquals(attribute: string, value: string | number) {
-    return new FilterWithClosedExpression([...this.sb, "@" + attribute + "!='" + value + "'"]);
+    return new FilledFilter([...this.sb, "@" + attribute + "!='" + value + "'"]);
   }
 
   attributeLessThan(attribute: string, value: number) {
-    return new FilterWithClosedExpression([...this.sb, "@" + attribute + "<" + value]);
+    return new FilledFilter([...this.sb, "@" + attribute + "<" + value]);
   }
 
   attributeLessThanOrEqualsTo(attribute: string, value: number) {
-    return new FilterWithClosedExpression([...this.sb, "@" + attribute + "<=" + value]);
+    return new FilledFilter([...this.sb, "@" + attribute + "<=" + value]);
   }
 
   attributeGreaterThan(attribute: string, value: number) {
-    return new FilterWithClosedExpression([...this.sb, "@" + attribute + ">" + value]);
+    return new FilledFilter([...this.sb, "@" + attribute + ">" + value]);
   }
 
   attributeGreaterThanOrEqualsTo(attribute: string, value: number) {
-    return new FilterWithClosedExpression([...this.sb, "@" + attribute + ">=" + value]);
+    return new FilledFilter([...this.sb, "@" + attribute + ">=" + value]);
   }
 
   valueContains(value: string) {
-    return new FilterWithClosedExpression([...this.sb, "text()[contains(., '" + value + "')]"]);
+    return new FilledFilter([...this.sb, "text()[contains(., '" + value + "')]"]);
   }
 
   valueEquals(value: string) {
-    return new FilterWithClosedExpression([...this.sb, "text() = '" + value + "'"]);
+    return new FilledFilter([...this.sb, "text() = '" + value + "'"]);
   }
 
   valueNotEquals(value: string | number) {
-    return new FilterWithClosedExpression([...this.sb, "text() !='" + value + "'"]);
+    return new FilledFilter([...this.sb, "text() !='" + value + "'"]);
   }
 
   valueLessThan(value: number) {
-    return new FilterWithClosedExpression([...this.sb, "text() <" + value]);
+    return new FilledFilter([...this.sb, "text() <" + value]);
   }
 
   valueLessThanOrEqualsTo(value: number) {
-    return new FilterWithClosedExpression([...this.sb, "text() <=" + value]);
+    return new FilledFilter([...this.sb, "text() <=" + value]);
   }
 
   valueGreaterThan(value: number) {
-    return new FilterWithClosedExpression([...this.sb, "text() >" + value]);
+    return new FilledFilter([...this.sb, "text() >" + value]);
   }
 
   valueGreaterThanOrEqualsTo(value: number) {
-    return new FilterWithClosedExpression([...this.sb, "text() >=" + value]);
+    return new FilledFilter([...this.sb, "text() >=" + value]);
   }
 
   get(index: number) {
-    return new FilterWithClosedExpression([...this.sb, "" + index]);
+    return new FilledFilter([...this.sb, "" + index]);
   }
 
   getFirst() {
-    return new FilterWithClosedExpression([...this.sb, "1"]);
+    return new FilledFilter([...this.sb, "1"]);
   }
 
   getLast() {
-    return new FilterWithClosedExpression([...this.sb, "last()"]);
+    return new FilledFilter([...this.sb, "last()"]);
   }
 
-  not(filterClbk: FilterClbck) {
-    return new FilterWithClosedExpression([...this.sb, "not( " + addOpenrand(filterClbk) + " )"]);
-  }
-
-  public empty(): void {
-    this.sb = new Array<string>();
+  not(filter: Filter) {
+    return new FilledFilter([...this.sb, "not( " + addOpenrand(filter) + " )"]);
   }
 }
 
-function addOpenrand(filterClbk: FilterClbck, separator = "", isLast = true): string {
+function addOpenrand(filter: Filter, separator = "", isLast = true): string {
   let suffix = "";
-  if (filterClbk) {
-    const expression = filterClbk(new Filter()).toString();
-    if (expression !== "") {
-      suffix = expression;
-      if (!isLast) {
-        suffix += separator;
-      }
+  if (filter && !filter.isEmpty()) {
+    const expression = filter.toString();
+    suffix = expression;
+    if (!isLast) {
+      suffix += separator;
     }
   }
   return suffix;
