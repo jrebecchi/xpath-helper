@@ -102,7 +102,7 @@ export default class XPathHelper {
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
   public getDescendantBySVGTag(svgTag: string, filter?: Filter): XPathHelper {
-    return new XPathHelper([...this.sb, "/*[local-name() = '" + svgTag + "']"+ this.computeFilter(filter)]);
+    return new XPathHelper([...this.sb, "//*[local-name() = '" + svgTag + "']"+ this.computeFilter(filter)]);
   }
 
   /**
@@ -146,7 +146,7 @@ export default class XPathHelper {
    * @param {Filter} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    */
-  public getSVGDescendantOrSelfByTag(svgTag: string, filter?: Filter): XPathHelper {
+  public getDescendantOrSelfBySVGTag(svgTag: string, filter?: Filter): XPathHelper {
     return new XPathHelper([...this.sb, "/descendant-or-self::*[local-name() = '" + svgTag + "']"+ this.computeFilter(filter)]);
   }
 
