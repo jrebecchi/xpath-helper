@@ -1,9 +1,9 @@
-export interface Filter {
+export interface IFilter {
   toString(): string;
   isEmpty(): boolean;
 }
 
-export class FilledFilter implements Filter{
+export class FilledFilter implements IFilter {
   protected sb: string[];
 
   constructor(currentPath?: Array<string>) {
@@ -14,7 +14,7 @@ export class FilledFilter implements Filter{
     }
   }
 
-  and(...filters: Filter[]) {
+  and(...filters: IFilter[]) {
     let expression = "";
     if (this.sb.length != 0) {
       expression += " and "
@@ -23,7 +23,7 @@ export class FilledFilter implements Filter{
     return new FilledFilter([...this.sb, expression]);
   }
 
-  or(...filters: Filter[]) {
+  or(...filters: IFilter[]) {
     let expression = "";
     if (this.sb.length != 0) {
       expression += " or "
@@ -46,7 +46,7 @@ export class FilledFilter implements Filter{
 }
 
 
-export default class EmptyFilter extends FilledFilter {
+export default class Filter extends FilledFilter {
 
   public static ANY_ATTRIBUTE: string = "*"
   public static ANY_CHILD_NODE: string = "."
@@ -60,15 +60,15 @@ export default class EmptyFilter extends FilledFilter {
   }
 
   attributeContains(attribute: string, value: string) {
-    return new FilledFilter([...this.sb, "contains(@" + attribute + ", '" + value + "')"]);
+    return new FilledFilter([...this.sb, "contains(@" + attribute + ", " + replaceApostrophes(value) + ")"]);
   }
 
   attributeEquals(attribute: string, value: string | number) {
-    return new FilledFilter([...this.sb, "@" + attribute + "='" + value + "'"]);
+    return new FilledFilter([...this.sb, "@" + attribute + "=" + replaceApostrophes(value) + ""]);
   }
 
   attributeNotEquals(attribute: string, value: string | number) {
-    return new FilledFilter([...this.sb, "@" + attribute + "!='" + value + "'"]);
+    return new FilledFilter([...this.sb, "@" + attribute + "!=" + replaceApostrophes(value) + ""]);
   }
 
   attributeLessThan(attribute: string, value: number) {
@@ -88,15 +88,15 @@ export default class EmptyFilter extends FilledFilter {
   }
 
   valueContains(value: string) {
-    return new FilledFilter([...this.sb, "text()[contains(., '" + value + "')]"]);
+    return new FilledFilter([...this.sb, "text()[contains(., " + replaceApostrophes(value) + ")]"]);
   }
 
   valueEquals(value: string) {
-    return new FilledFilter([...this.sb, "text() = '" + value + "'"]);
+    return new FilledFilter([...this.sb, "text() = " + replaceApostrophes(value) + ""]);
   }
 
   valueNotEquals(value: string | number) {
-    return new FilledFilter([...this.sb, "text() !='" + value + "'"]);
+    return new FilledFilter([...this.sb, "text() !=" + replaceApostrophes(value) + ""]);
   }
 
   valueLessThan(value: number) {
@@ -127,12 +127,12 @@ export default class EmptyFilter extends FilledFilter {
     return new FilledFilter([...this.sb, "last()"]);
   }
 
-  not(filter: Filter) {
+  not(filter: IFilter) {
     return new FilledFilter([...this.sb, "not( " + addOpenrand(filter) + " )"]);
   }
 }
 
-function addOpenrand(filter: Filter, separator = "", isLast = true): string {
+function addOpenrand(filter: IFilter, separator = "", isLast = true): string {
   let suffix = "";
   if (filter && !filter.isEmpty()) {
     const expression = filter.toString();
@@ -142,4 +142,32 @@ function addOpenrand(filter: Filter, separator = "", isLast = true): string {
     }
   }
   return suffix;
+}
+
+function replaceApostrophes(input: string | number) {
+  if (typeof input === 'number') {
+    return input;
+  }
+  if (input.includes("'")) {
+    let prefix: string = "";
+    let elements: string[] = input.split("'");
+
+    let output: string = "concat(";
+
+    for (const s of elements) {
+      output += prefix + "'" + s + "'";
+      prefix = ",\"'\",";
+    }
+
+    if (output.endsWith(",")) {
+      output = output.substring(0, output.length - 2);
+    }
+
+    output += ")";
+
+    return output;
+  }
+  else { 
+    return "'" + input + "'";
+  }
 }
