@@ -19,8 +19,9 @@ export class FilledFilter implements IFilter {
     if (this.sb.length != 0) {
       expression += " and "
     }
+    expression += "("
     filters.map((filter, i) => expression += addOpenrand(filter, " and ", i === filters.length - 1));
-    return new FilledFilter([...this.sb, expression]);
+    return new FilledFilter([...this.sb, expression, ")"]);
   }
 
   or(...filters: IFilter[]) {
@@ -28,8 +29,9 @@ export class FilledFilter implements IFilter {
     if (this.sb.length != 0) {
       expression += " or "
     }
+    expression += "("
     filters.map((filter, i) => expression += addOpenrand(filter, " or ", i === filters.length - 1));
-    return new FilledFilter([...this.sb, expression]);
+    return new FilledFilter([...this.sb, expression, ")"]);
   }
 
   public toString(): string {
@@ -91,7 +93,7 @@ export default class Filter extends FilledFilter {
     return new FilledFilter([...this.sb, "text()[contains(., " + replaceApostrophes(value) + ")]"]);
   }
 
-  valueEquals(value: string) {
+  valueEquals(value: string | number) {
     return new FilledFilter([...this.sb, "text() = " + replaceApostrophes(value) + ""]);
   }
 

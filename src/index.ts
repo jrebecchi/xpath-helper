@@ -417,7 +417,7 @@ export default class XPathHelper {
     let suffix = "";
     if (filter && !filter.isEmpty()) {
       const expression = filter.toString();
-      suffix =  "[ " + expression + " ]";
+      suffix =  "[" + expression + "]";
     }
     return suffix;
   }

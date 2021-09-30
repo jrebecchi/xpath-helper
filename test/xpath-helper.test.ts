@@ -1,4 +1,3 @@
-import { DOMWindow, JSDOM } from 'jsdom';
 import XPathHelper, { filter } from '../src/index'
 import * as xpath from 'xpath';
 import { DOMParser } from 'xmldom';
@@ -10,7 +9,7 @@ beforeEach(async function () {
   const doc = new DOMParser().parseFromString(file.toString());
   findByXpath = (path) => xpath.evaluate(path, doc, null, 9, null).singleNodeValue
 });
-describe('Simple xpath selector and filter', () => {
+describe('XPathHelper', () => {
 
   describe('- General methods', () => {
     it('getParent', () => {
