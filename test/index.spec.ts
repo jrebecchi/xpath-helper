@@ -4,18 +4,44 @@ import * as xpath from 'xpath';
 import { DOMParser } from 'xmldom';
 import * as fs from 'fs';
 
-let page: DOMWindow;
 let findByXpath: (path: string) => Node | null;
-let findByXpathSVG: (path: string) => Node | null;
 beforeEach(async function () {
   const file = fs.readFileSync('./test/index.html');
   const doc = new DOMParser().parseFromString(file.toString());
   findByXpath = (path) => xpath.evaluate(path, doc, null, 9, null).singleNodeValue
-
-  // findByXpathSVG = (path) => xpath.evaluate(path, doc, function () { return 'http://www.w3.org/2000/svg' }
-  //   , 9, null).singleNodeValue;
 });
 describe('Simple xpath selector and filter', () => {
+
+  describe('- General methods', () => {
+    it('getParent', () => {
+      const liPath = new XPathHelper()
+        .getElementByTag("a", filter.valueContains("secure connection"))
+        .getParent();
+      const li = findByXpath(liPath.toString());
+      expect(li).not.toBeNull();
+      expect(li?.textContent?.includes("It's over a,")).toBeTruthy();
+    });
+    it('getElementByXpath', () => {
+      const liPath = new XPathHelper()
+        .getElementByTag("a", filter.valueContains("secure connection"))
+        .getElementByXpath("/..");
+      const li = findByXpath(liPath.toString());
+      expect(li).not.toBeNull();
+      expect(li?.textContent?.includes("It's over a,")).toBeTruthy();
+    });
+
+    it('empty', () => {
+      const liPath = new XPathHelper()
+        .getElementByTag("a", filter.valueContains("secure connection"))
+        .getParent();
+      const li = findByXpath(liPath.toString());
+      expect(li).not.toBeNull();
+      expect(li?.textContent?.includes("It's over a,")).toBeTruthy();
+
+      liPath.empty();
+      expect(liPath.toString()).toBe('')
+    });
+  });
   describe('- Descendant axis', () => {
     it('getElementByTag', () => {
       const title = new XPathHelper()
@@ -171,8 +197,7 @@ describe('Simple xpath selector and filter', () => {
 
       const aPath = new XPathHelper()
         .getElementByTag('i', filter.valueEquals('even more'))
-        .getFollowingByTag("a", filter.valueEquals("ARPANET"));
-      console.log(aPath.toString());
+        .getFollowingByTag("a", filter.valueEquals("IPoAC"));
       const a = findByXpath(aPath.toString());
       expect(a).not.toBeNull();
     });
@@ -220,24 +245,23 @@ describe('Simple xpath selector and filter', () => {
         .getElement(filter.attributeLessThan("width", 640).and(filter.attributeGreaterThanOrEqualsTo("width", 620)))
         .getFollowingSiblingBySVGTag("path", filter.attributeContains("d", "m423"));
       const path = findByXpath(pathPath.toString());
-      console.log(pathPath.toString());
       expect(path).not.toBeNull();
     });
   });
 
   describe('- Preceding axis', () => {
     it('getPrecedingByTag', () => {
-      const liPath = new XPathHelper()
+      const iPath = new XPathHelper()
         .getElementByTag("li", filter.valueContains("Doesn't load mbumive images or scripts."))
         .getPrecedingByTag('i', filter.valueEquals('almost'))
-      const li = findByXpath(liPath.toString());
-      expect(li).not.toBeNull();
+      const i = findByXpath(iPath.toString());
+      expect(i).not.toBeNull();
 
-      const aPath = new XPathHelper()
+      const iPath2 = new XPathHelper()
         .getElementByTag("a", filter.valueEquals("ARPANET"))
         .getPrecedingByTag('i', filter.valueEquals('even more'))
-      const a = findByXpath(aPath.toString());
-      expect(a).not.toBeNull();
+      const i2 = findByXpath(iPath2.toString());
+      expect(i2).not.toBeNull();
     });
     it('getPreceding', () => {
       const aPath = new XPathHelper()
@@ -247,11 +271,11 @@ describe('Simple xpath selector and filter', () => {
       expect(a).not.toBeNull();
     });
     it('getPrecedingBySVGTag', () => {
-      const svgPath = new XPathHelper()
+      const rectPath = new XPathHelper()
         .getElementBySVGTag("svg", filter.attributeEquals("width", "298px"))
         .getPrecedingBySVGTag("rect", filter.attributeLessThan("width", 640).and(filter.attributeGreaterThanOrEqualsTo("width", 620)))
-      const svg = findByXpath(svgPath.toString());
-      expect(svg).not.toBeNull();
+      const rect = findByXpath(rectPath.toString());
+      expect(rect).not.toBeNull();
     });
   });
 
