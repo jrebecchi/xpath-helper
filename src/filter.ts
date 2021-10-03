@@ -1,8 +1,19 @@
+/**
+ * The following Filter classes provide a simple, chainable and decomposable api
+ * to create XPath filter expression
+ */
+ 
+ /**
+  * @interface providing the minimal methods that must implement an XPath Filter.
+  */
 export interface IFilter {
   toString(): string;
   isEmpty(): boolean;
 }
 
+/**
+ * @class XPath Filter containing a valid expression
+ */
 export class FilledFilter implements IFilter {
   protected sb: string[];
 
@@ -13,7 +24,11 @@ export class FilledFilter implements IFilter {
       this.sb = new Array<string>();
     }
   }
-
+  
+  /**
+   * @summary Add one or more filter expression to the current one with the AND logical operator.
+   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression
+   */
   and(...filters: IFilter[]) {
     let expression = "";
     if (this.sb.length != 0) {
@@ -23,7 +38,11 @@ export class FilledFilter implements IFilter {
     filters.map((filter, i) => expression += addOpenrand(filter, " and ", i === filters.length - 1));
     return new FilledFilter([...this.sb, expression, ")"]);
   }
-
+  
+  /**
+   * @summary Add one or more filter expression to the current one with the OR logical operator.
+   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression
+   */
   or(...filters: IFilter[]) {
     let expression = "";
     if (this.sb.length != 0) {
@@ -33,21 +52,34 @@ export class FilledFilter implements IFilter {
     filters.map((filter, i) => expression += addOpenrand(filter, " or ", i === filters.length - 1));
     return new FilledFilter([...this.sb, expression, ")"]);
   }
-
+  
+  /**
+   * @summary Returns the Filter as a valid XPath filter expression.
+   * @returns {string} a valid XPath filter expression.
+   */
   public toString(): string {
     return this.sb.join("");
   }
-
+  
+  /**
+   * @summary Empty the current path.
+   */
   public empty(): void {
     this.sb = new Array<string>();
   }
-
+  
+  /**
+   * @summary Returns true if filter is empty.
+   * @returns {boolean} true if filter is empty.
+   */
   public isEmpty(): boolean {
     return this.sb.length == 0;
   }
 }
 
-
+/**
+ * @class Empty XPath filter.
+ */
 export default class Filter extends FilledFilter {
 
   public static ANY_ATTRIBUTE: string = "*"
@@ -56,7 +88,12 @@ export default class Filter extends FilledFilter {
   constructor(currentPath?: Array<string>) {
     super(currentPath)
   }
-
+  
+  /**
+   * @summary Filter elements that contain the passed <code>attribute</code>
+   * @param {string} attribute name
+   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression
+   */
   hasAttribute(attribute: string) {
     return new FilledFilter([...this.sb, "@" + attribute]);
   }
