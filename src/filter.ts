@@ -2,21 +2,36 @@
  * The following Filter classes provide a simple, chainable and decomposable api
  * to create XPath filter expression
  */
- 
- /**
-  * @interface providing the minimal methods that must implement an XPath Filter.
-  */
+
+/**
+ * Interface providing the minimal methods that must implement an XPath Filter.
+ * @export
+ * @interface IFilter
+ */
 export interface IFilter {
   toString(): string;
   isEmpty(): boolean;
 }
 
 /**
- * @class XPath Filter containing a valid expression
+ * XPath Filter containing a valid expression.
+ * @class FilledFilter
+ * @implements {IFilter}
  */
 export class FilledFilter implements IFilter {
+  /**
+   * Array of string containing the different part of the filter expression.
+   * @protected
+   * @type {string[]}
+   * @memberof FilledFilter
+   */
   protected sb: string[];
 
+  /**
+   * Creates an instance of FilledFilter.
+   * @param {Array<string>} [currentPath]
+   * @memberof FilledFilter
+   */
   constructor(currentPath?: Array<string>) {
     if (currentPath) {
       this.sb = currentPath;
@@ -24,10 +39,12 @@ export class FilledFilter implements IFilter {
       this.sb = new Array<string>();
     }
   }
-  
+
   /**
-   * @summary Add one or more filter expression to the current one with the AND logical operator.
+   * Adds one or more filter expression to the current one with the AND logical operator.
+   * @param {IFilter[]} filters List of filters that will be added with the AND logical operator
    * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression
+   * @memberof FilledFilter
    */
   and(...filters: IFilter[]) {
     let expression = "";
@@ -38,10 +55,12 @@ export class FilledFilter implements IFilter {
     filters.map((filter, i) => expression += addOpenrand(filter, " and ", i === filters.length - 1));
     return new FilledFilter([...this.sb, expression, ")"]);
   }
-  
+
   /**
-   * @summary Add one or more filter expression to the current one with the OR logical operator.
+   * Adds one or more filter expression to the current one with the OR logical operator.
+   * @param {IFilter[]} filters List of filters that will be added with the OR logical operator
    * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression
+   * @memberof FilledFilter
    */
   or(...filters: IFilter[]) {
     let expression = "";
@@ -52,25 +71,28 @@ export class FilledFilter implements IFilter {
     filters.map((filter, i) => expression += addOpenrand(filter, " or ", i === filters.length - 1));
     return new FilledFilter([...this.sb, expression, ")"]);
   }
-  
+
   /**
-   * @summary Returns the Filter as a valid XPath filter expression.
+   * Returns the Filter as a valid XPath filter expression.
    * @returns {string} a valid XPath filter expression.
+   * @memberof FilledFilter
    */
   public toString(): string {
     return this.sb.join("");
   }
-  
+
   /**
-   * @summary Empty the current path.
+   * Empties the current path.
+   * @memberof FilledFilter
    */
   public empty(): void {
     this.sb = new Array<string>();
   }
-  
+
   /**
-   * @summary Returns true if filter is empty.
+   * Returns true if filter is empty.
    * @returns {boolean} true if filter is empty.
+   * @memberof FilledFilter
    */
   public isEmpty(): boolean {
     return this.sb.length == 0;
@@ -78,99 +100,230 @@ export class FilledFilter implements IFilter {
 }
 
 /**
- * @class Empty XPath filter.
+ * Empty XPath filter.
+ * @export
+ * @class Filter
+ * @extends {FilledFilter}
  */
 export default class Filter extends FilledFilter {
 
+  /**
+   * Shortcut to design any attribute name
+   * @static
+   * @type {string}
+   * @memberof Filter
+   */
   public static ANY_ATTRIBUTE: string = "*"
-  public static ANY_CHILD_NODE: string = "."
 
+  /**
+   * Creates an instance of Filter.
+   * @param {Array<string>} [currentPath]
+   * @memberof Filter
+   */
   constructor(currentPath?: Array<string>) {
     super(currentPath)
   }
-  
+
   /**
-   * @summary Filter elements that contain the passed <code>attribute</code>
-   * @param {string} attribute name
-   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression
+   * Selects the nodes that have the attribute <code>attribute</code>.
+   * @param {string} attribute
+   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
+   * @memberof Filter
    */
   hasAttribute(attribute: string) {
     return new FilledFilter([...this.sb, "@" + attribute]);
   }
 
+  /**
+   * Selects the nodes with the attribute <code>attribute</code> containing the value <code><value</code>.
+   * @param attribute 
+   * @param value 
+   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
+   */
   attributeContains(attribute: string, value: string) {
     return new FilledFilter([...this.sb, "contains(@" + attribute + ", " + replaceApostrophes(value) + ")"]);
   }
 
+  /**
+   * Selects the nodes with the attribute <code>attribute</code>, whose value equals <code><value</code>.
+   * @param {string} attribute
+   * @param {(string | number)} value
+   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
+   * @memberof Filter
+   */
   attributeEquals(attribute: string, value: string | number) {
     return new FilledFilter([...this.sb, "@" + attribute + "=" + replaceApostrophes(value) + ""]);
   }
 
+  /**
+   * Selects the nodes with the attribute <code>attribute</code>, whose value doesn't equal <code><value</code>.
+   * @param {string} attribute
+   * @param {(string | number)} value
+   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
+   * @memberof Filter
+   */
   attributeNotEquals(attribute: string, value: string | number) {
     return new FilledFilter([...this.sb, "@" + attribute + "!=" + replaceApostrophes(value) + ""]);
   }
 
+  /**
+   * Selects the nodes with the attribute <code>attribute</code>, whose value is less than <code><value</code>.
+   * @param {string} attribute
+   * @param {number} value
+   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
+   * @memberof Filter
+   */
   attributeLessThan(attribute: string, value: number) {
     return new FilledFilter([...this.sb, "@" + attribute + "<" + value]);
   }
 
-  attributeLessThanOrEqualsTo(attribute: string, value: number) {
+  /**
+   * Selects the nodes with the attribute <code>attribute</code>, whose value is less than or equal to <code><value</code>.
+   * @param {string} attribute
+   * @param {number} value
+   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
+   * @memberof Filter
+   */
+  attributeLessThanOrEqualTo(attribute: string, value: number) {
     return new FilledFilter([...this.sb, "@" + attribute + "<=" + value]);
   }
 
+  /**
+   * Selects the nodes with the attribute <code>attribute</code>, whose value is greater than <code><value</code>.
+   * @param {string} attribute
+   * @param {number} value
+   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
+   * @memberof Filter
+   */
   attributeGreaterThan(attribute: string, value: number) {
     return new FilledFilter([...this.sb, "@" + attribute + ">" + value]);
   }
-
-  attributeGreaterThanOrEqualsTo(attribute: string, value: number) {
+  /**
+   * Selects the nodes with the attribute <code>attribute</code>, whose value is greater than or equal to <code><value</code>.
+   * @param {string} attribute
+   * @param {number} value
+   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
+   * @memberof Filter
+   */
+  attributeGreaterThanOrEqualTo(attribute: string, value: number) {
     return new FilledFilter([...this.sb, "@" + attribute + ">=" + value]);
   }
-
+  /**
+   * Selects the nodes containing the value <code><value</code>.
+   * @param {string} value
+   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
+   * @memberof Filter
+   */
   valueContains(value: string) {
     return new FilledFilter([...this.sb, "text()[contains(., " + replaceApostrophes(value) + ")]"]);
   }
 
+  /**
+   * Selects the nodes whose value equals <code><value</code>.
+   * @param {(string | number)} value
+   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
+   * @memberof Filter
+   */
   valueEquals(value: string | number) {
     return new FilledFilter([...this.sb, "text() = " + replaceApostrophes(value) + ""]);
   }
 
+  /**
+   * Selects the nodes with whose value doesn't equal <code><value</code>.
+   * @param {(string | number)} value
+   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
+   * @memberof Filter
+   */
   valueNotEquals(value: string | number) {
     return new FilledFilter([...this.sb, "text() !=" + replaceApostrophes(value) + ""]);
   }
 
+  /**
+   * Selects the nodes whose value is less than <code><value</code>.
+   * @param {number} value
+   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
+   * @memberof Filter
+   */
   valueLessThan(value: number) {
     return new FilledFilter([...this.sb, "text() <" + value]);
   }
 
-  valueLessThanOrEqualsTo(value: number) {
+  /**
+   * Selects the nodes whose value is less than or equal to <code><value</code>.
+   * @param {number} value
+   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
+   * @memberof Filter
+   */
+  valueLessThanOrEqualTo(value: number) {
     return new FilledFilter([...this.sb, "text() <=" + value]);
   }
 
+  /**
+   * Selects the nodes  whose value is greater than <code><value</code>.
+   * @param {number} value
+   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
+   * @memberof Filter
+   */
   valueGreaterThan(value: number) {
     return new FilledFilter([...this.sb, "text() >" + value]);
   }
 
-  valueGreaterThanOrEqualsTo(value: number) {
+  /**
+   * Selects the nodes whose value is greater than or equal to <code><value</code>.
+   * @param {number} value
+   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
+   * @memberof Filter
+   */
+  valueGreaterThanOrEqualTo(value: number) {
     return new FilledFilter([...this.sb, "text() >=" + value]);
   }
 
+  /**
+   * Selects the node element who is positioned at the <code>index</code> position in its parent children list.
+   * @param {number} index
+   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
+   * @memberof Filter
+   */
   get(index: number) {
     return new FilledFilter([...this.sb, "" + index]);
   }
 
+  /**
+   * Selects the node element who is positioned first in its parent children list.
+   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
+   * @memberof Filter
+   */
   getFirst() {
     return new FilledFilter([...this.sb, "1"]);
   }
 
+  /**
+   * Selects the node element who is positioned last in its parent children list.
+   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
+   * @memberof Filter
+   */
   getLast() {
     return new FilledFilter([...this.sb, "last()"]);
   }
 
+  /**
+   * Reverses the filter <code>filter</code>. Returns true when the filter returns false and true when the filter returns false.
+   * @param {IFilter} filter
+   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
+   * @memberof Filter
+   */
   not(filter: IFilter) {
     return new FilledFilter([...this.sb, "not( " + addOpenrand(filter) + " )"]);
   }
 }
 
+/**
+ * Adds operand between filters
+ * @param {IFilter} filter
+ * @param {string} [separator=""]
+ * @param {boolean} [isLast=true]
+ * @returns {string}
+ */
 function addOpenrand(filter: IFilter, separator = "", isLast = true): string {
   let suffix = "";
   if (filter && !filter.isEmpty()) {
@@ -183,6 +336,11 @@ function addOpenrand(filter: IFilter, separator = "", isLast = true): string {
   return suffix;
 }
 
+/**
+ * Treats the presence of apostrophes so it doesn't break the XPath filter expression.
+ * @param {(string | number)} input
+ * @returns {string} XPath filter expression with apostrophes handled.
+ */
 function replaceApostrophes(input: string | number) {
   if (typeof input === 'number') {
     return input;
@@ -190,7 +348,6 @@ function replaceApostrophes(input: string | number) {
   if (input.includes("'")) {
     let prefix: string = "";
     let elements: string[] = input.split("'");
-
     let output: string = "concat(";
 
     for (const s of elements) {
@@ -201,12 +358,10 @@ function replaceApostrophes(input: string | number) {
     if (output.endsWith(",")) {
       output = output.substring(0, output.length - 2);
     }
-
+    
     output += ")";
-
     return output;
-  }
-  else { 
+  } else {
     return "'" + input + "'";
   }
 }

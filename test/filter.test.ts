@@ -73,7 +73,7 @@ describe('Filter', () => {
   });
   it('- attributeLessThanOrEqualsTo', () => {
     const liPath = new XPathHelper()
-      .getElementByTag("li", filter.attributeLessThanOrEqualsTo("data-number", 20))
+      .getElementByTag("li", filter.attributeLessThanOrEqualTo("data-number", 20))
     const li = findByXpath(liPath.toString());
     expect(li).not.toBeNull();
   });
@@ -87,7 +87,7 @@ describe('Filter', () => {
 
   it('- attributeGreaterThanOrEqualsTo', () => {
     const liPath = new XPathHelper()
-      .getElementByTag("li", filter.attributeGreaterThanOrEqualsTo("data-number", 25))
+      .getElementByTag("li", filter.attributeGreaterThanOrEqualTo("data-number", 25))
     const li = findByXpath(liPath.toString());
     expect(li).not.toBeNull();
   });
@@ -120,7 +120,7 @@ describe('Filter', () => {
   });
   it('- valueLessThanOrEqualsTo', () => {
     const liPath = new XPathHelper()
-      .getElementByTag("li", filter.valueLessThanOrEqualsTo(15))
+      .getElementByTag("li", filter.valueLessThanOrEqualTo(15))
     const li = findByXpath(liPath.toString());
     expect(li).not.toBeNull();
   });
@@ -132,7 +132,7 @@ describe('Filter', () => {
   });
   it('- valueGreaterThanOrEqualsTo', () => {
     const liPath = new XPathHelper()
-      .getElementByTag("li", filter.valueGreaterThanOrEqualsTo(20))
+      .getElementByTag("li", filter.valueGreaterThanOrEqualTo(20))
     const li = findByXpath(liPath.toString());
     expect(li).not.toBeNull();
   });

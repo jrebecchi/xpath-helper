@@ -210,7 +210,7 @@ describe('XPathHelper', () => {
     });
     it('getFollowingBySVGTag', () => {
       const svgPath = new XPathHelper()
-        .getElement(filter.attributeLessThan("width", 640).and(filter.attributeGreaterThanOrEqualsTo("width", 620)))
+        .getElement(filter.attributeLessThan("width", 640).and(filter.attributeGreaterThanOrEqualTo("width", 620)))
         .getFollowingBySVGTag("svg", filter.attributeEquals("width", "298px"));
       const svg = findByXpath(svgPath.toString());
       expect(svg).not.toBeNull();
@@ -234,14 +234,14 @@ describe('XPathHelper', () => {
     it('getFollowingSibling', () => {
       const liPath = new XPathHelper()
         .getElementByTag('li', filter.attributeLessThan("data-number", 21))
-        .getFollowingSibling(filter.valueGreaterThanOrEqualsTo(20));
+        .getFollowingSibling(filter.valueGreaterThanOrEqualTo(20));
       const li = findByXpath(liPath.toString());
       expect(li).not.toBeNull();
       expect(li?.textContent).toBe("20");
     });
     it('getFollowingSiblingBySVGTag', () => {
       const pathPath = new XPathHelper()
-        .getElement(filter.attributeLessThan("width", 640).and(filter.attributeGreaterThanOrEqualsTo("width", 620)))
+        .getElement(filter.attributeLessThan("width", 640).and(filter.attributeGreaterThanOrEqualTo("width", 620)))
         .getFollowingSiblingBySVGTag("path", filter.attributeContains("d", "m423"));
       const path = findByXpath(pathPath.toString());
       expect(path).not.toBeNull();
@@ -272,7 +272,7 @@ describe('XPathHelper', () => {
     it('getPrecedingBySVGTag', () => {
       const rectPath = new XPathHelper()
         .getElementBySVGTag("svg", filter.attributeEquals("width", "298px"))
-        .getPrecedingBySVGTag("rect", filter.attributeLessThan("width", 640).and(filter.attributeGreaterThanOrEqualsTo("width", 620)))
+        .getPrecedingBySVGTag("rect", filter.attributeLessThan("width", 640).and(filter.attributeGreaterThanOrEqualTo("width", 620)))
       const rect = findByXpath(rectPath.toString());
       expect(rect).not.toBeNull();
     });
@@ -294,8 +294,8 @@ describe('XPathHelper', () => {
     });
     it('getPrecedingSibling', () => {
       const liPath = new XPathHelper()
-        .getElementByTag("li", filter.valueGreaterThanOrEqualsTo(20))
-        .getPrecedingSibling(filter.attributeLessThanOrEqualsTo("data-number", 21))
+        .getElementByTag("li", filter.valueGreaterThanOrEqualTo(20))
+        .getPrecedingSibling(filter.attributeLessThanOrEqualTo("data-number", 21))
       const li = findByXpath(liPath.toString());
       expect(li).not.toBeNull();
       expect(li?.textContent).toBe("15");
@@ -303,7 +303,7 @@ describe('XPathHelper', () => {
     it('getPrecedingSiblingBySVGTag', () => {
       const rectPath = new XPathHelper()
         .getElementBySVGTag("path", filter.attributeContains("d", "m423"))
-        .getPrecedingSiblingBySVGTag("rect", filter.attributeLessThan("width", 640).and(filter.attributeGreaterThanOrEqualsTo("width", 620)))
+        .getPrecedingSiblingBySVGTag("rect", filter.attributeLessThan("width", 640).and(filter.attributeGreaterThanOrEqualTo("width", 620)))
       const rect = findByXpath(rectPath.toString());
       expect(rect).not.toBeNull();
     });
