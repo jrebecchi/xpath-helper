@@ -29,10 +29,10 @@ export class FilledFilter implements IFilter {
 
   /**
    * Creates an instance of FilledFilter.
-   * @param {Array<string>} [currentPath]
+   * @param {string[] } [currentPath]
    * @memberof FilledFilter
    */
-  constructor(currentPath?: Array<string>) {
+  constructor(currentPath?: string[]) {
     if (currentPath) {
       this.sb = currentPath;
     } else {
@@ -48,7 +48,7 @@ export class FilledFilter implements IFilter {
    */
   and(...filters: IFilter[]) {
     let expression = "";
-    if (this.sb.length != 0) {
+    if (this.sb.length !== 0) {
       expression += " and ";
     }
     expression += "(";
@@ -67,7 +67,7 @@ export class FilledFilter implements IFilter {
    */
   or(...filters: IFilter[]) {
     let expression = "";
-    if (this.sb.length != 0) {
+    if (this.sb.length !== 0) {
       expression += " or ";
     }
     expression += "(";
@@ -101,7 +101,7 @@ export class FilledFilter implements IFilter {
    * @memberof FilledFilter
    */
   public isEmpty(): boolean {
-    return this.sb.length == 0;
+    return this.sb.length === 0;
   }
 }
 
@@ -122,10 +122,10 @@ export class Filter extends FilledFilter {
 
   /**
    * Creates an instance of Filter.
-   * @param {Array<string>} [currentPath]
+   * @param {string[] } [currentPath]
    * @memberof Filter
    */
-  constructor(currentPath?: Array<string>) {
+  constructor(currentPath?: string[]) {
     super(currentPath);
   }
 
@@ -370,7 +370,7 @@ function replaceApostrophes(input: string | number) {
   }
   if (input.includes("'")) {
     let prefix: string = "";
-    let elements: string[] = input.split("'");
+    const elements: string[] = input.split("'");
     let output: string = "concat(";
 
     for (const s of elements) {

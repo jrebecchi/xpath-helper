@@ -14,7 +14,7 @@ export class XPathHelper {
    * @param {Array<string>} [currentPath]
    * @memberof XPathHelper
    */
-  constructor(currentPath?: Array<string>) {
+  constructor(currentPath?: string[]) {
     if (currentPath) {
       this.sb = currentPath;
     } else {
