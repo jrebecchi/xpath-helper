@@ -49,10 +49,13 @@ export class FilledFilter implements IFilter {
   and(...filters: IFilter[]) {
     let expression = "";
     if (this.sb.length != 0) {
-      expression += " and "
+      expression += " and ";
     }
-    expression += "("
-    filters.map((filter, i) => expression += addOpenrand(filter, " and ", i === filters.length - 1));
+    expression += "(";
+    filters.map(
+      (filter, i) =>
+        (expression += addOpenrand(filter, " and ", i === filters.length - 1))
+    );
     return new FilledFilter([...this.sb, expression, ")"]);
   }
 
@@ -65,10 +68,13 @@ export class FilledFilter implements IFilter {
   or(...filters: IFilter[]) {
     let expression = "";
     if (this.sb.length != 0) {
-      expression += " or "
+      expression += " or ";
     }
-    expression += "("
-    filters.map((filter, i) => expression += addOpenrand(filter, " or ", i === filters.length - 1));
+    expression += "(";
+    filters.map(
+      (filter, i) =>
+        (expression += addOpenrand(filter, " or ", i === filters.length - 1))
+    );
     return new FilledFilter([...this.sb, expression, ")"]);
   }
 
@@ -105,15 +111,14 @@ export class FilledFilter implements IFilter {
  * @class Filter
  * @extends {FilledFilter}
  */
-export default class Filter extends FilledFilter {
-
+export class Filter extends FilledFilter {
   /**
    * Shortcut to design any attribute name
    * @static
    * @type {string}
    * @memberof Filter
    */
-  public static ANY_ATTRIBUTE: string = "*"
+  public static ANY_ATTRIBUTE: string = "*";
 
   /**
    * Creates an instance of Filter.
@@ -121,7 +126,7 @@ export default class Filter extends FilledFilter {
    * @memberof Filter
    */
   constructor(currentPath?: Array<string>) {
-    super(currentPath)
+    super(currentPath);
   }
 
   /**
@@ -136,12 +141,15 @@ export default class Filter extends FilledFilter {
 
   /**
    * Selects the nodes with the attribute <code>attribute</code> containing the value <code><value</code>.
-   * @param attribute 
-   * @param value 
+   * @param attribute
+   * @param value
    * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
    */
   attributeContains(attribute: string, value: string) {
-    return new FilledFilter([...this.sb, "contains(@" + attribute + ", " + replaceApostrophes(value) + ")"]);
+    return new FilledFilter([
+      ...this.sb,
+      "contains(@" + attribute + ", " + replaceApostrophes(value) + ")",
+    ]);
   }
 
   /**
@@ -152,7 +160,10 @@ export default class Filter extends FilledFilter {
    * @memberof Filter
    */
   attributeEquals(attribute: string, value: string | number) {
-    return new FilledFilter([...this.sb, "@" + attribute + "=" + replaceApostrophes(value) + ""]);
+    return new FilledFilter([
+      ...this.sb,
+      "@" + attribute + "=" + replaceApostrophes(value) + "",
+    ]);
   }
 
   /**
@@ -163,7 +174,10 @@ export default class Filter extends FilledFilter {
    * @memberof Filter
    */
   attributeNotEquals(attribute: string, value: string | number) {
-    return new FilledFilter([...this.sb, "@" + attribute + "!=" + replaceApostrophes(value) + ""]);
+    return new FilledFilter([
+      ...this.sb,
+      "@" + attribute + "!=" + replaceApostrophes(value) + "",
+    ]);
   }
 
   /**
@@ -215,7 +229,10 @@ export default class Filter extends FilledFilter {
    * @memberof Filter
    */
   valueContains(value: string) {
-    return new FilledFilter([...this.sb, "text()[contains(., " + replaceApostrophes(value) + ")]"]);
+    return new FilledFilter([
+      ...this.sb,
+      "text()[contains(., " + replaceApostrophes(value) + ")]",
+    ]);
   }
 
   /**
@@ -225,7 +242,10 @@ export default class Filter extends FilledFilter {
    * @memberof Filter
    */
   valueEquals(value: string | number) {
-    return new FilledFilter([...this.sb, "text() = " + replaceApostrophes(value) + ""]);
+    return new FilledFilter([
+      ...this.sb,
+      "text() = " + replaceApostrophes(value) + "",
+    ]);
   }
 
   /**
@@ -235,7 +255,10 @@ export default class Filter extends FilledFilter {
    * @memberof Filter
    */
   valueNotEquals(value: string | number) {
-    return new FilledFilter([...this.sb, "text() !=" + replaceApostrophes(value) + ""]);
+    return new FilledFilter([
+      ...this.sb,
+      "text() !=" + replaceApostrophes(value) + "",
+    ]);
   }
 
   /**
@@ -342,7 +365,7 @@ function addOpenrand(filter: IFilter, separator = "", isLast = true): string {
  * @returns {string} XPath filter expression with apostrophes handled.
  */
 function replaceApostrophes(input: string | number) {
-  if (typeof input === 'number') {
+  if (typeof input === "number") {
     return input;
   }
   if (input.includes("'")) {
@@ -352,13 +375,13 @@ function replaceApostrophes(input: string | number) {
 
     for (const s of elements) {
       output += prefix + "'" + s + "'";
-      prefix = ",\"'\",";
+      prefix = ',"\'",';
     }
 
     if (output.endsWith(",")) {
       output = output.substring(0, output.length - 2);
     }
-    
+
     output += ")";
     return output;
   } else {

@@ -2,11 +2,18 @@
   "name": "xpath-helper",
   "version": "1.0.0",
   "description": "A simple and chainnable API to build complicated XPath queries without the hassle.",
-  "main": "lib/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/mjs/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/mjs/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
   "scripts": {
     "coverage": "jest --config jest.config.json --coverage --forceExit",
     "test": "jest --config jest.config.json --forceExit",
-    "build": "tsc",
+    "build": "rm -fr dist/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && ./fixup.sh",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "watch": "tsc-watch",
@@ -39,5 +46,6 @@
     "typescript": "^4.4.2",
     "xmldom": "^0.6.0",
     "xpath": "^0.0.32"
-  }
+  },
+  "files": ["dist/**/*"]
 }

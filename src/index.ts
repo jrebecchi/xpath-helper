@@ -1,12 +1,12 @@
-import Filter, { IFilter } from "./filter";
+import { Filter, IFilter } from "./filter";
 
 /**
- * XPathHelper provides a simple and chainnable API to build complicated XPath queries without the hassle. 
+ * XPathHelper provides a simple and chainnable API to build complicated XPath queries without the hassle.
  * After building your XPath query, call the method <code>toString()</code> to get the corresponding XPath string.
  * @export
  * @class XPathHelper
  */
-export default class XPathHelper {
+export class XPathHelper {
   private sb: string[];
 
   /**
@@ -73,7 +73,7 @@ export default class XPathHelper {
    * @memberof XPathHelper
    */
   public getDescendant(filter: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "//*"+ this.computeFilter(filter)]);
+    return new XPathHelper([...this.sb, "//*" + this.computeFilter(filter)]);
   }
 
   /**
@@ -95,7 +95,10 @@ export default class XPathHelper {
    * @memberof XPathHelper
    */
   public getDescendantByTag(tag: string, filter?: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "//" + tag + this.computeFilter(filter)]);
+    return new XPathHelper([
+      ...this.sb,
+      "//" + tag + this.computeFilter(filter),
+    ]);
   }
 
   /**
@@ -118,7 +121,10 @@ export default class XPathHelper {
    * @memberof XPathHelper
    */
   public getDescendantBySVGTag(svgTag: string, filter?: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "//*[local-name() = '" + svgTag + "']"+ this.computeFilter(filter)]);
+    return new XPathHelper([
+      ...this.sb,
+      "//*[local-name() = '" + svgTag + "']" + this.computeFilter(filter),
+    ]);
   }
 
   /**
@@ -145,7 +151,10 @@ export default class XPathHelper {
    * @memberof XPathHelper
    */
   public getDescendantOrSelf(filter: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/descendant-or-self::*"+ this.computeFilter(filter)]);
+    return new XPathHelper([
+      ...this.sb,
+      "/descendant-or-self::*" + this.computeFilter(filter),
+    ]);
   }
 
   /**
@@ -156,7 +165,10 @@ export default class XPathHelper {
    * @memberof XPathHelper
    */
   public getDescendantOrSelfByTag(tag: string, filter?: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/descendant-or-self::" + tag + ""+ this.computeFilter(filter)]);
+    return new XPathHelper([
+      ...this.sb,
+      "/descendant-or-self::" + tag + "" + this.computeFilter(filter),
+    ]);
   }
 
   /**
@@ -166,8 +178,17 @@ export default class XPathHelper {
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
-  public getDescendantOrSelfBySVGTag(svgTag: string, filter?: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/descendant-or-self::*[local-name() = '" + svgTag + "']"+ this.computeFilter(filter)]);
+  public getDescendantOrSelfBySVGTag(
+    svgTag: string,
+    filter?: IFilter
+  ): XPathHelper {
+    return new XPathHelper([
+      ...this.sb,
+      "/descendant-or-self::*[local-name() = '" +
+        svgTag +
+        "']" +
+        this.computeFilter(filter),
+    ]);
   }
 
   /************* Child axis *************
@@ -181,7 +202,7 @@ export default class XPathHelper {
    * @memberof XPathHelper
    */
   public getChild(filter: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/*"+ this.computeFilter(filter)]);
+    return new XPathHelper([...this.sb, "/*" + this.computeFilter(filter)]);
   }
 
   /**
@@ -192,7 +213,10 @@ export default class XPathHelper {
    * @memberof XPathHelper
    */
   public getChildByTag(tag: string, filter?: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/" + tag + ""+ this.computeFilter(filter)]);
+    return new XPathHelper([
+      ...this.sb,
+      "/" + tag + "" + this.computeFilter(filter),
+    ]);
   }
 
   /**
@@ -203,11 +227,14 @@ export default class XPathHelper {
    * @memberof XPathHelper
    */
   public getChildBySVGTag(svgTag: string, filter?: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/*[local-name() = '" + svgTag + "']"+ this.computeFilter(filter)]);
+    return new XPathHelper([
+      ...this.sb,
+      "/*[local-name() = '" + svgTag + "']" + this.computeFilter(filter),
+    ]);
   }
 
   /************* Ancestor axis *************
-   * The ancestor axis returns all the nodes that are ancestors, 
+   * The ancestor axis returns all the nodes that are ancestors,
    * or the parent, and the parent's parent, and so on, to the node in reference.
    *****************************************/
 
@@ -219,7 +246,10 @@ export default class XPathHelper {
    * @memberof XPathHelper
    */
   public getAncestor(filter: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/ancestor::*"+ this.computeFilter(filter)]);
+    return new XPathHelper([
+      ...this.sb,
+      "/ancestor::*" + this.computeFilter(filter),
+    ]);
   }
 
   /**
@@ -231,7 +261,10 @@ export default class XPathHelper {
    * @memberof XPathHelper
    */
   public getAncestorByTag(tag: string, filter?: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/ancestor::" + tag + ""+ this.computeFilter(filter)]);
+    return new XPathHelper([
+      ...this.sb,
+      "/ancestor::" + tag + "" + this.computeFilter(filter),
+    ]);
   }
 
   /**
@@ -243,11 +276,17 @@ export default class XPathHelper {
    * @memberof XPathHelper
    */
   public getAncestorBySVGTag(svgTag: string, filter?: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/ancestor::*[local-name() = '" + svgTag + "']"+ this.computeFilter(filter)]);
+    return new XPathHelper([
+      ...this.sb,
+      "/ancestor::*[local-name() = '" +
+        svgTag +
+        "']" +
+        this.computeFilter(filter),
+    ]);
   }
 
   /************* Ancestor-or-self axis *************
-   * The ancestor-or-self axis returns all nodes that are ancestors, 
+   * The ancestor-or-self axis returns all nodes that are ancestors,
    * or the parent, and the parent's parent, and so on, including the node in reference.
    *************************************************/
   /**
@@ -258,7 +297,10 @@ export default class XPathHelper {
    * @memberof XPathHelper
    */
   public getAncestorOrSelf(filter: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/ancestor-or-self::*"+ this.computeFilter(filter)]);
+    return new XPathHelper([
+      ...this.sb,
+      "/ancestor-or-self::*" + this.computeFilter(filter),
+    ]);
   }
 
   /**
@@ -270,7 +312,10 @@ export default class XPathHelper {
    * @memberof XPathHelper
    */
   public getAncestorOrSelfByTag(tag: string, filter?: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/ancestor-or-self::" + tag + ""+ this.computeFilter(filter)]);
+    return new XPathHelper([
+      ...this.sb,
+      "/ancestor-or-self::" + tag + "" + this.computeFilter(filter),
+    ]);
   }
 
   /**
@@ -281,24 +326,36 @@ export default class XPathHelper {
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
-  public getAncestorOrSelfBySVGTag(svgTag: string, filter?: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/ancestor-or-self::*[local-name() = '" + svgTag + "']"+ this.computeFilter(filter)]);
+  public getAncestorOrSelfBySVGTag(
+    svgTag: string,
+    filter?: IFilter
+  ): XPathHelper {
+    return new XPathHelper([
+      ...this.sb,
+      "/ancestor-or-self::*[local-name() = '" +
+        svgTag +
+        "']" +
+        this.computeFilter(filter),
+    ]);
   }
 
   /************* Following axis *************
-   * The following axis selects all nodes no matter the depth, that are located on parent-level 
+   * The following axis selects all nodes no matter the depth, that are located on parent-level
    * and also after (following) its parent of the node in reference.
    ******************************************/
 
   /**
-   * Select the nodes filtered by <code>filter</code>, that are located on parent-level 
+   * Select the nodes filtered by <code>filter</code>, that are located on parent-level
    * and also after (following) its parent of the node in reference.
    * @param {IFilter} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
   public getFollowing(filter: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/following::*"+ this.computeFilter(filter)]);
+    return new XPathHelper([
+      ...this.sb,
+      "/following::*" + this.computeFilter(filter),
+    ]);
   }
 
   /**
@@ -310,7 +367,10 @@ export default class XPathHelper {
    * @memberof XPathHelper
    */
   public getFollowingByTag(tag: string, filter?: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/following::" + tag + ""+ this.computeFilter(filter)]);
+    return new XPathHelper([
+      ...this.sb,
+      "/following::" + tag + "" + this.computeFilter(filter),
+    ]);
   }
 
   /**
@@ -321,7 +381,13 @@ export default class XPathHelper {
    * @memberof XPathHelper
    */
   public getFollowingBySVGTag(svgTag: string, filter?: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/following::*[local-name() = '" + svgTag + "']"+ this.computeFilter(filter)]);
+    return new XPathHelper([
+      ...this.sb,
+      "/following::*[local-name() = '" +
+        svgTag +
+        "']" +
+        this.computeFilter(filter),
+    ]);
   }
 
   /************* Following-sibling axis *************
@@ -329,18 +395,21 @@ export default class XPathHelper {
    **************************************************/
 
   /**
-   * Select the nodes filtered by <code>filter</code>, 
+   * Select the nodes filtered by <code>filter</code>,
    * that are located on the same level who are located after (following) the node in reference.
    * @param {IFilter} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
   public getFollowingSibling(filter: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/following-sibling::*"+ this.computeFilter(filter)]);
+    return new XPathHelper([
+      ...this.sb,
+      "/following-sibling::*" + this.computeFilter(filter),
+    ]);
   }
 
   /**
-   * Select the nodes with tag <code>tag</code> filtered by <code>filter</code>, 
+   * Select the nodes with tag <code>tag</code> filtered by <code>filter</code>,
    * that are located on the same level who are located after (following) the node in reference.
    * @param {string} tag
    * @param {IFilter} filter
@@ -348,39 +417,54 @@ export default class XPathHelper {
    * @memberof XPathHelper
    */
   public getFollowingSiblingByTag(tag: string, filter?: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/following-sibling::" + tag + ""+ this.computeFilter(filter)]);
+    return new XPathHelper([
+      ...this.sb,
+      "/following-sibling::" + tag + "" + this.computeFilter(filter),
+    ]);
   }
 
   /**
-   * Select the SVG nodes with SVG tag <code>svgTag</code> filtered by <code>filter</code>, 
+   * Select the SVG nodes with SVG tag <code>svgTag</code> filtered by <code>filter</code>,
    * that are located on the same level who are located after (following) the node in reference.
    * @param {string} svgTag
    * @param {IFilter} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
-  public getFollowingSiblingBySVGTag(svgTag: string, filter?: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/following-sibling::*[local-name() = '" + svgTag + "']"+ this.computeFilter(filter)]);
+  public getFollowingSiblingBySVGTag(
+    svgTag: string,
+    filter?: IFilter
+  ): XPathHelper {
+    return new XPathHelper([
+      ...this.sb,
+      "/following-sibling::*[local-name() = '" +
+        svgTag +
+        "']" +
+        this.computeFilter(filter),
+    ]);
   }
 
   /************* Preceding axis *************
-   * The preceding axis selects all nodes no matter the depth, 
+   * The preceding axis selects all nodes no matter the depth,
    * that are located on parent-level and also before (preceding) its parent of the node in reference.
    ******************************************/
 
   /**
-   * Select the nodes filtered by <code>filter</code>, that are located on parent-level 
+   * Select the nodes filtered by <code>filter</code>, that are located on parent-level
    * and also before (preceding) its parent of the node in reference.
    * @param {IFilter} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
   public getPreceding(filter: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/preceding::*"+ this.computeFilter(filter)]);
+    return new XPathHelper([
+      ...this.sb,
+      "/preceding::*" + this.computeFilter(filter),
+    ]);
   }
 
   /**
-   * Select the nodes with tag <code>tag</code> filtered by <code>filter</code>, 
+   * Select the nodes with tag <code>tag</code> filtered by <code>filter</code>,
    * that are located on parent-level and also before (preceding) its parent of the node in reference.
    * @param {string} tag
    * @param {IFilter} filter
@@ -388,11 +472,14 @@ export default class XPathHelper {
    * @memberof XPathHelper
    */
   public getPrecedingByTag(tag: string, filter?: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/preceding::" + tag + ""+ this.computeFilter(filter)]);
+    return new XPathHelper([
+      ...this.sb,
+      "/preceding::" + tag + "" + this.computeFilter(filter),
+    ]);
   }
 
   /**
-   * Select the SVG nodes with SVG tag <code>svgTag</code> filtered by <code>filter</code>, 
+   * Select the SVG nodes with SVG tag <code>svgTag</code> filtered by <code>filter</code>,
    * that are located on parent-level and also before (preceding) its parent of the node in reference.
    * @param {string} svgTag
    * @param {IFilter} filter
@@ -400,7 +487,13 @@ export default class XPathHelper {
    * @memberof XPathHelper
    */
   public getPrecedingBySVGTag(svgTag: string, filter?: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/preceding::*[local-name() = '" + svgTag + "']"+ this.computeFilter(filter)]);
+    return new XPathHelper([
+      ...this.sb,
+      "/preceding::*[local-name() = '" +
+        svgTag +
+        "']" +
+        this.computeFilter(filter),
+    ]);
   }
 
   /************* Preceding-sibling axis *************
@@ -415,11 +508,14 @@ export default class XPathHelper {
    * @memberof XPathHelper
    */
   public getPrecedingSibling(filter: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/preceding-sibling::*"+ this.computeFilter(filter)]);
+    return new XPathHelper([
+      ...this.sb,
+      "/preceding-sibling::*" + this.computeFilter(filter),
+    ]);
   }
 
   /**
-   * Select the nodes with tag <code>tag</code> filtered by <code>filter</code>, 
+   * Select the nodes with tag <code>tag</code> filtered by <code>filter</code>,
    * that are located on the same level who are also located before (preceding) the node in reference.
    * @param {string} tag
    * @param {IFilter} filter
@@ -427,19 +523,31 @@ export default class XPathHelper {
    * @memberof XPathHelper
    */
   public getPrecedingSiblingByTag(tag: string, filter?: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/preceding-sibling::" + tag + ""+ this.computeFilter(filter)]);
+    return new XPathHelper([
+      ...this.sb,
+      "/preceding-sibling::" + tag + "" + this.computeFilter(filter),
+    ]);
   }
 
   /**
-   * Select the SVG nodes with SVG tag <code>svgTag</code> filtered by <code>filter</code>, 
+   * Select the SVG nodes with SVG tag <code>svgTag</code> filtered by <code>filter</code>,
    * that are located on the same level who are also located before (preceding) the node in reference.
    * @param {string} svgTag
    * @param {IFilter} filter
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
-  public getPrecedingSiblingBySVGTag(svgTag: string, filter?: IFilter): XPathHelper {
-    return new XPathHelper([...this.sb, "/preceding-sibling::*[local-name() = '" + svgTag + "']"+ this.computeFilter(filter)]);
+  public getPrecedingSiblingBySVGTag(
+    svgTag: string,
+    filter?: IFilter
+  ): XPathHelper {
+    return new XPathHelper([
+      ...this.sb,
+      "/preceding-sibling::*[local-name() = '" +
+        svgTag +
+        "']" +
+        this.computeFilter(filter),
+    ]);
   }
 
   /**
@@ -463,13 +571,13 @@ export default class XPathHelper {
     let suffix = "";
     if (filter && !filter.isEmpty()) {
       const expression = filter.toString();
-      suffix =  "[" + expression + "]";
+      suffix = "[" + expression + "]";
     }
     return suffix;
   }
 }
 
-const filterInstance = new Filter()
+const filterInstance = new Filter();
 Object.freeze(filterInstance);
 
 export const filter = filterInstance;
