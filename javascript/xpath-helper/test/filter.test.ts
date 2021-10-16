@@ -1,4 +1,4 @@
-import { XPathHelper, filter } from "../src/index";
+import { XPathHelper, filter } from "../src/xpath-helper";
 import * as xpath from "xpath";
 import { DOMParser } from "xmldom";
 import * as fs from "fs";
