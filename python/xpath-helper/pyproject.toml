@@ -1,0 +1,39 @@
+[tool.poetry]
+authors = ["Johann Rebecchi <jrebecchi@protonmail.com>"]
+classifiers = [
+  "Intended Audience :: Developers",
+  "Intended Audience :: Information Technology",
+  "License :: OSI Approved :: MIT License",
+  "Natural Language :: English",
+  "Programming Language :: Python :: 3.5",
+  "Topic :: Software Development :: Code Generators",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: Text Processing :: Markup",
+  "Topic :: Text Processing :: Markup :: HTML",
+  "Topic :: Text Processing :: Markup :: XML",
+  "Topic :: Utilities",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: Software Development :: Quality Assurance",
+  "Operating System :: OS Independent",
+]
+description = "A simple and chainnable API to build complicated XPath queries without the hassle."
+homepage = "https://github.com/jrebecchi/xpath-helper"
+keywords = ["xpath", "helper", "selenium", "test", "selector", "scraping"]
+license = "MIT"
+name = "xpath-helper"
+readme = "README.md"
+repository = "https://github.com/jrebecchi/xpath-helper"
+version = "0.1.0"
+include = [
+    "LICENSE",
+    "README.md"
+]
+[tool.poetry.dependencies]
+python = ">3.5"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0"]
