@@ -4,6 +4,7 @@ to create XPath filter expression
 """
 
 from typing import Final
+from typing import List
 import functools
 
 """
@@ -16,15 +17,15 @@ ANY_ATTRIBUTE : Final = "*"
 XPath Filter containing a valid expression.
 """
 class FilledFilter:
-    sb = []
+    sb : List[str] = []
 
-    def __init__(self, current_path):
+    def __init__(self, current_path = None):
         """Creates an instance of FilledFilter.
 
         Args:
             currentPath (list[string]): Current filter path
-        """        
-        if current_path != None:
+        """
+        if current_path is None:
             self.sb = current_path
     
     def and_condition(self, *filters):
@@ -69,7 +70,7 @@ class FilledFilter:
         Returns:
             str: the string of the corresponding XPath filter
         """        
-        return self.sb.join("")
+        return "".join(self.sb)
     
     
     def empty(self):
@@ -90,7 +91,7 @@ class FilledFilter:
 Empty XPath filter.
 """
 class Filter(FilledFilter):
-    def __init__(self, currentPath):
+    def __init__(self, *currentPath):
         """Creates an instance of Filter.
 
         Args:
@@ -99,7 +100,7 @@ class Filter(FilledFilter):
         super().__init__(currentPath)
     
     
-    def hasAttribute(self, attribute: str):
+    def has_attribute(self, attribute: str):
         """Selects the nodes that have the attribute <code>attribute</code>.
 
         Args:
@@ -110,7 +111,7 @@ class Filter(FilledFilter):
         """        
         return FilledFilter(self.sb + ["@" + attribute]);
     
-    def attributeContains(self, attribute, value):
+    def attribute_contains(self, attribute, value):
         """Selects the nodes with the attribute <code>attribute</code> containing the value <code><value</code>.
 
         Args:
@@ -120,10 +121,10 @@ class Filter(FilledFilter):
         Returns:
             FilledFilter: a new instance of FilledFilter with the newly formed expression.
         """        
-        return FilledFilter(self.sb + ["contains(@" + attribute + ", " + replace_apostrophes(self, value) + ")",
+        return FilledFilter(self.sb + ["contains(@" + attribute + ", " + replace_apostrophes(value) + ")",
         ]);
 
-    def attributeEquals(self, attribute, value):
+    def attribute_equals(self, attribute, value):
         """Selects the nodes with the attribute <code>attribute</code>, whose value equals <code><value</code>.
 
         Args:
@@ -133,10 +134,10 @@ class Filter(FilledFilter):
         Returns:
             FilledFilter: a new instance of FilledFilter with the newly formed expression.
         """        
-        return FilledFilter(self.sb + ["@" + attribute + "=" + replace_apostrophes(self, value) + "",
+        return FilledFilter(self.sb + ["@" + attribute + "=" + replace_apostrophes(value) + "",
         ]);
 
-    def attributeNotEquals(self, attribute, value):
+    def attribute_not_equals(self, attribute, value):
         """Selects the nodes with the attribute <code>attribute</code>, whose value doesn't equal <code><value</code>.
 
         Args:
@@ -146,9 +147,9 @@ class Filter(FilledFilter):
         Returns:
             FilledFilter: a new instance of FilledFilter with the newly formed expression.
         """        
-        return FilledFilter(self.sb + ["@" + attribute + "!=" + replace_apostrophes(self, value)]);
+        return FilledFilter(self.sb + ["@" + attribute + "!=" + replace_apostrophes(value)]);
     
-    def attributeLessThan(self, attribute, value):
+    def attribute_less_than(self, attribute, value):
         """Selects the nodes with the attribute <code>attribute</code>, whose value is less than <code><value<code>.
 
         Args:
@@ -160,7 +161,7 @@ class Filter(FilledFilter):
         """        
         return FilledFilter(self.sb + ["@" + attribute + "<" + value]);
     
-    def attributeLessThanOrEqualTo(self, attribute, value):
+    def attribute_less_than_or_equal_to(self, attribute, value):
         """Selects the nodes with the attribute <code>attribute</code>, whose value is less than or equal to <code><value</code>.
 
         Args:
@@ -172,7 +173,7 @@ class Filter(FilledFilter):
         """        
         return FilledFilter(self.sb + ["@" + attribute + "<=" + value]);
     
-    def attributeGreaterThan(self, attribute, value):
+    def attribute_greater_than(self, attribute, value):
         """Selects the nodes with the attribute <code>attribute</code>, whose value is greater than <code><value</code>.
 
         Args:
@@ -184,7 +185,7 @@ class Filter(FilledFilter):
         """        
         return FilledFilter(self.sb + ["@" + attribute + ">" + value]);
     
-    def attributeGreaterThanOrEqualTo(self, attribute, value):
+    def attribute_greater_than_or_equal_to(self, attribute, value):
         """Selects the nodes with the attribute <code>attribute</code>, whose value is greater than or equal to <code><value</code>.
 
         Args:
@@ -196,7 +197,7 @@ class Filter(FilledFilter):
         """        
         return FilledFilter(self.sb + ["@" + attribute + ">=" + value]);
 
-    def valueContains(self, value):
+    def value_contains(self, value):
         """Selects the nodes containing the value <code><value</code>.
 
         Args:
@@ -204,10 +205,11 @@ class Filter(FilledFilter):
 
         Returns:
             FilledFilter: a new instance of FilledFilter with the newly formed expression.
-        """        
-        return FilledFilter(self.sb + ["text()[contains(., " + replace_apostrophes(self, value) + ")]"]);
+        """
+        print(self.sb)
+        return FilledFilter(self.sb + ["text()[contains(., " + replace_apostrophes(value) + ")]"]);
 
-    def valueEquals(self, value):
+    def value_equals(self, value):
         """Selects the nodes whose value equals <code><value</code>.
 
         Args:
@@ -216,9 +218,9 @@ class Filter(FilledFilter):
         Returns:
             FilledFilter: a new instance of FilledFilter with the newly formed expression.
         """        
-        return FilledFilter(self.sb + ["text() = " + replace_apostrophes(self, value)]);
+        return FilledFilter(self.sb + ["text() = " + replace_apostrophes(value)]);
     
-    def valueNotEquals(self, value):
+    def value_not_equals(self, value):
         """Selects the nodes with whose value doesn't equal <code><value</code>.
 
         Args:
@@ -227,9 +229,9 @@ class Filter(FilledFilter):
         Returns:
             FilledFilter: a new instance of FilledFilter with the newly formed expression.
         """        
-        return FilledFilter(self.sb + ["text() !=" + replace_apostrophes(self, value)]);
+        return FilledFilter(self.sb + ["text() !=" + replace_apostrophes(value)]);
     
-    def valueLessThan(self, value):
+    def value_less_than(self, value):
         """Selects the nodes whose value is less than <code><value</code>.
 
         Args:
@@ -240,7 +242,7 @@ class Filter(FilledFilter):
         """        
         return FilledFilter(self.sb + ["text() <" + value]);
     
-    def valueLessThanOrEqualTo(self, value):
+    def value_less_than_or_equal_to(self, value):
         """Selects the nodes whose value is less than or equal to <code><value</code>.
 
         Args:
@@ -251,7 +253,7 @@ class Filter(FilledFilter):
         """        
         return FilledFilter(self.sb + ["text() <=" + value]);
 
-    def valueGreaterThan(self, value):
+    def value_greater_than(self, value):
         """Selects the nodes  whose value is greater than <code><value</code>.
 
         Args:
@@ -262,7 +264,7 @@ class Filter(FilledFilter):
         """        
         return FilledFilter(self.sb + ["text() >" + value]);
     
-    def valueGreaterThanOrEqualTo(self, value):
+    def value_greater_than_or_equal_to(self, value):
         """Selects the nodes whose value is greater than or equal to <code><value</code>.
 
         Args:
@@ -289,11 +291,11 @@ class Filter(FilledFilter):
      * @returns:FilledFilter a new instance of FilledFilter with the newly formed expression.
      * @memberof Filter
     """
-    def getFirst(self):
+    def get_first(self):
         return FilledFilter(self.sb + ["1"]);
     
 
-    def getLast(self):
+    def get_last(self):
         """Selects the node element who is positioned last in its parent children list.
 
         Returns:

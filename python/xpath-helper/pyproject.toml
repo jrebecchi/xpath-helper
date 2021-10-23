@@ -33,6 +33,7 @@ python = ">3.5"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
+lxml = "^4.6.3"
 
 [build-system]
 build-backend = "poetry.core.masonry.api"
