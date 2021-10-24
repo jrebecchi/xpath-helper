@@ -204,7 +204,6 @@ class Filter(FilledFilter):
         Returns:
             FilledFilter: a new instance of FilledFilter with the newly formed expression.
         """
-        print(self.sb)
         return FilledFilter(self.sb + ["text()[contains(., " + replace_apostrophes(value) + ")]"]);
 
     def value_equals(self, value):

@@ -61,7 +61,7 @@ class XPathHelper:
     # The descendant axis retrieves all nodes below the node in reference no matter the depth.
     #############################################
     
-    def get_descendant(self, filter):
+    def get_descendant(self, filter = None):
         """Select the nodes filtered by <code>filter</code>, below the node in reference no matter the depth.
 
         Args:
@@ -73,7 +73,7 @@ class XPathHelper:
         return XPathHelper(self.sb + ["//*" + self.__compute_filter(filter)])
     
     
-    def get_element(self, filter):
+    def get_element(self, filter = None):
         """Select the nodes filtered by <code>filter</code>, below the node in reference no matter the depth.
         This self method is a synonym of <code>get_descendant</code>.
 
@@ -85,7 +85,7 @@ class XPathHelper:
         """        
         return self.get_descendant(filter)
     
-    def get_descendant_by_tag(self, tag, filter):
+    def get_descendant_by_tag(self, tag, filter = None):
         """Select the nodes with tag <code>tag</code> filtered by <code>filter</code>, below the node in reference no matter the depth.
 
         Args:
@@ -97,7 +97,7 @@ class XPathHelper:
         """        
         return XPathHelper(self.sb + ["//" + tag + self.__compute_filter(filter)])
     
-    def get_element_by_tag(self, tag, filter):
+    def get_element_by_tag(self, tag, filter = None):
         """Select the nodes with tag <code>tag</code> filtered by <code>filter</code>, below the node in reference no matter the depth.
         This method is a synonym of <code>get_descendant_by_tag</code>.
 
@@ -110,7 +110,7 @@ class XPathHelper:
         """        
         return self.get_descendant_by_tag(tag, filter)
     
-    def get_descendant_by_svg_tag(self, svg_tag, filter):
+    def get_descendant_by_svg_tag(self, svg_tag, filter = None):
         """Select the SVG nodes with SVG tag <code>svg_tag</code> filtered by <code>filter</code>, below the node in reference no matter the depth.
 
         Args:
@@ -122,7 +122,7 @@ class XPathHelper:
         """        
         return XPathHelper(self.sb + ["//*[local-name() = '" + svg_tag + "']" + self.__compute_filter(filter)])
     
-    def get_element_by_svg_tag(self, svg_tag, filter):
+    def get_element_by_svg_tag(self, svg_tag, filter = None):
         """Select the SVG nodes with SVG tag <code>svg_tag</code> filtered by <code>filter</code>, below the node in reference no matter the depth.
        This method is a synonym of <code>get_descendant_by_svg_tag</code>.
 
@@ -140,7 +140,7 @@ class XPathHelper:
     # but also returns the node in reference.
     ####################################################
     
-    def get_descendant_or_self(self, filter):
+    def get_descendant_or_self(self, filter = None):
         """Select the nodes filtered by <code>filter</code>, below the current node, but also returns the node in reference.
 
         Args:
@@ -151,7 +151,7 @@ class XPathHelper:
         """
         return XPathHelper(self.sb + ["/descendant-or-self::*" + self.__compute_filter(filter)])
     
-    def get_descendant_or_self_by_tag(self, tag, filter):
+    def get_descendant_or_self_by_tag(self, tag, filter = None):
         """Select the nodes with tag <code>tag</code> filtered by <code>filter</code>, below the current node, but also returns the node in reference.
 
         Args:
@@ -163,7 +163,7 @@ class XPathHelper:
         """
         return XPathHelper(self.sb + ["/descendant-or-self::" + tag + "" + self.__compute_filter(filter)])
     
-    def get_descendant_or_self_by_svg_tag(self, svg_tag, filter):
+    def get_descendant_or_self_by_svg_tag(self, svg_tag, filter = None):
         """Select the SVG nodes with SVG tag <code>svg_tag</code> filtered by <code>filter</code>, below the current node, but also returns the node in reference.
 
         Args:
@@ -182,7 +182,7 @@ class XPathHelper:
     # The child axis returns the nodes immediately below the node in reference.
     #######################################
     
-    def get_child(self, filter):
+    def get_child(self, filter = None):
         """Select the nodes filtered by <code>filter</code> immediately below the node in reference.
 
         Args:
@@ -193,7 +193,7 @@ class XPathHelper:
         """        
         return XPathHelper(self.sb + ["/*" + self.__compute_filter(filter)])
     
-    def get_child_by_tag(self, tag, filter):
+    def get_child_by_tag(self, tag, filter = None):
         """Select the nodes with tag <code>tag</code> filtered by <code>filter</code>, immediately below the node in reference.
 
         Args:
@@ -206,7 +206,7 @@ class XPathHelper:
         return XPathHelper(self.sb + ["/" + tag + "" + self.__compute_filter(filter)])
     
     
-    def get_child_by_svg_tag(self, svg_tag, filter):
+    def get_child_by_svg_tag(self, svg_tag, filter = None):
         """Select the SVG nodes with SVG tag <code>svg_tag</code> filtered by <code>filter</code>, immediately below the node in reference.
 
         Args:
@@ -223,7 +223,7 @@ class XPathHelper:
     # or the parent, and the parent's parent, and so on, to the node in reference.
     ###########################################
     
-    def get_ancestor(self, filter):
+    def get_ancestor(self, filter = None):
         """Select the nodes filtered by <code>filter</code>,
         that are ancestors, or the parent, and the parent's parent, and so on, to the node in reference.
 
@@ -235,7 +235,7 @@ class XPathHelper:
         """        
         return XPathHelper(self.sb + ["/ancestor::*" + self.__compute_filter(filter)])
     
-    def get_ancestor_by_tag(self, tag, filter):
+    def get_ancestor_by_tag(self, tag, filter = None):
         """Select the nodes with tag <code>tag</code> filtered by <code>filter</code>,
         that are ancestors, or the parent, and the parent's parent, and so on, to the node in reference.
 
@@ -248,7 +248,7 @@ class XPathHelper:
         """        
         return XPathHelper(self.sb + ["/ancestor::" + tag + "" + self.__compute_filter(filter)])
     
-    def get_ancestor_by_svg_tag(self, svg_tag, filter):
+    def get_ancestor_by_svg_tag(self, svg_tag, filter = None):
         """Select the SVG nodes with SVG tag <code>svg_tag</code> filtered by <code>filter</code>,
         that are ancestors, or the parent, and the parent's parent, and so on, to the node in reference.
 
@@ -269,7 +269,7 @@ class XPathHelper:
     # or the parent, and the parent's parent, and so on, including the node in reference.
     ##############******##############
   
-    def get_ancestor_or_self(self, filter):
+    def get_ancestor_or_self(self, filter = None):
         """Select the nodes filtered by <code>filter</code>,
         that are ancestors, or the parent, and the parent's parent, and so on, including the node in reference.
 
@@ -282,7 +282,7 @@ class XPathHelper:
         return XPathHelper(self.sb + ["/ancestor-or-self::*" + self.__compute_filter(filter)])
     
     
-    def get_ancestor_or_self_by_tag(self, tag, filter):
+    def get_ancestor_or_self_by_tag(self, tag, filter = None):
         """Select the nodes with tag <code>tag</code> filtered by <code>filter</code>,
         that are ancestors, or the parent, and the parent's parent, and so on, including the node in reference.
 
@@ -296,7 +296,7 @@ class XPathHelper:
         return XPathHelper(self.sb + ["/ancestor-or-self::" + tag + "" + self.__compute_filter(filter)])
     
     
-    def get_ancestor_or_self_by_svg_tag(self, svg_tag, filter):
+    def get_ancestor_or_self_by_svg_tag(self, svg_tag, filter = None):
         """Select the SVG nodes with SVG tag <code>svg_tag</code> filtered by <code>filter</code>,
         that are ancestors, or the parent, and the parent's parent, and so on, including the node in reference.
 
@@ -317,7 +317,7 @@ class XPathHelper:
     # and also after (following) its parent of the node in reference.
     ############################################
     
-    def get_following(self, filter):
+    def get_following(self, filter = None):
         """Select the nodes filtered by <code>filter</code>, that are located on parent-level
         and also after (following) its parent of the node in reference.
 
@@ -329,7 +329,7 @@ class XPathHelper:
         """        
         return XPathHelper(self.sb + ["/following::*" + self.__compute_filter(filter)])
     
-    def get_following_by_tag(self, tag, filter):
+    def get_following_by_tag(self, tag, filter = None):
         """Select the nodes with tag <code>tag</code> filtered by <code>filter</code>,
         that are located on parent-level and also after (following) its parent of the node in reference.
 
@@ -342,7 +342,7 @@ class XPathHelper:
         """        
         return XPathHelper(self.sb + ["/following::" + tag + "" + self.__compute_filter(filter)])
     
-    def get_following_by_svg_tag(self, svg_tag, filter):
+    def get_following_by_svg_tag(self, svg_tag, filter = None):
         """Select the SVG nodes with SVG tag <code>svg_tag</code> filtered by <code>filter</code>,
         that are located on parent-level and also after (following) its parent of the node in reference.
 
@@ -362,7 +362,7 @@ class XPathHelper:
     # The following-sibling axis selects all nodes that are located on the same level who are located after (following) the node in reference.
     ####################################################
     
-    def get_following_sibling(self, filter):
+    def get_following_sibling(self, filter = None):
         """Select the nodes filtered by <code>filter</code>,
         that are located on the same level who are located after (following) the node in reference.
 
@@ -374,7 +374,7 @@ class XPathHelper:
         """        
         return XPathHelper(self.sb + ["/following-sibling::*" + self.__compute_filter(filter)])
     
-    def get_following_sibling_by_tag(self, tag, filter):
+    def get_following_sibling_by_tag(self, tag, filter = None):
         """Select the nodes with tag <code>tag</code> filtered by <code>filter</code>,
         that are located on the same level who are located after (following) the node in reference.
 
@@ -387,7 +387,7 @@ class XPathHelper:
         """        
         return XPathHelper(self.sb + ["/following-sibling::" + tag + "" + self.__compute_filter(filter)])
     
-    def get_following_sibling_by_svg_tag(self, svg_tag, filter):
+    def get_following_sibling_by_svg_tag(self, svg_tag, filter = None):
         """Select the SVG nodes with SVG tag <code>svg_tag</code> filtered by <code>filter</code>,
         that are located on the same level who are located after (following) the node in reference.
 
@@ -408,7 +408,7 @@ class XPathHelper:
     # that are located on parent-level and also before (preceding) its parent of the node in reference.
     ############################################
     
-    def get_preceding(self, filter):
+    def get_preceding(self, filter = None):
         """Select the nodes filtered by <code>filter</code>, that are located on parent-level
         and also before (preceding) its parent of the node in reference.
 
@@ -420,7 +420,7 @@ class XPathHelper:
         """        
         return XPathHelper(self.sb + ["/preceding::*" + self.__compute_filter(filter)])
     
-    def get_preceding_by_tag(self, tag, filter):
+    def get_preceding_by_tag(self, tag, filter = None):
         """Select the nodes with tag <code>tag</code> filtered by <code>filter</code>,
         that are located on parent-level and also before (preceding) its parent of the node in reference.
 
@@ -433,7 +433,7 @@ class XPathHelper:
         """        
         return XPathHelper(self.sb + ["/preceding::" + tag + "" + self.__compute_filter(filter)])
     
-    def get_preceding_by_svg_tag(self, svg_tag, filter):
+    def get_preceding_by_svg_tag(self, svg_tag, filter = None):
         """Select the SVG nodes with SVG tag <code>svg_tag</code> filtered by <code>filter</code>,
         that are located on parent-level and also before (preceding) its parent of the node in reference.
 
@@ -454,7 +454,7 @@ class XPathHelper:
     # who are also located before (preceding) the node in reference.
     ##############*******##############
 
-    def get_preceding_sibling(self, filter):
+    def get_preceding_sibling(self, filter = None):
         """Select the nodes filtered by <code>filter</code>, that are located on the same level
         who are also located before (preceding) the node in reference.
 
@@ -466,7 +466,7 @@ class XPathHelper:
         """               
         return XPathHelper(self.sb + ["/preceding-sibling::*" + self.__compute_filter(filter)])
     
-    def get_preceding_sibling_by_tag(self, tag, filter):
+    def get_preceding_sibling_by_tag(self, tag, filter = None):
         """Select the nodes with tag <code>tag</code> filtered by <code>filter</code>,
         that are located on the same level who are also located before (preceding) the node in reference.
 
@@ -479,7 +479,7 @@ class XPathHelper:
         """        
         return XPathHelper(self.sb + ["/preceding-sibling::" + tag + "" + self.__compute_filter(filter)])
     
-    def get_preceding_sibling_by_svg_tag(self, svg_tag, filter):
+    def get_preceding_sibling_by_svg_tag(self, svg_tag, filter = None):
         """Select the SVG nodes with SVG tag <code>svg_tag</code> filtered by <code>filter</code>,
         that are located on the same level who are also located before (preceding) the node in reference.
 
@@ -503,7 +503,7 @@ class XPathHelper:
         """        
         return XPathHelper(self.sb + ["."])
     
-    def __compute_filter(self, filter):
+    def __compute_filter(self, filter = None):
         """Add the given filter to the current xpath expression.
 
         Args:
@@ -513,7 +513,7 @@ class XPathHelper:
             str: filter as an XPath string
         """        
         suffix = ""
-        if (filter and not filter.is_empty()):
+        if (filter != None and not filter.is_empty()):
             expression = str(filter)
             suffix = "[" + expression + "]"
         
