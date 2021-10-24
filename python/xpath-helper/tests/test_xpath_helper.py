@@ -1,6 +1,7 @@
 from xpath_helper import __version__
 from xpath_helper import XPathHelper
 from xpath_helper import filter
+from lxml import etree
 
 def test_version():
     assert __version__ == '0.1.0'
@@ -9,8 +10,10 @@ def test_version():
 def test_get_parent(html_doc):
       liPath = XPathHelper().get_element_by_tag("a", filter.value_contains("secure connection")).get_parent()
       elements = html_doc.xpath(str(liPath))
+      print(str(liPath))
       assert len(elements) != 0
-      assert "It's over a," in elements[0].text == True
+      print(elements)
+      assert "It's over a," in elements[0].text
 
 # def test_get_element_by_Xpath(html_doc):
 #        liPath = XPathHelper().get_element_by_tag("a", filter.value_contains("secure connection")).get_element_by_Xpath("/..")

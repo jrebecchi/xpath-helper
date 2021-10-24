@@ -148,7 +148,7 @@ export class Filter extends FilledFilter {
   attributeContains(attribute: string, value: string) {
     return new FilledFilter([
       ...this.sb,
-      "contains(@" + attribute + ", " + replaceApostrophes(value) + ")",
+      "contains(@" + attribute + ", " + replaceApostrophes(value) + ")"
     ]);
   }
 
@@ -162,7 +162,7 @@ export class Filter extends FilledFilter {
   attributeEquals(attribute: string, value: string | number) {
     return new FilledFilter([
       ...this.sb,
-      "@" + attribute + "=" + replaceApostrophes(value) + "",
+      "@" + attribute + "=" + replaceApostrophes(value) + ""
     ]);
   }
 
@@ -176,7 +176,7 @@ export class Filter extends FilledFilter {
   attributeNotEquals(attribute: string, value: string | number) {
     return new FilledFilter([
       ...this.sb,
-      "@" + attribute + "!=" + replaceApostrophes(value) + "",
+      "@" + attribute + "!=" + replaceApostrophes(value) + ""
     ]);
   }
 
@@ -231,7 +231,7 @@ export class Filter extends FilledFilter {
   valueContains(value: string) {
     return new FilledFilter([
       ...this.sb,
-      "text()[contains(., " + replaceApostrophes(value) + ")]",
+      "text()[contains(., " + replaceApostrophes(value) + ")]"
     ]);
   }
 
@@ -244,7 +244,7 @@ export class Filter extends FilledFilter {
   valueEquals(value: string | number) {
     return new FilledFilter([
       ...this.sb,
-      "text() = " + replaceApostrophes(value) + "",
+      "text() = " + replaceApostrophes(value) + ""
     ]);
   }
 
@@ -257,7 +257,7 @@ export class Filter extends FilledFilter {
   valueNotEquals(value: string | number) {
     return new FilledFilter([
       ...this.sb,
-      "text() !=" + replaceApostrophes(value) + "",
+      "text() !=" + replaceApostrophes(value) + ""
     ]);
   }
 

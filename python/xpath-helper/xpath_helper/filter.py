@@ -3,21 +3,19 @@ The following Filter classes provide a simple, chainable and decomposable api
 to create XPath filter expression
 """
 
-from typing import Final
-from typing import List
 import functools
 
 """
 Shortcut to design any attribute name
 """
-ANY_ATTRIBUTE : Final = "*"
+ANY_ATTRIBUTE = "*"
 
 
 """
 XPath Filter containing a valid expression.
 """
 class FilledFilter:
-    sb : List[str] = []
+    sb = []
 
     def __init__(self, current_path = None):
         """Creates an instance of FilledFilter.
@@ -25,8 +23,8 @@ class FilledFilter:
         Args:
             currentPath (list[string]): Current filter path
         """
-        if current_path is None:
-            self.sb = current_path
+        if (current_path != None):
+            self.sb = current_path 
     
     def and_condition(self, *filters):
         """Adds one or more filter expression to the current one with the AND logical operator.
@@ -91,7 +89,7 @@ class FilledFilter:
 Empty XPath filter.
 """
 class Filter(FilledFilter):
-    def __init__(self, *currentPath):
+    def __init__(self, currentPath = None):
         """Creates an instance of Filter.
 
         Args:
@@ -285,13 +283,13 @@ class Filter(FilledFilter):
             FilledFilter: a new instance of FilledFilter with the newly formed expression.
         """        
         return FilledFilter(self.sb + ["" + index]);
-    
-    """
-     * Selects the node element who is positioned first in its parent children list.
-     * @returns:FilledFilter a new instance of FilledFilter with the newly formed expression.
-     * @memberof Filter
-    """
+
     def get_first(self):
+        """Selects the node element who is positioned first in its parent children list.
+
+        Returns:
+            FilledFilter: a new instance of FilledFilter with the newly formed expression.
+        """
         return FilledFilter(self.sb + ["1"]);
     
 
