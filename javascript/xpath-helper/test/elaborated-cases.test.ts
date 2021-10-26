@@ -45,8 +45,6 @@ describe("Elaborated cases", () => {
       )
     );
     const li = findByXpath(liPath.toString());
-    console.log(liPath.toString());
-    console.log(li?.textContent);
     expect(li).not.toBeNull();
     expect(li?.textContent?.includes("Freaks")).toBeTruthy();
   });
