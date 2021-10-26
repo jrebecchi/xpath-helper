@@ -161,7 +161,7 @@ class Filter(FilledFilter):
         Returns:
             FilledFilter: a new instance of FilledFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["@" + attribute + "<" + value])
+        return FilledFilter(self.sb + ["@" + attribute + "<" + str(value)])
 
     def attribute_less_than_or_equal_to(self, attribute, value):
         """Selects the nodes with the attribute <code>attribute</code>, whose value is less than or equal to <code><value</code>.
@@ -173,7 +173,7 @@ class Filter(FilledFilter):
         Returns:
             FilledFilter: a new instance of FilledFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["@" + attribute + "<=" + value])
+        return FilledFilter(self.sb + ["@" + attribute + "<=" + str(value)])
 
     def attribute_greater_than(self, attribute, value):
         """Selects the nodes with the attribute <code>attribute</code>, whose value is greater than <code><value</code>.
@@ -185,7 +185,7 @@ class Filter(FilledFilter):
         Returns:
             FilledFilter: a new instance of FilledFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["@" + attribute + ">" + value])
+        return FilledFilter(self.sb + ["@" + attribute + ">" + str(value)])
 
     def attribute_greater_than_or_equal_to(self, attribute, value):
         """Selects the nodes with the attribute <code>attribute</code>, whose value is greater than or equal to <code><value</code>.
@@ -197,7 +197,7 @@ class Filter(FilledFilter):
         Returns:
             FilledFilter: a new instance of FilledFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["@" + attribute + ">=" + value])
+        return FilledFilter(self.sb + ["@" + attribute + ">=" + str(value)])
 
     def value_contains(self, value):
         """Selects the nodes containing the value <code><value</code>.
@@ -241,7 +241,7 @@ class Filter(FilledFilter):
         Returns:
             FilledFilter: a new instance of FilledFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["text() <" + value])
+        return FilledFilter(self.sb + ["text() <" + str(value)])
 
     def value_less_than_or_equal_to(self, value):
         """Selects the nodes whose value is less than or equal to <code><value</code>.
@@ -252,7 +252,7 @@ class Filter(FilledFilter):
         Returns:
             FilledFilter: a new instance of FilledFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["text() <=" + value])
+        return FilledFilter(self.sb + ["text() <=" + str(value)])
 
     def value_greater_than(self, value):
         """Selects the nodes  whose value is greater than <code><value</code>.
@@ -263,7 +263,7 @@ class Filter(FilledFilter):
         Returns:
             FilledFilter: a new instance of FilledFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["text() >" + value])
+        return FilledFilter(self.sb + ["text() >" + str(value)])
 
     def value_greater_than_or_equal_to(self, value):
         """Selects the nodes whose value is greater than or equal to <code><value</code>.
@@ -274,7 +274,7 @@ class Filter(FilledFilter):
         Returns:
             FilledFilter: a new instance of FilledFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["text() >=" + value])
+        return FilledFilter(self.sb + ["text() >=" + str(value)])
 
     def get(self, index):
         """Selects the node element who is positioned at the <code>index</code> position in its parent children list.
@@ -328,7 +328,7 @@ def add_openrand(filter: Filter, separator="", is_last=True):
     """
     suffix = ""
     if filter and not filter.is_empty():
-        expression = filter.toString()
+        expression = str(filter)
         suffix = expression
         if not is_last:
             suffix += separator
@@ -345,7 +345,7 @@ def replace_apostrophes(input):
         str: XPath filter expression with apostrophes handled.
     """
     if not isinstance(input, str):
-        return input
+        return str(input)
 
     if "'" in input:
         prefix = ""
