@@ -285,7 +285,7 @@ class Filter(FilledFilter):
         Returns:
             FilledFilter: a new instance of FilledFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["" + index])
+        return FilledFilter(self.sb + [str(index)])
 
     def get_first(self):
         """Selects the node element who is positioned first in its parent children list.
