@@ -198,7 +198,6 @@ describe("Filter", () => {
       .getElementByTag("p", filter.getLast());
     const p = findByXpath(pPath.toString());
     expect(p).not.toBeNull();
-    console.log(p?.textContent);
     expect(p?.textContent?.includes("He's happy")).toBeTruthy();
   });
   it("- not", () => {

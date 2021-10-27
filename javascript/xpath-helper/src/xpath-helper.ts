@@ -314,7 +314,7 @@ export class XPathHelper {
   public getAncestorOrSelfByTag(tag: string, filter?: IFilter): XPathHelper {
     return new XPathHelper([
       ...this.sb,
-      "/ancestor-or-self::" + tag + "" + this.computeFilter(filter),
+      "/ancestor-or-self::" + tag + this.computeFilter(filter),
     ]);
   }
 
