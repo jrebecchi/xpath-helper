@@ -144,8 +144,6 @@ def test_get_ancestor_or_self_by_tag(html_doc):
     elements = html_doc.xpath(str(firstLi_path))
     assert len(elements) != 0
     assert "It's over a," in elements[0].text
-    # gl@afi-esca.com num de contrat et nouvelle adresse
-
 
 def test_get_ancestor_or_self(html_doc):
     li_path = XPathHelper().get_element_by_tag(
