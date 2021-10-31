@@ -22,6 +22,8 @@ sys.path.append(os.path.abspath('../python/xpath-helper/xpath_helper'))
 project = 'xpath-helper'
 copyright = '2021, Johann Rebecchi'
 author = 'Johann Rebecchi'
+master_doc = "index"
+language = "en"
 
 
 # -- General configuration ---------------------------------------------------
@@ -32,7 +34,6 @@ author = 'Johann Rebecchi'
 extensions = [
     'sphinx.ext.githubpages',
     'sphinx.ext.autodoc',
-    'sphinx_md2html',
     'sphinx_js',
     'myst_parser'
 ]
