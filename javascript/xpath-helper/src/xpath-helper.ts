@@ -1,4 +1,4 @@
-import { Filter, IFilter } from "./filter";
+import { EmptyFilter, IFilter } from "./filter";
 
 /**
  * XPathHelper provides a simple and chainnable API to build complicated XPath queries without the hassle.
@@ -577,7 +577,7 @@ export class XPathHelper {
   }
 }
 
-const filterInstance = new Filter();
+const filterInstance = new EmptyFilter();
 Object.freeze(filterInstance);
 
 export const filter = filterInstance;

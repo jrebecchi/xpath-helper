@@ -1,10 +1,10 @@
 /**
- * The following Filter classes provide a simple, chainable and decomposable api
+ * The following EmptyFilter classes provide a simple, chainable and decomposable api
  * to create XPath filter expression
  */
 
 /**
- * Interface providing the minimal methods that must implement an XPath Filter.
+ * Interface providing the minimal methods that must implement an XPath EmptyFilter.
  * @export
  * @interface IFilter
  */
@@ -14,23 +14,23 @@ export interface IFilter {
 }
 
 /**
- * XPath Filter containing a valid expression.
- * @class FilledFilter
+ * XPath EmptyFilter containing a valid expression.
+ * @class ValidExpressionFilter
  * @implements {IFilter}
  */
-export class FilledFilter implements IFilter {
+export class ValidExpressionFilter implements IFilter {
   /**
    * Array of string containing the different part of the filter expression.
    * @protected
    * @type {string[]}
-   * @memberof FilledFilter
+   * @memberof ValidExpressionFilter
    */
   protected sb: string[];
 
   /**
-   * Creates an instance of FilledFilter.
+   * Creates an instance of ValidExpressionFilter.
    * @param {string[] } [currentPath]
-   * @memberof FilledFilter
+   * @memberof ValidExpressionFilter
    */
   constructor(currentPath?: string[]) {
     if (currentPath) {
@@ -43,8 +43,8 @@ export class FilledFilter implements IFilter {
   /**
    * Adds one or more filter expression to the current one with the AND logical operator.
    * @param {IFilter[]} filters List of filters that will be added with the AND logical operator
-   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression
-   * @memberof FilledFilter
+   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression
+   * @memberof ValidExpressionFilter
    */
   and(...filters: IFilter[]) {
     let expression = "";
@@ -56,14 +56,14 @@ export class FilledFilter implements IFilter {
       (filter, i) =>
         (expression += addOpenrand(filter, " and ", i === filters.length - 1))
     );
-    return new FilledFilter([...this.sb, expression, ")"]);
+    return new ValidExpressionFilter([...this.sb, expression, ")"]);
   }
 
   /**
    * Adds one or more filter expression to the current one with the OR logical operator.
    * @param {IFilter[]} filters List of filters that will be added with the OR logical operator
-   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression
-   * @memberof FilledFilter
+   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression
+   * @memberof ValidExpressionFilter
    */
   or(...filters: IFilter[]) {
     let expression = "";
@@ -75,13 +75,13 @@ export class FilledFilter implements IFilter {
       (filter, i) =>
         (expression += addOpenrand(filter, " or ", i === filters.length - 1))
     );
-    return new FilledFilter([...this.sb, expression, ")"]);
+    return new ValidExpressionFilter([...this.sb, expression, ")"]);
   }
 
   /**
-   * Returns the Filter as a valid XPath filter expression.
+   * Returns the EmptyFilter as a valid XPath filter expression.
    * @returns {string} a valid XPath filter expression.
-   * @memberof FilledFilter
+   * @memberof ValidExpressionFilter
    */
   public toString(): string {
     return this.sb.join("");
@@ -89,7 +89,7 @@ export class FilledFilter implements IFilter {
 
   /**
    * Empties the current path.
-   * @memberof FilledFilter
+   * @memberof ValidExpressionFilter
    */
   public empty(): void {
     this.sb = new Array<string>();
@@ -98,7 +98,7 @@ export class FilledFilter implements IFilter {
   /**
    * Returns true if filter is empty.
    * @returns {boolean} true if filter is empty.
-   * @memberof FilledFilter
+   * @memberof ValidExpressionFilter
    */
   public isEmpty(): boolean {
     return this.sb.length === 0;
@@ -108,22 +108,22 @@ export class FilledFilter implements IFilter {
 /**
  * Empty XPath filter.
  * @export
- * @class Filter
- * @extends {FilledFilter}
+ * @class EmptyFilter
+ * @extends {ValidExpressionFilter}
  */
-export class Filter extends FilledFilter {
+export class EmptyFilter extends ValidExpressionFilter {
   /**
    * Shortcut to design any attribute name
    * @static
    * @type {string}
-   * @memberof Filter
+   * @memberof EmptyFilter
    */
   public static ANY_ATTRIBUTE: string = "*";
 
   /**
-   * Creates an instance of Filter.
+   * Creates an instance of EmptyFilter.
    * @param {string[] } [currentPath]
-   * @memberof Filter
+   * @memberof EmptyFilter
    */
   constructor(currentPath?: string[]) {
     super(currentPath);
@@ -132,21 +132,21 @@ export class Filter extends FilledFilter {
   /**
    * Selects the nodes that have the attribute <code>attribute</code>.
    * @param {string} attribute
-   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
-   * @memberof Filter
+   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * @memberof EmptyFilter
    */
   hasAttribute(attribute: string) {
-    return new FilledFilter([...this.sb, "@" + attribute]);
+    return new ValidExpressionFilter([...this.sb, "@" + attribute]);
   }
 
   /**
    * Selects the nodes with the attribute <code>attribute</code> containing the value <code><value</code>.
    * @param attribute
    * @param value
-   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
+   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
    */
   attributeContains(attribute: string, value: string) {
-    return new FilledFilter([
+    return new ValidExpressionFilter([
       ...this.sb,
       "contains(@" + attribute + ", " + replaceApostrophes(value) + ")"
     ]);
@@ -156,11 +156,11 @@ export class Filter extends FilledFilter {
    * Selects the nodes with the attribute <code>attribute</code>, whose value equals <code><value</code>.
    * @param {string} attribute
    * @param {(string | number)} value
-   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
-   * @memberof Filter
+   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * @memberof EmptyFilter
    */
   attributeEquals(attribute: string, value: string | number) {
-    return new FilledFilter([
+    return new ValidExpressionFilter([
       ...this.sb,
       "@" + attribute + "=" + replaceApostrophes(value) + ""
     ]);
@@ -170,11 +170,11 @@ export class Filter extends FilledFilter {
    * Selects the nodes with the attribute <code>attribute</code>, whose value doesn't equal <code><value</code>.
    * @param {string} attribute
    * @param {(string | number)} value
-   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
-   * @memberof Filter
+   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * @memberof EmptyFilter
    */
   attributeNotEquals(attribute: string, value: string | number) {
-    return new FilledFilter([
+    return new ValidExpressionFilter([
       ...this.sb,
       "@" + attribute + "!=" + replaceApostrophes(value) + ""
     ]);
@@ -184,52 +184,52 @@ export class Filter extends FilledFilter {
    * Selects the nodes with the attribute <code>attribute</code>, whose value is less than <code><value</code>.
    * @param {string} attribute
    * @param {number} value
-   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
-   * @memberof Filter
+   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * @memberof EmptyFilter
    */
   attributeLessThan(attribute: string, value: number) {
-    return new FilledFilter([...this.sb, "@" + attribute + "<" + value]);
+    return new ValidExpressionFilter([...this.sb, "@" + attribute + "<" + value]);
   }
 
   /**
    * Selects the nodes with the attribute <code>attribute</code>, whose value is less than or equal to <code><value</code>.
    * @param {string} attribute
    * @param {number} value
-   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
-   * @memberof Filter
+   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * @memberof EmptyFilter
    */
   attributeLessThanOrEqualTo(attribute: string, value: number) {
-    return new FilledFilter([...this.sb, "@" + attribute + "<=" + value]);
+    return new ValidExpressionFilter([...this.sb, "@" + attribute + "<=" + value]);
   }
 
   /**
    * Selects the nodes with the attribute <code>attribute</code>, whose value is greater than <code><value</code>.
    * @param {string} attribute
    * @param {number} value
-   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
-   * @memberof Filter
+   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * @memberof EmptyFilter
    */
   attributeGreaterThan(attribute: string, value: number) {
-    return new FilledFilter([...this.sb, "@" + attribute + ">" + value]);
+    return new ValidExpressionFilter([...this.sb, "@" + attribute + ">" + value]);
   }
   /**
    * Selects the nodes with the attribute <code>attribute</code>, whose value is greater than or equal to <code><value</code>.
    * @param {string} attribute
    * @param {number} value
-   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
-   * @memberof Filter
+   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * @memberof EmptyFilter
    */
   attributeGreaterThanOrEqualTo(attribute: string, value: number) {
-    return new FilledFilter([...this.sb, "@" + attribute + ">=" + value]);
+    return new ValidExpressionFilter([...this.sb, "@" + attribute + ">=" + value]);
   }
   /**
    * Selects the nodes containing the value <code><value</code>.
    * @param {string} value
-   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
-   * @memberof Filter
+   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * @memberof EmptyFilter
    */
   valueContains(value: string) {
-    return new FilledFilter([
+    return new ValidExpressionFilter([
       ...this.sb,
       "text()[contains(., " + replaceApostrophes(value) + ")]"
     ]);
@@ -238,11 +238,11 @@ export class Filter extends FilledFilter {
   /**
    * Selects the nodes whose value equals <code><value</code>.
    * @param {(string | number)} value
-   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
-   * @memberof Filter
+   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * @memberof EmptyFilter
    */
   valueEquals(value: string | number) {
-    return new FilledFilter([
+    return new ValidExpressionFilter([
       ...this.sb,
       "text() = " + replaceApostrophes(value) + ""
     ]);
@@ -251,11 +251,11 @@ export class Filter extends FilledFilter {
   /**
    * Selects the nodes with whose value doesn't equal <code><value</code>.
    * @param {(string | number)} value
-   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
-   * @memberof Filter
+   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * @memberof EmptyFilter
    */
   valueNotEquals(value: string | number) {
-    return new FilledFilter([
+    return new ValidExpressionFilter([
       ...this.sb,
       "text() !=" + replaceApostrophes(value) + ""
     ]);
@@ -264,79 +264,79 @@ export class Filter extends FilledFilter {
   /**
    * Selects the nodes whose value is less than <code><value</code>.
    * @param {number} value
-   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
-   * @memberof Filter
+   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * @memberof EmptyFilter
    */
   valueLessThan(value: number) {
-    return new FilledFilter([...this.sb, "text() <" + value]);
+    return new ValidExpressionFilter([...this.sb, "text() <" + value]);
   }
 
   /**
    * Selects the nodes whose value is less than or equal to <code><value</code>.
    * @param {number} value
-   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
-   * @memberof Filter
+   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * @memberof EmptyFilter
    */
   valueLessThanOrEqualTo(value: number) {
-    return new FilledFilter([...this.sb, "text() <=" + value]);
+    return new ValidExpressionFilter([...this.sb, "text() <=" + value]);
   }
 
   /**
    * Selects the nodes  whose value is greater than <code><value</code>.
    * @param {number} value
-   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
-   * @memberof Filter
+   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * @memberof EmptyFilter
    */
   valueGreaterThan(value: number) {
-    return new FilledFilter([...this.sb, "text() >" + value]);
+    return new ValidExpressionFilter([...this.sb, "text() >" + value]);
   }
 
   /**
    * Selects the nodes whose value is greater than or equal to <code><value</code>.
    * @param {number} value
-   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
-   * @memberof Filter
+   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * @memberof EmptyFilter
    */
   valueGreaterThanOrEqualTo(value: number) {
-    return new FilledFilter([...this.sb, "text() >=" + value]);
+    return new ValidExpressionFilter([...this.sb, "text() >=" + value]);
   }
 
   /**
    * Selects the node element who is positioned at the <code>index</code> position in its parent children list.
    * @param {number} index
-   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
-   * @memberof Filter
+   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * @memberof EmptyFilter
    */
   get(index: number) {
-    return new FilledFilter([...this.sb, "" + index]);
+    return new ValidExpressionFilter([...this.sb, "" + index]);
   }
 
   /**
    * Selects the node element who is positioned first in its parent children list.
-   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
-   * @memberof Filter
+   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * @memberof EmptyFilter
    */
   getFirst() {
-    return new FilledFilter([...this.sb, "1"]);
+    return new ValidExpressionFilter([...this.sb, "1"]);
   }
 
   /**
    * Selects the node element who is positioned last in its parent children list.
-   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
-   * @memberof Filter
+   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * @memberof EmptyFilter
    */
   getLast() {
-    return new FilledFilter([...this.sb, "last()"]);
+    return new ValidExpressionFilter([...this.sb, "last()"]);
   }
 
   /**
    * Reverses the filter <code>filter</code>. Returns true when the filter returns false and true when the filter returns false.
    * @param {IFilter} filter
-   * @returns {FilledFilter} a new instance of FilledFilter with the newly formed expression.
-   * @memberof Filter
+   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * @memberof EmptyFilter
    */
   not(filter: IFilter) {
-    return new FilledFilter([...this.sb, "not( " + addOpenrand(filter) + " )"]);
+    return new ValidExpressionFilter([...this.sb, "not( " + addOpenrand(filter) + " )"]);
   }
 }
 

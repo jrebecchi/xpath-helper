@@ -15,12 +15,11 @@ ANY_ATTRIBUTE = "*"
 XPath Filter containing a valid expression.
 """
 
-
-class FilledFilter:
+class ValidExpressionFilter:
     sb = []
 
     def __init__(self, current_path=None):
-        """Creates an instance of FilledFilter.
+        """Creates an instance of ValidExpressionFilter.
 
         Args:
             currentPath (list[string]): Current filter path
@@ -35,7 +34,7 @@ class FilledFilter:
             filters (list[Filter]): List of filters List of filters that will be added with the AND logical operator
 
         Returns:
-            FilledFilter: a new instance of FilledFilter with the newly formed expression.
+            ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
         expression = ""
         if (len(self.sb) != 0):
@@ -45,7 +44,7 @@ class FilledFilter:
         expression += functools.reduce(lambda acc, filter: acc + add_openrand(
             filter, " and ", filter == filters[-1]), filters, "")
         expression += ")"
-        return FilledFilter(self.sb + [expression])
+        return ValidExpressionFilter(self.sb + [expression])
 
     def or_condition(self, *filters):
         """Adds one or more filter expression to the current one with the OR logical operator.
@@ -54,7 +53,7 @@ class FilledFilter:
             filters (list[Filter]): List of filters that will be added with the OR logical operator
 
         Returns:
-            FilledFilter: a new instance of FilledFilter with the newly formed expression.
+            ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
         expression = ""
         if (len(self.sb) != 0):
@@ -64,7 +63,7 @@ class FilledFilter:
         expression += functools.reduce(lambda acc, filter: acc + add_openrand(
             filter, " or ", filter == filters[-1]), filters, "")
         expression += ")"
-        return FilledFilter(self.sb + [expression])
+        return ValidExpressionFilter(self.sb + [expression])
 
     def __str__(self):
         """Returns the Filter as a valid XPath filter expression.
@@ -93,7 +92,7 @@ Empty XPath filter.
 """
 
 
-class Filter(FilledFilter):
+class EmptyFilter(ValidExpressionFilter):
     def __init__(self, currentPath=None):
         """Creates an instance of Filter.
 
@@ -109,9 +108,9 @@ class Filter(FilledFilter):
             attribute (str): attribute name
 
         Returns:
-            FilledFilter: a new instance of FilledFilter with the newly formed expression.
+            ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["@" + attribute])
+        return ValidExpressionFilter(self.sb + ["@" + attribute])
 
     def attribute_contains(self, attribute, value):
         """Selects the nodes with the attribute <code>attribute</code> containing the value <code><value</code>.
@@ -121,9 +120,9 @@ class Filter(FilledFilter):
             value (str): attribute value
 
         Returns:
-            FilledFilter: a new instance of FilledFilter with the newly formed expression.
+            ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["contains(@" + attribute + ", " + replace_apostrophes(value) + ")",
+        return ValidExpressionFilter(self.sb + ["contains(@" + attribute + ", " + replace_apostrophes(value) + ")",
                                        ])
 
     def attribute_equals(self, attribute, value):
@@ -134,9 +133,9 @@ class Filter(FilledFilter):
             value (str | int | float): attribute value
 
         Returns:
-            FilledFilter: a new instance of FilledFilter with the newly formed expression.
+            ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["@" + attribute + "=" + replace_apostrophes(value) + "",
+        return ValidExpressionFilter(self.sb + ["@" + attribute + "=" + replace_apostrophes(value) + "",
                                        ])
 
     def attribute_not_equals(self, attribute, value):
@@ -147,9 +146,9 @@ class Filter(FilledFilter):
             value (str | int | float): attribute value
 
         Returns:
-            FilledFilter: a new instance of FilledFilter with the newly formed expression.
+            ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["@" + attribute + "!=" + replace_apostrophes(value)])
+        return ValidExpressionFilter(self.sb + ["@" + attribute + "!=" + replace_apostrophes(value)])
 
     def attribute_less_than(self, attribute, value):
         """Selects the nodes with the attribute <code>attribute</code>, whose value is less than <code><value<code>.
@@ -159,9 +158,9 @@ class Filter(FilledFilter):
             value (int | float): attribute value
 
         Returns:
-            FilledFilter: a new instance of FilledFilter with the newly formed expression.
+            ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["@" + attribute + "<" + str(value)])
+        return ValidExpressionFilter(self.sb + ["@" + attribute + "<" + str(value)])
 
     def attribute_less_than_or_equal_to(self, attribute, value):
         """Selects the nodes with the attribute <code>attribute</code>, whose value is less than or equal to <code><value</code>.
@@ -171,9 +170,9 @@ class Filter(FilledFilter):
             value (int | float): attribute value
 
         Returns:
-            FilledFilter: a new instance of FilledFilter with the newly formed expression.
+            ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["@" + attribute + "<=" + str(value)])
+        return ValidExpressionFilter(self.sb + ["@" + attribute + "<=" + str(value)])
 
     def attribute_greater_than(self, attribute, value):
         """Selects the nodes with the attribute <code>attribute</code>, whose value is greater than <code><value</code>.
@@ -183,9 +182,9 @@ class Filter(FilledFilter):
             value (int | float): attribute value
 
         Returns:
-            FilledFilter: a new instance of FilledFilter with the newly formed expression.
+            ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["@" + attribute + ">" + str(value)])
+        return ValidExpressionFilter(self.sb + ["@" + attribute + ">" + str(value)])
 
     def attribute_greater_than_or_equal_to(self, attribute, value):
         """Selects the nodes with the attribute <code>attribute</code>, whose value is greater than or equal to <code><value</code>.
@@ -195,9 +194,9 @@ class Filter(FilledFilter):
             value (int | float): attribute value
 
         Returns:
-            FilledFilter: a new instance of FilledFilter with the newly formed expression.
+            ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["@" + attribute + ">=" + str(value)])
+        return ValidExpressionFilter(self.sb + ["@" + attribute + ">=" + str(value)])
 
     def value_contains(self, value):
         """Selects the nodes containing the value <code><value</code>.
@@ -206,9 +205,9 @@ class Filter(FilledFilter):
             value (str): value
 
         Returns:
-            FilledFilter: a new instance of FilledFilter with the newly formed expression.
+            ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["text()[contains(., " + replace_apostrophes(value) + ")]"])
+        return ValidExpressionFilter(self.sb + ["text()[contains(., " + replace_apostrophes(value) + ")]"])
 
     def value_equals(self, value):
         """Selects the nodes whose value equals <code><value</code>.
@@ -217,9 +216,9 @@ class Filter(FilledFilter):
             value (str | int | float): value
 
         Returns:
-            FilledFilter: a new instance of FilledFilter with the newly formed expression.
+            ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["text() = " + replace_apostrophes(value)])
+        return ValidExpressionFilter(self.sb + ["text() = " + replace_apostrophes(value)])
 
     def value_not_equals(self, value):
         """Selects the nodes with whose value doesn't equal <code><value</code>.
@@ -228,9 +227,9 @@ class Filter(FilledFilter):
             value (str | int | float): value
 
         Returns:
-            FilledFilter: a new instance of FilledFilter with the newly formed expression.
+            ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["text() !=" + replace_apostrophes(value)])
+        return ValidExpressionFilter(self.sb + ["text() !=" + replace_apostrophes(value)])
 
     def value_less_than(self, value):
         """Selects the nodes whose value is less than <code><value</code>.
@@ -239,9 +238,9 @@ class Filter(FilledFilter):
             value (int | float): value
 
         Returns:
-            FilledFilter: a new instance of FilledFilter with the newly formed expression.
+            ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["text() <" + str(value)])
+        return ValidExpressionFilter(self.sb + ["text() <" + str(value)])
 
     def value_less_than_or_equal_to(self, value):
         """Selects the nodes whose value is less than or equal to <code><value</code>.
@@ -250,9 +249,9 @@ class Filter(FilledFilter):
             value (int | float): value
 
         Returns:
-            FilledFilter: a new instance of FilledFilter with the newly formed expression.
+            ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["text() <=" + str(value)])
+        return ValidExpressionFilter(self.sb + ["text() <=" + str(value)])
 
     def value_greater_than(self, value):
         """Selects the nodes  whose value is greater than <code><value</code>.
@@ -261,9 +260,9 @@ class Filter(FilledFilter):
             value (int | float): value
 
         Returns:
-            FilledFilter: a new instance of FilledFilter with the newly formed expression.
+            ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["text() >" + str(value)])
+        return ValidExpressionFilter(self.sb + ["text() >" + str(value)])
 
     def value_greater_than_or_equal_to(self, value):
         """Selects the nodes whose value is greater than or equal to <code><value</code>.
@@ -272,9 +271,9 @@ class Filter(FilledFilter):
             value (int | float): value
 
         Returns:
-            FilledFilter: a new instance of FilledFilter with the newly formed expression.
+            ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["text() >=" + str(value)])
+        return ValidExpressionFilter(self.sb + ["text() >=" + str(value)])
 
     def get(self, index):
         """Selects the node element who is positioned at the <code>index</code> position in its parent children list.
@@ -283,25 +282,25 @@ class Filter(FilledFilter):
             index (int): index of the element in the list
 
         Returns:
-            FilledFilter: a new instance of FilledFilter with the newly formed expression.
+            ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + [str(index)])
+        return ValidExpressionFilter(self.sb + [str(index)])
 
     def get_first(self):
         """Selects the node element who is positioned first in its parent children list.
 
         Returns:
-            FilledFilter: a new instance of FilledFilter with the newly formed expression.
+            ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["1"])
+        return ValidExpressionFilter(self.sb + ["1"])
 
     def get_last(self):
         """Selects the node element who is positioned last in its parent children list.
 
         Returns:
-            FilledFilter: a new instance of FilledFilter with the newly formed expression.
+            ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["last()"])
+        return ValidExpressionFilter(self.sb + ["last()"])
 
     def not_expression(self, filter):
         """Reverses the filter <code>filter</code>. Returns true when the filter returns false and true when the filter returns false.
@@ -310,12 +309,12 @@ class Filter(FilledFilter):
             filter ([type]): [description]
 
         Returns:
-            FilledFilter: a new instance of FilledFilter with the newly formed expression.
+            ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
-        return FilledFilter(self.sb + ["not( " + add_openrand(filter) + " )"])
+        return ValidExpressionFilter(self.sb + ["not( " + add_openrand(filter) + " )"])
 
 
-def add_openrand(filter: Filter, separator="", is_last=True):
+def add_openrand(filter: EmptyFilter, separator="", is_last=True):
     """Adds operand between filters
 
     Args:

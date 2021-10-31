@@ -1,4 +1,3 @@
-from xpath_helper import __version__
 from xpath_helper import XPathHelper
 from xpath_helper import filter
 
