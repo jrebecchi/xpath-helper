@@ -14,7 +14,7 @@ export interface IFilter {
 }
 
 /**
- * XPath EmptyFilter containing a valid expression.
+ * XPath Filter containing a valid expression.
  * @class ValidExpressionFilter
  * @implements {IFilter}
  */
@@ -29,7 +29,7 @@ export class ValidExpressionFilter implements IFilter {
 
   /**
    * Creates an instance of ValidExpressionFilter.
-   * @param {string[] } [currentPath]
+   * @param {string[]} [currentPath] current path
    * @memberof ValidExpressionFilter
    */
   constructor(currentPath?: string[]) {
@@ -122,7 +122,7 @@ export class EmptyFilter extends ValidExpressionFilter {
 
   /**
    * Creates an instance of EmptyFilter.
-   * @param {string[] } [currentPath]
+   * @param {string[] } [currentPath] current path
    * @memberof EmptyFilter
    */
   constructor(currentPath?: string[]) {
@@ -130,9 +130,9 @@ export class EmptyFilter extends ValidExpressionFilter {
   }
 
   /**
-   * Selects the nodes that have the attribute <code>attribute</code>.
-   * @param {string} attribute
-   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * Selects the nodes that have the attribute ``attribute``.
+   * @param {string} attribute - attribute name
+   * @returns {ValidExpressionFilter} - a new instance of ValidExpressionFilter with the newly formed expression.
    * @memberof EmptyFilter
    */
   hasAttribute(attribute: string) {
@@ -140,10 +140,10 @@ export class EmptyFilter extends ValidExpressionFilter {
   }
 
   /**
-   * Selects the nodes with the attribute <code>attribute</code> containing the value <code><value</code>.
+   * Selects the nodes with the attribute ``attribute`` containing the value ``value``.
    * @param attribute
    * @param value
-   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * @returns {ValidExpressionFilter} - a new instance of ValidExpressionFilter with the newly formed expression.
    */
   attributeContains(attribute: string, value: string) {
     return new ValidExpressionFilter([
@@ -153,10 +153,10 @@ export class EmptyFilter extends ValidExpressionFilter {
   }
 
   /**
-   * Selects the nodes with the attribute <code>attribute</code>, whose value equals <code><value</code>.
-   * @param {string} attribute
-   * @param {(string | number)} value
-   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * Selects the nodes with the attribute ``attribute``, whose value equals ``value``.
+   * @param {string} attribute - attribute name
+   * @param {(string | number)} value - value
+   * @returns {ValidExpressionFilter} - a new instance of ValidExpressionFilter with the newly formed expression.
    * @memberof EmptyFilter
    */
   attributeEquals(attribute: string, value: string | number) {
@@ -167,10 +167,10 @@ export class EmptyFilter extends ValidExpressionFilter {
   }
 
   /**
-   * Selects the nodes with the attribute <code>attribute</code>, whose value doesn't equal <code><value</code>.
-   * @param {string} attribute
-   * @param {(string | number)} value
-   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * Selects the nodes with the attribute ``attribute``, whose value doesn't equal ``value``.
+   * @param {string} attribute - attribute name
+   * @param {(string | number)} value - value
+   * @returns {ValidExpressionFilter} - a new instance of ValidExpressionFilter with the newly formed expression.
    * @memberof EmptyFilter
    */
   attributeNotEquals(attribute: string, value: string | number) {
@@ -181,10 +181,10 @@ export class EmptyFilter extends ValidExpressionFilter {
   }
 
   /**
-   * Selects the nodes with the attribute <code>attribute</code>, whose value is less than <code><value</code>.
-   * @param {string} attribute
-   * @param {number} value
-   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * Selects the nodes with the attribute ``attribute``, whose value is less than ``value``.
+   * @param {string} attribute - attribute name
+   * @param {number} value - value
+   * @returns {ValidExpressionFilter} - a new instance of ValidExpressionFilter with the newly formed expression.
    * @memberof EmptyFilter
    */
   attributeLessThan(attribute: string, value: number) {
@@ -192,10 +192,10 @@ export class EmptyFilter extends ValidExpressionFilter {
   }
 
   /**
-   * Selects the nodes with the attribute <code>attribute</code>, whose value is less than or equal to <code><value</code>.
-   * @param {string} attribute
-   * @param {number} value
-   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * Selects the nodes with the attribute ``attribute``, whose value is less than or equal to ``value``.
+   * @param {string} attribute - attribute name
+   * @param {number} value - value
+   * @returns {ValidExpressionFilter} - a new instance of ValidExpressionFilter with the newly formed expression.
    * @memberof EmptyFilter
    */
   attributeLessThanOrEqualTo(attribute: string, value: number) {
@@ -203,29 +203,29 @@ export class EmptyFilter extends ValidExpressionFilter {
   }
 
   /**
-   * Selects the nodes with the attribute <code>attribute</code>, whose value is greater than <code><value</code>.
-   * @param {string} attribute
-   * @param {number} value
-   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * Selects the nodes with the attribute ``attribute``, whose value is greater than ``value``.
+   * @param {string} attribute - attribute name
+   * @param {number} value - value
+   * @returns {ValidExpressionFilter} - a new instance of ValidExpressionFilter with the newly formed expression.
    * @memberof EmptyFilter
    */
   attributeGreaterThan(attribute: string, value: number) {
     return new ValidExpressionFilter([...this.sb, "@" + attribute + ">" + value]);
   }
   /**
-   * Selects the nodes with the attribute <code>attribute</code>, whose value is greater than or equal to <code><value</code>.
-   * @param {string} attribute
-   * @param {number} value
-   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * Selects the nodes with the attribute ``attribute``, whose value is greater than or equal to ``value``.
+   * @param {string} attribute - attribute name
+   * @param {number} value - value
+   * @returns {ValidExpressionFilter} - a new instance of ValidExpressionFilter with the newly formed expression.
    * @memberof EmptyFilter
    */
   attributeGreaterThanOrEqualTo(attribute: string, value: number) {
     return new ValidExpressionFilter([...this.sb, "@" + attribute + ">=" + value]);
   }
   /**
-   * Selects the nodes containing the value <code><value</code>.
-   * @param {string} value
-   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * Selects the nodes containing the value ``value``.
+   * @param {string} value - node value
+   * @returns {ValidExpressionFilter} - a new instance of ValidExpressionFilter with the newly formed expression.
    * @memberof EmptyFilter
    */
   valueContains(value: string) {
@@ -236,9 +236,9 @@ export class EmptyFilter extends ValidExpressionFilter {
   }
 
   /**
-   * Selects the nodes whose value equals <code><value</code>.
-   * @param {(string | number)} value
-   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * Selects the nodes whose value equals ``value``.
+   * @param {(string | number)} value - node value
+   * @returns {ValidExpressionFilter} - a new instance of ValidExpressionFilter with the newly formed expression.
    * @memberof EmptyFilter
    */
   valueEquals(value: string | number) {
@@ -249,9 +249,9 @@ export class EmptyFilter extends ValidExpressionFilter {
   }
 
   /**
-   * Selects the nodes with whose value doesn't equal <code><value</code>.
-   * @param {(string | number)} value
-   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * Selects the nodes with whose value doesn't equal ``value``.
+   * @param {(string | number)} value - node value
+   * @returns {ValidExpressionFilter} - a new instance of ValidExpressionFilter with the newly formed expression.
    * @memberof EmptyFilter
    */
   valueNotEquals(value: string | number) {
@@ -262,9 +262,9 @@ export class EmptyFilter extends ValidExpressionFilter {
   }
 
   /**
-   * Selects the nodes whose value is less than <code><value</code>.
-   * @param {number} value
-   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * Selects the nodes whose value is less than ``value``.
+   * @param {number} value - node value
+   * @returns {ValidExpressionFilter} - a new instance of ValidExpressionFilter with the newly formed expression.
    * @memberof EmptyFilter
    */
   valueLessThan(value: number) {
@@ -272,9 +272,9 @@ export class EmptyFilter extends ValidExpressionFilter {
   }
 
   /**
-   * Selects the nodes whose value is less than or equal to <code><value</code>.
-   * @param {number} value
-   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * Selects the nodes whose value is less than or equal to ``value``.
+   * @param {number} value - node value
+   * @returns {ValidExpressionFilter} - a new instance of ValidExpressionFilter with the newly formed expression.
    * @memberof EmptyFilter
    */
   valueLessThanOrEqualTo(value: number) {
@@ -282,9 +282,9 @@ export class EmptyFilter extends ValidExpressionFilter {
   }
 
   /**
-   * Selects the nodes  whose value is greater than <code><value</code>.
-   * @param {number} value
-   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * Selects the nodes  whose value is greater than ``value``.
+   * @param {number} value - node value
+   * @returns {ValidExpressionFilter} - a new instance of ValidExpressionFilter with the newly formed expression.
    * @memberof EmptyFilter
    */
   valueGreaterThan(value: number) {
@@ -292,9 +292,9 @@ export class EmptyFilter extends ValidExpressionFilter {
   }
 
   /**
-   * Selects the nodes whose value is greater than or equal to <code><value</code>.
-   * @param {number} value
-   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * Selects the nodes whose value is greater than or equal to ``value``.
+   * @param {number} value - node value
+   * @returns {ValidExpressionFilter} - a new instance of ValidExpressionFilter with the newly formed expression.
    * @memberof EmptyFilter
    */
   valueGreaterThanOrEqualTo(value: number) {
@@ -302,9 +302,9 @@ export class EmptyFilter extends ValidExpressionFilter {
   }
 
   /**
-   * Selects the node element who is positioned at the <code>index</code> position in its parent children list.
-   * @param {number} index
-   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * Selects the node element who is positioned at the ``index`` position in its parent children list.
+   * @param {number} index - index value
+   * @returns {ValidExpressionFilter} - a new instance of ValidExpressionFilter with the newly formed expression.
    * @memberof EmptyFilter
    */
   get(index: number) {
@@ -313,7 +313,7 @@ export class EmptyFilter extends ValidExpressionFilter {
 
   /**
    * Selects the node element who is positioned first in its parent children list.
-   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * @returns {ValidExpressionFilter} - a new instance of ValidExpressionFilter with the newly formed expression.
    * @memberof EmptyFilter
    */
   getFirst() {
@@ -322,7 +322,7 @@ export class EmptyFilter extends ValidExpressionFilter {
 
   /**
    * Selects the node element who is positioned last in its parent children list.
-   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * @returns {ValidExpressionFilter} - a new instance of ValidExpressionFilter with the newly formed expression.
    * @memberof EmptyFilter
    */
   getLast() {
@@ -330,9 +330,9 @@ export class EmptyFilter extends ValidExpressionFilter {
   }
 
   /**
-   * Reverses the filter <code>filter</code>. Returns true when the filter returns false and true when the filter returns false.
-   * @param {IFilter} filter
-   * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
+   * Reverses the filter ``filter``. Returns true when the filter returns false and true when the filter returns false.
+   * @param {IFilter} filter - filter object
+   * @returns {ValidExpressionFilter} - a new instance of ValidExpressionFilter with the newly formed expression.
    * @memberof EmptyFilter
    */
   not(filter: IFilter) {
@@ -342,9 +342,9 @@ export class EmptyFilter extends ValidExpressionFilter {
 
 /**
  * Adds operand between filters
- * @param {IFilter} filter
- * @param {string} [separator=""]
- * @param {boolean} [isLast=true]
+ * @param {IFilter} filter - filter object
+ * @param {string} [separator=""] - separator to add after expression 
+ * @param {boolean} [isLast=true] - true if this operand is the last of the conditional expression
  * @returns {string}
  */
 function addOpenrand(filter: IFilter, separator = "", isLast = true): string {
@@ -361,7 +361,7 @@ function addOpenrand(filter: IFilter, separator = "", isLast = true): string {
 
 /**
  * Treats the presence of apostrophes so it doesn't break the XPath filter expression.
- * @param {(string | number)} input
+ * @param {(string | number)} input - input value
  * @returns {string} XPath filter expression with apostrophes handled.
  */
 function replaceApostrophes(input: string | number) {

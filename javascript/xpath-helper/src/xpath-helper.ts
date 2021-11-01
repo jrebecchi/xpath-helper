@@ -2,7 +2,7 @@ import { EmptyFilter, IFilter } from "./filter";
 
 /**
  * XPathHelper provides a simple and chainnable API to build complicated XPath queries without the hassle.
- * After building your XPath query, call the method <code>toString()</code> to get the corresponding XPath string.
+ * After building your XPath query, call the method ``toString()`` to get the corresponding XPath string.
  * @export
  * @class XPathHelper
  */
@@ -11,7 +11,7 @@ export class XPathHelper {
 
   /**
    * Creates an instance of XPathHelper.
-   * @param {Array<string>} [currentPath]
+   * @param {Array<string>} [currentPath] current path
    * @memberof XPathHelper
    */
   constructor(currentPath?: string[]) {
@@ -53,8 +53,8 @@ export class XPathHelper {
   }
 
   /**
-   * Select an element with an XPath selector <code>xpath</code>.
-   * @param xpath
+   * Select an element with an XPath selector ``xpath``.
+   * @param {string} xpath - XPath expression
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -67,8 +67,8 @@ export class XPathHelper {
    *******************************************/
 
   /**
-   * Select the nodes filtered by <code>filter</code>, below the node in reference no matter the depth.
-   * @param {IFilter} filter
+   * Select the nodes filtered by ``filter``, below the node in reference no matter the depth.
+   * @param {IFilter} filter - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -77,9 +77,9 @@ export class XPathHelper {
   }
 
   /**
-   * Select the nodes filtered by <code>filter</code>, below the node in reference no matter the depth.
-   * @description This method is a synonym of <code>getDescendant</code>.
-   * @param {IFilter} filter
+   * Select the nodes filtered by ``filter``, below the node in reference no matter the depth.
+   * @description This method is a synonym of ``getDescendant``.
+   * @param {IFilter} filter - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -88,9 +88,9 @@ export class XPathHelper {
   }
 
   /**
-   * Select the nodes with tag <code>tag</code> filtered by <code>filter</code>, below the node in reference no matter the depth.
-   * @param {string} tag
-   * @param {IFilter} filter
+   * Select the nodes with tag ``tag`` filtered by ``filter``, below the node in reference no matter the depth.
+   * @param {string} tag - tag name
+   * @param {IFilter} [filter] - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -102,10 +102,10 @@ export class XPathHelper {
   }
 
   /**
-   * Select the nodes with tag <code>tag</code> filtered by <code>filter</code>, below the node in reference no matter the depth.
-   * @description This method is a synonym of <code>getDescendantByTag</code>.
-   * @param {string} tag
-   * @param {IFilter} filter
+   * Select the nodes with tag ``tag`` filtered by ``filter``, below the node in reference no matter the depth.
+   * @description This method is a synonym of ``getDescendantByTag``.
+   * @param {string} tag - tag name
+   * @param {IFilter} [filter] - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -114,9 +114,9 @@ export class XPathHelper {
   }
 
   /**
-   * Select the SVG nodes with SVG tag <code>svgTag</code> filtered by <code>filter</code>, below the node in reference no matter the depth.
-   * @param {string} svgTag
-   * @param {IFilter} filter
+   * Select the SVG nodes with SVG tag ``svgTag`` filtered by ``filter``, below the node in reference no matter the depth.
+   * @param {string} svgTag - SVG tag name
+   * @param {IFilter} [filter] - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -128,10 +128,10 @@ export class XPathHelper {
   }
 
   /**
-   * Select the SVG nodes with SVG tag <code>svgTag</code> filtered by <code>filter</code>, below the node in reference no matter the depth.
-   * @description This method is a synonym of <code>getDescendantBySVGTag</code>.
-   * @param {string} svgTag
-   * @param {IFilter} filter
+   * Select the SVG nodes with SVG tag ``svgTag`` filtered by ``filter``, below the node in reference no matter the depth.
+   * @description This method is a synonym of ``getDescendantBySVGTag``.
+   * @param {string} svgTag - SVG tag name
+   * @param {IFilter} [filter] - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -145,8 +145,8 @@ export class XPathHelper {
    *******************************************/
 
   /**
-   * Select the nodes filtered by <code>filter</code>, below the current node, but also returns the node in reference.
-   * @param {IFilter} filter
+   * Select the nodes filtered by ``filter``, below the current node, but also returns the node in reference.
+   * @param {IFilter} filter - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -158,9 +158,9 @@ export class XPathHelper {
   }
 
   /**
-   * Select the nodes with tag <code>tag</code> filtered by <code>filter</code>, below the current node, but also returns the node in reference.
-   * @param {string} tag
-   * @param {IFilter} filter
+   * Select the nodes with tag ``tag`` filtered by ``filter``, below the current node, but also returns the node in reference.
+   * @param {string} tag - tag name
+   * @param {IFilter} [filter] - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -172,9 +172,9 @@ export class XPathHelper {
   }
 
   /**
-   * Select the SVG nodes with SVG tag <code>svgTag</code> filtered by <code>filter</code>, below the current node, but also returns the node in reference.
-   * @param {string} svgTag
-   * @param {IFilter} filter
+   * Select the SVG nodes with SVG tag ``svgTag`` filtered by ``filter``, below the current node, but also returns the node in reference.
+   * @param {string} svgTag - SVG tag name
+   * @param {IFilter} [filter] - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -196,8 +196,8 @@ export class XPathHelper {
    *******************************************/
 
   /**
-   * Select the nodes filtered by <code>filter</code> immediately below the node in reference.
-   * @param {IFilter} filter
+   * Select the nodes filtered by ``filter`` immediately below the node in reference.
+   * @param {IFilter} filter - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -206,9 +206,9 @@ export class XPathHelper {
   }
 
   /**
-   * Select the nodes with tag <code>tag</code> filtered by <code>filter</code>, immediately below the node in reference.
-   * @param {string} tag
-   * @param {IFilter} filter
+   * Select the nodes with tag ``tag`` filtered by ``filter``, immediately below the node in reference.
+   * @param {string} tag - tag name
+   * @param {IFilter} [filter] - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -220,9 +220,9 @@ export class XPathHelper {
   }
 
   /**
-   * Select the SVG nodes with SVG tag <code>svgTag</code> filtered by <code>filter</code>, immediately below the node in reference.
-   * @param {string} svgTag
-   * @param {IFilter} filter
+   * Select the SVG nodes with SVG tag ``svgTag`` filtered by ``filter``, immediately below the node in reference.
+   * @param {string} svgTag - SVG tag name
+   * @param {IFilter} [filter] - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -239,9 +239,9 @@ export class XPathHelper {
    *****************************************/
 
   /**
-   * Select the nodes filtered by <code>filter</code>,
+   * Select the nodes filtered by ``filter``,
    * that are ancestors, or the parent, and the parent's parent, and so on, to the node in reference.
-   * @param {IFilter} filter
+   * @param {IFilter} filter - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -253,10 +253,10 @@ export class XPathHelper {
   }
 
   /**
-   * Select the nodes with tag <code>tag</code> filtered by <code>filter</code>,
+   * Select the nodes with tag ``tag`` filtered by ``filter``,
    * that are ancestors, or the parent, and the parent's parent, and so on, to the node in reference.
-   * @param {string} tag
-   * @param {IFilter} filter
+   * @param {string} tag - tag name
+   * @param {IFilter} [filter] - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -268,10 +268,10 @@ export class XPathHelper {
   }
 
   /**
-   * Select the SVG nodes with SVG tag <code>svgTag</code> filtered by <code>filter</code>,
+   * Select the SVG nodes with SVG tag ``svgTag`` filtered by ``filter``,
    * that are ancestors, or the parent, and the parent's parent, and so on, to the node in reference.
-   * @param {string} svgTag
-   * @param {IFilter} filter
+   * @param {string} svgTag - SVG tag name
+   * @param {IFilter} [filter] - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -290,9 +290,9 @@ export class XPathHelper {
    * or the parent, and the parent's parent, and so on, including the node in reference.
    *************************************************/
   /**
-   * Select the nodes filtered by <code>filter</code>,
+   * Select the nodes filtered by ``filter``,
    * that are ancestors, or the parent, and the parent's parent, and so on, including the node in reference.
-   * @param {IFilter} filter
+   * @param {IFilter} filter - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -304,10 +304,10 @@ export class XPathHelper {
   }
 
   /**
-   * Select the nodes with tag <code>tag</code> filtered by <code>filter</code>,
+   * Select the nodes with tag ``tag`` filtered by ``filter``,
    * that are ancestors, or the parent, and the parent's parent, and so on, including the node in reference.
-   * @param {string} tag
-   * @param {IFilter} filter
+   * @param {string} tag - tag name
+   * @param {IFilter} [filter] - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -319,10 +319,10 @@ export class XPathHelper {
   }
 
   /**
-   * Select the SVG nodes with SVG tag <code>svgTag</code> filtered by <code>filter</code>,
+   * Select the SVG nodes with SVG tag ``svgTag`` filtered by ``filter``,
    * that are ancestors, or the parent, and the parent's parent, and so on, including the node in reference.
-   * @param {string} svgTag
-   * @param {IFilter} filter
+   * @param {string} svgTag - SVG tag name
+   * @param {IFilter} [filter] - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -345,9 +345,9 @@ export class XPathHelper {
    ******************************************/
 
   /**
-   * Select the nodes filtered by <code>filter</code>, that are located on parent-level
+   * Select the nodes filtered by ``filter``, that are located on parent-level
    * and also after (following) its parent of the node in reference.
-   * @param {IFilter} filter
+   * @param {IFilter} filter - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -359,10 +359,10 @@ export class XPathHelper {
   }
 
   /**
-   * Select the nodes with tag <code>tag</code> filtered by <code>filter</code>,
+   * Select the nodes with tag ``tag`` filtered by ``filter``,
    * that are located on parent-level and also after (following) its parent of the node in reference.
-   * @param {string} tag
-   * @param {IFilter} filter
+   * @param {string} tag - tag name
+   * @param {IFilter} [filter] - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -374,9 +374,9 @@ export class XPathHelper {
   }
 
   /**
-   * Select the SVG nodes with SVG tag <code>svgTag</code> filtered by <code>filter</code>,
+   * Select the SVG nodes with SVG tag ``svgTag`` filtered by ``filter``,
    * that are located on parent-level and also after (following) its parent of the node in reference.
-   * @param {IFilter} filter
+   * @param {IFilter} filter - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -395,9 +395,9 @@ export class XPathHelper {
    **************************************************/
 
   /**
-   * Select the nodes filtered by <code>filter</code>,
+   * Select the nodes filtered by ``filter``,
    * that are located on the same level who are located after (following) the node in reference.
-   * @param {IFilter} filter
+   * @param {IFilter} filter - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -409,10 +409,10 @@ export class XPathHelper {
   }
 
   /**
-   * Select the nodes with tag <code>tag</code> filtered by <code>filter</code>,
+   * Select the nodes with tag ``tag`` filtered by ``filter``,
    * that are located on the same level who are located after (following) the node in reference.
-   * @param {string} tag
-   * @param {IFilter} filter
+   * @param {string} tag - tag name
+   * @param {IFilter} [filter] - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -424,10 +424,10 @@ export class XPathHelper {
   }
 
   /**
-   * Select the SVG nodes with SVG tag <code>svgTag</code> filtered by <code>filter</code>,
+   * Select the SVG nodes with SVG tag ``svgTag`` filtered by ``filter``,
    * that are located on the same level who are located after (following) the node in reference.
-   * @param {string} svgTag
-   * @param {IFilter} filter
+   * @param {string} svgTag - SVG tag name
+   * @param {IFilter} [filter] - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -450,9 +450,9 @@ export class XPathHelper {
    ******************************************/
 
   /**
-   * Select the nodes filtered by <code>filter</code>, that are located on parent-level
+   * Select the nodes filtered by ``filter``, that are located on parent-level
    * and also before (preceding) its parent of the node in reference.
-   * @param {IFilter} filter
+   * @param {IFilter} filter - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -464,10 +464,10 @@ export class XPathHelper {
   }
 
   /**
-   * Select the nodes with tag <code>tag</code> filtered by <code>filter</code>,
+   * Select the nodes with tag ``tag`` filtered by ``filter``,
    * that are located on parent-level and also before (preceding) its parent of the node in reference.
-   * @param {string} tag
-   * @param {IFilter} filter
+   * @param {string} tag - tag name
+   * @param {IFilter} [filter] - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -479,10 +479,10 @@ export class XPathHelper {
   }
 
   /**
-   * Select the SVG nodes with SVG tag <code>svgTag</code> filtered by <code>filter</code>,
+   * Select the SVG nodes with SVG tag ``svgTag`` filtered by ``filter``,
    * that are located on parent-level and also before (preceding) its parent of the node in reference.
-   * @param {string} svgTag
-   * @param {IFilter} filter
+   * @param {string} svgTag - SVG tag name
+   * @param {IFilter} [filter] - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -501,9 +501,9 @@ export class XPathHelper {
    * who are also located before (preceding) the node in reference.
    **************************************************/
   /**
-   * Select the nodes filtered by <code>filter</code>, that are located on the same level
+   * Select the nodes filtered by ``filter``, that are located on the same level
    * who are also located before (preceding) the node in reference.
-   * @param {IFilter} filter
+   * @param {IFilter} filter - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -515,10 +515,10 @@ export class XPathHelper {
   }
 
   /**
-   * Select the nodes with tag <code>tag</code> filtered by <code>filter</code>,
+   * Select the nodes with tag ``tag`` filtered by ``filter``,
    * that are located on the same level who are also located before (preceding) the node in reference.
-   * @param {string} tag
-   * @param {IFilter} filter
+   * @param {string} tag - tag name
+   * @param {IFilter} [filter] - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
@@ -530,10 +530,10 @@ export class XPathHelper {
   }
 
   /**
-   * Select the SVG nodes with SVG tag <code>svgTag</code> filtered by <code>filter</code>,
+   * Select the SVG nodes with SVG tag ``svgTag`` filtered by ``filter``,
    * that are located on the same level who are also located before (preceding) the node in reference.
-   * @param {string} svgTag
-   * @param {IFilter} filter
+   * @param {string} svgTag - SVG tag name
+   * @param {IFilter} [filter] - filter object
    * @return {XPathHelper} returns a new instance of XPathHelper
    * @memberof XPathHelper
    */
