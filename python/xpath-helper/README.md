@@ -24,7 +24,7 @@ A chainable API to build complex XPath queries along the different [XPath axes](
 pip install xpath-helper
 ```
 ## Quick-start
-You can [chain method call](https://krypton-org.github.io/jrebecchi/xpath-helper) on the [different XPath axes](https://krypton-org.github.io/jrebecchi/xpath-helper) and easily add [filters](https://krypton-org.github.io/jrebecchi/xpath-helper).
+You can [chain method call](https://krypton-org.github.io/jrebecchi/xpath-helper) on the different [XPath axes](https://krypton-org.github.io/jrebecchi/xpath-helper) and easily add [filters](https://krypton-org.github.io/jrebecchi/xpath-helper).
 ```python
 from xpath_helper import XPathHelper, filter
 
@@ -71,7 +71,7 @@ str(el) # "//p[contains(@class, 'very-nice-p')]/../following-sibling::p"
 # Find an element into the page, move to its ancestor 
 # containing 'very-nice-p' ass CSS class, 
 # find a brother node of the ancestor positioned before it.
-el = p.get_element_by_tag(
+el = XPathHelper().get_element_by_tag(
     'p', filter.attribute_contains('class', 'very-nice-p')
 ).get_ancestor_by_tag(
   'div'
@@ -114,9 +114,9 @@ Find below a few examples of filters on node values.
 from xpath_helper import XPathHelper, filter
 
 # Looks for a button whose text is 'Submit'
-modal = XPathHelper().get_element_by_tag('button', filter.value_equals('Submit'))
+button = XPathHelper().get_element_by_tag('button', filter.value_equals('Submit'))
 # Looks for an element whose text contains 'foobar'
-li = XPathHelper().get_element(filter.value_contains('foobar'))
+el = XPathHelper().get_element(filter.value_contains('foobar'))
 # Looks for all the li element with a value superior to 3
 li = XPathHelper().get_element_by_tag('li', filter.value_greater_than(3))
 ```
@@ -130,7 +130,7 @@ first = XPathHelper().get_element_by_tag('ul').get_element_by_tag('li', filter.g
 # Looks for the first li element in ul list
 last = XPathHelper().get_element_by_tag('ul').get_element_by_tag('li', filter.get_last())
 # Looks for the third li element in ul list
-last = XPathHelper().get_element_by_tag('ul').get_element_by_tag('li', filter.get(3))
+third = XPathHelper().get_element_by_tag('ul').get_element_by_tag('li', filter.get(3))
 ```
 ### Conditional expression
 Find below a few examples of filters with conditional expression.
@@ -167,7 +167,7 @@ el = XPathHelper().get_element(
 str(el) # "//*[((text()[contains(., 'JavaScript')] or text()[contains(., 'Pyhton')]) and text()[contains(., 'package')])]"
 ```
 ## SVG
-Navigating into SVG elements from an HTML file can be tricky with XPath, that is why a subset of functions have been added for that purpose. They are all ending with `...by_svg_tag`.
+Navigating into SVG elements from an HTML file can be tricky with XPath, that is why a subset of functions have been added. They are all ending with `...by_svg_tag` and can be used as below.
 
 ```python
 from xpath_helper import XPathHelper, filter

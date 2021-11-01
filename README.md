@@ -19,8 +19,8 @@ A chainable API to build complex XPath queries along the different [XPath axes](
 - [**Documentation**](https://krypton-org.github.io/jrebecchi/xpath-helper) — Consult the quick start guide and the online documentation.
 
 ### Installation
-`xpath-helper` can be installed using npm:
 #### JavaScript
+`xpath-helper` can be installed using npm:
 ```bash
 npm install xpath-helper
 ```
@@ -32,7 +32,7 @@ pip install xpath-helper
 ```
 
 ### Quick-start
-You can [chain method call](https://krypton-org.github.io/jrebecchi/xpath-helper) on the [different XPath axes](https://krypton-org.github.io/jrebecchi/xpath-helper) and easily add [filters](https://krypton-org.github.io/jrebecchi/xpath-helper).
+You can [chain method call](https://krypton-org.github.io/jrebecchi/xpath-helper) on the different [XPath axes](https://krypton-org.github.io/jrebecchi/xpath-helper) and easily add [filters](https://krypton-org.github.io/jrebecchi/xpath-helper).
 #### JavaScript
 ```javascript
 import { XPathHelper, filter } from 'xpath-helper';
