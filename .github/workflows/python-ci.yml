@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Python CI
 
 # Controls when the workflow will run
 on:
@@ -34,6 +34,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          cd ./python/xpath-helper
           python -m pip install --upgrade pip
           pip install poetry
           poetry install
