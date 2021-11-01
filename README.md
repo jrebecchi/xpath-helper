@@ -19,19 +19,20 @@ A chainable API to build complex XPath queries along the different [XPath axes](
 - [**Documentation**](https://krypton-org.github.io/jrebecchi/xpath-helper) — Consult the quick start guide and the online documentation.
 
 ### Installation
-
+`xpath-helper` can be installed using npm:
 #### JavaScript
 ```bash
 npm install xpath-helper
 ```
 
 #### Python
+`xpath-helper` requires python 3.5+ and can be installed using pip:
 ```bash
 pip install xpath-helper
 ```
 
 ### Quick-start
-
+You can [chain method call](https://krypton-org.github.io/jrebecchi/xpath-helper) on the [different XPath axes](https://krypton-org.github.io/jrebecchi/xpath-helper) and easily add [filters](https://krypton-org.github.io/jrebecchi/xpath-helper).
 #### JavaScript
 ```javascript
 import { XPathHelper, filter } from 'xpath-helper';
@@ -92,3 +93,7 @@ li = XPathHelper().get_element_by_tag("li", filter.and_operator(
 str(li) # "//li[((text()[contains(., 'JavaScript')] or text()[contains(., 'Python')]) and @data-description)]"
 ```
 ***See the [Python documentation](https://krypton-org.github.io/jrebecchi/xpath-helper) for more details.***
+
+## License
+
+`xpath-helper` is released under the [MIT license](https://github.com/jrebecchi/xpath-helper/blob/docs/LICENSE).

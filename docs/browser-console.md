@@ -1,5 +1,1 @@
-Try it in your browser
-======================
-
-Properties
-----------
+# Try it in your browser

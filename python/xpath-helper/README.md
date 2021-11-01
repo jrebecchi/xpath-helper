@@ -19,10 +19,12 @@ A chainable API to build complex XPath queries along the different [XPath axes](
 - [**Documentation**](https://krypton-org.github.io/jrebecchi/xpath-helper) — Consult the quick start guide and the online documentation.
 
 ## Installation
+`xpath-helper` requires python 3.5+ and can be installed using pip:
 ```bash
 pip install xpath-helper
 ```
 ## Quick-start
+You can [chain method call](https://krypton-org.github.io/jrebecchi/xpath-helper) on the [different XPath axes](https://krypton-org.github.io/jrebecchi/xpath-helper) and easily add [filters](https://krypton-org.github.io/jrebecchi/xpath-helper).
 ```python
 from xpath_helper import XPathHelper, filter
 
@@ -88,7 +90,7 @@ submit_button = modal.get_element_by_tag('button', filter.value_equals('Submit')
 cancel_button = modal.get_element_by_tag('button', filter.value_equals('Cancel'))
 ```
 ## Filters
-To select elements more precisely you can add filters: filtering on attributes, on element values, and combining them with conditional operators: [`and_operator(...)`](https://krypton-org.github.io/jrebecchi/xpath-helper), [`or_operator(...)`](https://krypton-org.github.io/jrebecchi/xpath-helper), and [`not_operator(...)`](https://krypton-org.github.io/jrebecchi/xpath-helper).
+To select elements more precisely you can add filters: filtering on attributes, on element values, element position, and combining them with conditional operators: [`and_operator(...)`](https://krypton-org.github.io/jrebecchi/xpath-helper), [`or_operator(...)`](https://krypton-org.github.io/jrebecchi/xpath-helper), and [`not_operator(...)`](https://krypton-org.github.io/jrebecchi/xpath-helper).
 
 ***The complete filter API can be found [here](https://krypton-org.github.io/jrebecchi/xpath-helper).***
 
@@ -110,6 +112,7 @@ li = XPathHelper().get_element_by_tag('li', filter.attribute_greater_than('data-
 Find below a few examples of filters on node values.
 ```python
 from xpath_helper import XPathHelper, filter
+
 # Looks for a button whose text is 'Submit'
 modal = XPathHelper().get_element_by_tag('button', filter.value_equals('Submit'))
 # Looks for an element whose text contains 'foobar'
@@ -120,6 +123,8 @@ li = XPathHelper().get_element_by_tag('li', filter.value_greater_than(3))
 ### Position
 Find below a few examples of filters on node position.
 ```python
+from xpath_helper import XPathHelper, filter
+
 # Looks for the first li element in ul list
 first = XPathHelper().get_element_by_tag('ul').get_element_by_tag('li', filter.get_first())
 # Looks for the first li element in ul list
@@ -132,22 +137,48 @@ Find below a few examples of filters with conditional expression.
 
 ```python
 from xpath_helper import XPathHelper, filter
-# Store the path of a modal window
-modal = XPathHelper().get_element(filter.attribute_contains('class', 'modal'))
-# Find the Submit button inside the modal window
-submit_button = modal.get_element_by_tag('button', filter.value_equals('Submit'))
-# Find the Cancel button inside the modal window
-cancel_button = modal.get_element_by_tag('button', filter.value_equals('Cancel'))
+
+# Find an element that has a CSS class 'a-link' and contains an attribute href
+el = XPathHelper().get_element(
+  filter.attribute_contains('class', 'a-link').and_operator(
+    filter.has_attribute('href')
+  )
+)
+str(el) # "//*[contains(@class, 'a-link') and (@href)]"
+
+# Find an element that has a CSS class 'foo' or a CSS class 'bar'
+el = XPathHelper().get_element(
+  filter.attribute_contains('class', 'foo').or_operator(
+    filter.attribute_contains('class', 'bar')
+  )
+)
+str(el) # "//*[contains(@class, 'foo') or (contains(@class, 'bar'))]"
+
+# Build complex logical expression combining and & or
+el = XPathHelper().get_element(
+  filter.and_operator(
+    filter.or_operator(
+      filter.value_contains("JavaScript"),
+      filter.value_contains("Pyhton")
+    ),
+      filter.value_contains("package")
+  )
+)
+str(el) # "//*[((text()[contains(., 'JavaScript')] or text()[contains(., 'Pyhton')]) and text()[contains(., 'package')])]"
 ```
 ## SVG
-Navigating into SVG elements from an HTML file can be tricky with XPath, that is why a subset of functions have been added for that purpose. They are all ending with `...svg_tag`.
+Navigating into SVG elements from an HTML file can be tricky with XPath, that is why a subset of functions have been added for that purpose. They are all ending with `...by_svg_tag`.
 
 ```python
 from xpath_helper import XPathHelper, filter
+
 # Store the path of a modal window
-modal = XPathHelper().get_element(filter.attribute_contains('class', 'modal'))
+path = XPathHelper().get_element_by_svg_tag('path', filter.attribute_equals('d', 'M 310 130 L 90 130 L 90 183.63'))
+str(path) # "//*[local-name() = 'path'][@d='M 310 130 L 90 130 L 90 183.63']"
+
 # Find the Submit button inside the modal window
-submit_button = modal.get_element_by_tag('button', filter.value_equals('Submit'))
-# Find the Cancel button inside the modal window
-cancel_button = modal.get_element_by_tag('button', filter.value_equals('Cancel'))
+g = XPathHelper().get_element_by_svg_tag(
+  'path', filter.attribute_equals('id', 'id-path')
+).get_ancestor_by_svg_tag('g')
+str(g) # "//*[local-name() = 'path'][@id='id-path']/ancestor::*[local-name() = 'g']"
 ```

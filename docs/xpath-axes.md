@@ -1,15 +1,26 @@
 # XPath axes
 
-XPath natively lets your build complex queries chaining them along its different axes.
-image
+XPath lets you search for elements along its different axes.If you are currently positionned as self, the other nodes are relatively located from you on the axes as below. 
 
-Along those different axes you can navigate like the example below.
-
+```{eval-rst}
+.. image:: _images/xpath-axes.jpg
+   :align: center
+   :alt: xpath-helper - xpath axes
 ```
+
+XPath natively lets you build complex queries chaining them along its different axes. You can navigate like in the example below.
+
+```python
 //div[text() = 'A text']/ancestor::*[@class='a-class']/../following-sibling::[@href='nav.html']
 |-------descendant------|---------ancestor----------|parent|--------following-sibling---------|
 ```
 The following xpath query will select an HTML/XML element like bellow.
+
+```{eval-rst}
+.. image:: _images/xpath-explanation.jpg
+   :align: center
+   :alt: xpath-helper - xpath explanation
+```
 
 ## Axes explanation
 
