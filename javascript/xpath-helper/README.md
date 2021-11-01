@@ -26,10 +26,10 @@ npm install xpath-helper
 ## Quick-start
 You can [chain method call](https://krypton-org.github.io/jrebecchi/xpath-helper) on the different [XPath axes](https://krypton-org.github.io/jrebecchi/xpath-helper) and easily add [filters](https://krypton-org.github.io/jrebecchi/xpath-helper).
 ```javascript
-import { XPathHelper, filter } from 'xpath-helper';
+import { xh, filter } from 'xpath-helper';
 
 // Find a paragraph <p> containing a CSS class 'very-nice-p'
-const p = new XPathHelper().getElementByTag('p', filter.attributeContains('class', 'very-nice-p'));
+const p = xh.getElementByTag('p', filter.attributeContains('class', 'very-nice-p'));
 p.toString(); // "//p[contains(@class, 'very-nice-p')]"
 
 // Find the paragraph that is following the above one
@@ -37,13 +37,13 @@ const nextP = p.getFollowingSiblingByTag('p');
 nextP.toString(); // "//p[contains(@class, 'very-nice-p')]/following-sibling::p"
 
 // Find the modal containing a button with text "Register" 
-const modal = new XPathHelper()
+const modal = xh
   .getElement(filter.valueEquals('Register'))
   .getAncestor(filter.attributeEquals('class', 'modal'));
 modal.toString(); // "//*[text() = 'Register']/ancestor::*[@class='modal']"
 
 // An elaborated filter with a boolean expression
-const li = new XPathHelper().getElementByTag("li",
+const li = xh.getElementByTag("li",
   filter.and(
     filter.or(
       filter.valueContains("JavaScript"), filter.valueContains("Python")
@@ -62,12 +62,11 @@ This library let you do exactly the same by chaining method calls along the diff
 For each axis, xpath-helper provides 3 methods, like for instance `getElement(filter)`, `getElementByTag(tag, filter)`, `get_child_by_svg_tag(svgTag, filter)` for the `descendant`  axis aliased as `element`. Find the complete API [here](https://krypton-org.github.io/jrebecchi/xpath-helper).
 
 ```javascript
-import { XPathHelper, filter } from 'xpath-helper';
+import { xh, filter } from 'xpath-helper';
 
 // Find an element into the page, move to its parent, 
 // find a brother node of the parent positioned after it.
-const el = new XPathHelper()
-  .getElementByTag('p', filter.attributeContains('class', 'very-nice-p'))
+const el = xh.getElementByTag('p', filter.attributeContains('class', 'very-nice-p'))
   .getParent()
   .getFollowingSiblingByTag('p');
 el.toString(); // "//p[contains(@class, 'very-nice-p')]/../following-sibling::p"
@@ -75,8 +74,7 @@ el.toString(); // "//p[contains(@class, 'very-nice-p')]/../following-sibling::p"
 // Find an element into the page, move to its ancestor 
 // containing 'very-nice-p' ass CSS class, 
 // find a brother node of the ancestor positioned before it.
-el = new XPathHelper()
-  .getElementByTag('p', filter.attributeContains('class', 'very-nice-p'))
+el = xh.getElementByTag('p', filter.attributeContains('class', 'very-nice-p'))
   .getAncestorByTag('div')
   .getPrecedingSibling(filter.hasAttribute('data-foo-bar'));
 el.toString(); // "//p[contains(@class, 'very-nice-p')]/../following-sibling::p//p[contains(@class, 'very-nice-p')]/ancestor::div/preceding-sibling::*[@data-foo-bar]"
@@ -84,9 +82,9 @@ el.toString(); // "//p[contains(@class, 'very-nice-p')]/../following-sibling::p/
 
 It is also possible to keep a relative path in a variable and re-use it after.
 ```javascript
-import { XPathHelper, filter } from 'xpath-helper';
+import { xh, filter } from 'xpath-helper';
 // Store the path of a modal window
-const modal = new XPathHelper().getElement(filter.attributeContains('class', 'modal'));
+const modal = xh.getElement(filter.attributeContains('class', 'modal'));
 // Find the Submit button inside the modal window
 const submitButton = modal.getElementByTag('button', filter.valueEquals('Submit'));
 // Find the Cancel button inside the modal window
@@ -101,48 +99,48 @@ To select elements more precisely you can add filters: filtering on attributes, 
 Find below a few examples of filters on attributes.
 
 ```javascript
-import { XPathHelper, filter } from 'xpath-helper';
+import { xh, filter } from 'xpath-helper';
 // Looks for an element that has a class attribute equals to 'foo'
-const el = new XPathHelper().getElement(filter.attributeEquals('class', 'foo'));
+const el = xh.getElement(filter.attributeEquals('class', 'foo'));
 // Looks for an element that has a class attribute containing 'bar'
-const el2 = new XPathHelper().getElement(filter.attributeContains('class', 'bar'));
+const el2 = xh.getElement(filter.attributeContains('class', 'bar'));
 // Looks for an element that has the attribute 'alt'
-const img = new XPathHelper().getElementByTag('img', filter.hasAttribute('alt'));
+const img = xh.getElementByTag('img', filter.hasAttribute('alt'));
 // Looks for all the li element with a data-attribute superior to 3
-const li = new XPathHelper().getElementByTag('li', filter.attributeGreaterThan('data-index', 3);)
+const li = xh.getElementByTag('li', filter.attributeGreaterThan('data-index', 3);)
 ```
 ###  Values
 Find below a few examples of filters on node values.
 ```javascript
-import { XPathHelper, filter } from 'xpath-helper';
+import { xh, filter } from 'xpath-helper';
 
 // Looks for a button whose text is 'Submit'
-const button = new XPathHelper().getElementByTag('button', filter.valueEquals('Submit'));
+const button = xh.getElementByTag('button', filter.valueEquals('Submit'));
 // Looks for an element whose text contains 'foobar'
-const el = new XPathHelper().getElement(filter.valueContains('foobar'));
+const el = xh.getElement(filter.valueContains('foobar'));
 // Looks for all the li element with a value superior to 3
-const li = new XPathHelper().getElementByTag('li', filter.valueGreaterThan(3));
+const li = xh.getElementByTag('li', filter.valueGreaterThan(3));
 ```
 ### Position
 Find below a few examples of filters on node position.
 ```javascript
-import { XPathHelper, filter } from 'xpath-helper';
+import { xh, filter } from 'xpath-helper';
 
 // Looks for the first li element in ul list
-const first = new XPathHelper().getElementByTag('ul').getElementByTag('li', filter.getFirst());
+const first = xh.getElementByTag('ul').getElementByTag('li', filter.getFirst());
 // Looks for the first li element in ul list
-const last = new XPathHelper().getElementByTag('ul').getElementByTag('li', filter.getLast());
+const last = xh.getElementByTag('ul').getElementByTag('li', filter.getLast());
 // Looks for the third li element in ul list
-const third = new XPathHelper().getElementByTag('ul').getElementByTag('li', filter.get(3));
+const third = xh.getElementByTag('ul').getElementByTag('li', filter.get(3));
 ```
 ### Conditional expression
 Find below a few examples of filters with conditional expression.
 
 ```javascript
-import { XPathHelper, filter } from 'xpath-helper';
+import { xh, filter } from 'xpath-helper';
 
 // Find an element that has a CSS class 'a-link' and contains an attribute href
-let el = new XPathHelper().getElement(
+let el = xh.getElement(
   filter.attributeContains('class', 'a-link').and(
     filter.hasAttribute('href')
   )
@@ -150,7 +148,7 @@ let el = new XPathHelper().getElement(
 el.toString(); // "//*[contains(@class, 'a-link') and (@href)]"
 
 // Find an element that has a CSS class 'foo' or a CSS class 'bar'
-el = new XPathHelper().getElement(
+el = xh.getElement(
   filter.attributeContains('class', 'foo').or(
     filter.attributeContains('class', 'bar')
   )
@@ -158,7 +156,7 @@ el = new XPathHelper().getElement(
 el.toString(); // "//*[contains(@class, 'foo') or (contains(@class, 'bar'))]"
 
 // Build complex logical expression combining and & or
-el = new XPathHelper().getElement(
+el = xh.getElement(
   filter.and(
     filter.or(
       filter.valueContains("JavaScript"),
@@ -173,17 +171,16 @@ el.toString(); // "//*[((text()[contains(., 'JavaScript')] or text()[contains(.,
 Navigating into SVG elements from an HTML file can be tricky with XPath, that is why a subset of functions have been added. They are all ending with `...bySVGTag` and can be used as below.
 
 ```javascript
-import { XPathHelper, filter } from 'xpath-helper';
+import { xh, filter } from 'xpath-helper';
 
 // Store the path of a modal window
-const path = new XPathHelper().getElementBySVGTag('path', 
+const path = xh.getElementBySVGTag('path', 
   filter.attributeEquals('d', 'M 310 130 L 90 130 L 90 183.63')
 );
 path.toString(); // "//*[local-name() = 'path'][@d='M 310 130 L 90 130 L 90 183.63']"
     
 // Find the Submit button inside the modal window
-const g = new XPathHelper()
-  .getElementBySVGTag('path', filter.attributeEquals('id', 'id-path'))
+const g = xh.getElementBySVGTag('path', filter.attributeEquals('id', 'id-path'))
   .getAncestorBySVGTag('g');
 g.toString(); // "//*[local-name() = 'path'][@id='id-path']/ancestor::*[local-name() = 'g']"
 ```

@@ -35,10 +35,10 @@ pip install xpath-helper
 You can [chain method call](https://krypton-org.github.io/jrebecchi/xpath-helper) on the different [XPath axes](https://krypton-org.github.io/jrebecchi/xpath-helper) and easily add [filters](https://krypton-org.github.io/jrebecchi/xpath-helper).
 #### JavaScript
 ```javascript
-import { XPathHelper, filter } from 'xpath-helper';
+import { xh, filter } from 'xpath-helper';
 
 // Find a paragraph <p> containing a CSS class 'very-nice-p'
-const p = new XPathHelper().getElementByTag('p', filter.attributeContains('class', 'very-nice-p'));
+const p = xh.getElementByTag('p', filter.attributeContains('class', 'very-nice-p'));
 p.toString() // "//p[contains(@class, 'very-nice-p')]"
 
 // Find the paragraph that is following the above one
@@ -46,13 +46,13 @@ const nextP = p.getFollowingSiblingByTag('p');
 nextP.toString() // "//p[contains(@class, 'very-nice-p')]/following-sibling::p"
 
 // Find the modal containing a button with text "Register" 
-const modal = new XPathHelper()
+const modal = xh
   .getElement(filter.valueEquals('Register'))
   .getAncestor(filter.attributeEquals('class', 'modal'));
 modal.toString() // "//*[text() = 'Register']/ancestor::*[@class='modal']"
 
 // An elaborated filter with a boolean expression
-const li = new XPathHelper().getElementByTag("li",
+const li = xh.getElementByTag("li",
   filter.and(
     filter.or(
       filter.valueContains("JavaScript"), filter.valueContains("Python")
@@ -65,10 +65,10 @@ li.toString() // "//li[((text()[contains(., 'JavaScript')] or text()[contains(.,
 
 #### Python
 ```python
-from xpath_helper import XPathHelper, filter
+from xpath_helper import xh, filter
 
 # Find a paragraph <p> containing a CSS class 'very-nice-p'
-p = XPathHelper().get_element_by_tag('p', filter.attribute_contains('class', 'very-nice-p'))
+p = xh.get_element_by_tag('p', filter.attribute_contains('class', 'very-nice-p'))
 str(p) # "//p[contains(@class, 'very-nice-p')]"
 
 # Find the paragraph that is following the above one
@@ -76,7 +76,7 @@ next_p = p.get_following_sibling_by_tag('p')
 str(next_p) # "//p[contains(@class, 'very-nice-p')]/following-sibling::p"
 
 # Find the modal containing a button with text "Register" 
-modal = XPathHelper().get_element(
+modal = xh.get_element(
   filter.value_equals('Register')
 ).get_ancestor(
   filter.attribute_equals('class', 'modal')
@@ -84,7 +84,7 @@ modal = XPathHelper().get_element(
 str(modal) # "//*[text() = 'Register']/ancestor::*[@class='modal']"
 
 # An elaborated filter with a boolean expression
-li = XPathHelper().get_element_by_tag("li", filter.and_operator(
+li = xh.get_element_by_tag("li", filter.and_operator(
   filter.or_operator(
     filter.value_contains("JavaScript"), filter.value_contains("Python")
   ),

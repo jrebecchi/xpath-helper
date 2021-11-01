@@ -577,7 +577,6 @@ export class XPathHelper {
   }
 }
 
-const filterInstance = new EmptyFilter();
-Object.freeze(filterInstance);
+export const filter = Object.freeze(new EmptyFilter());
+export const xh = Object.freeze(new XPathHelper());
 
-export const filter = filterInstance;

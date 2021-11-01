@@ -1,7 +1,7 @@
-from xpath_helper import XPathHelper, filter
+from xpath_helper import xh, filter
 
 def test_or_and_operators(html_doc):
-    li_path = XPathHelper().get_element_by_tag(
+    li_path = xh.get_element_by_tag(
         "a"
     ).get_ancestor_by_tag(
         "ul"
@@ -23,7 +23,7 @@ def test_or_and_operators(html_doc):
     assert "awesome" in elements[0].text
 
 def test_or_and_operator_priority(html_doc):
-    li_path = XPathHelper().get_element_by_tag(
+    li_path = xh.get_element_by_tag(
         "li",
         filter.and_operator(
             filter.or_operator(

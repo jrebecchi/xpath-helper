@@ -26,10 +26,10 @@ pip install xpath-helper
 ## Quick-start
 You can [chain method call](https://krypton-org.github.io/jrebecchi/xpath-helper) on the different [XPath axes](https://krypton-org.github.io/jrebecchi/xpath-helper) and easily add [filters](https://krypton-org.github.io/jrebecchi/xpath-helper).
 ```python
-from xpath_helper import XPathHelper, filter
+from xpath_helper import xh, filter
 
 # Find a paragraph <p> containing a CSS class 'very-nice-p'
-p = XPathHelper().get_element_by_tag('p', filter.attribute_contains('class', 'very-nice-p'))
+p = xh.get_element_by_tag('p', filter.attribute_contains('class', 'very-nice-p'))
 str(p) # "//p[contains(@class, 'very-nice-p')]"
 
 # Find the paragraph that is following the above one
@@ -37,11 +37,11 @@ next_p = p.get_following_sibling_by_tag('p')
 str(next_p) # "//p[contains(@class, 'very-nice-p')]/following-sibling::p"
 
 # Find the modal containing a button with text "Register" 
-modal = XPathHelper().get_element(filter.value_equals('Register')).get_ancestor(filter.attribute_equals('class', 'modal'))
+modal = xh.get_element(filter.value_equals('Register')).get_ancestor(filter.attribute_equals('class', 'modal'))
 str(modal) # "//*[text() = 'Register']/ancestor::*[@class='modal']"
 
 # An elaborated filter with a boolean expression
-li = XPathHelper().get_element_by_tag("li", filter.and_operator(
+li = xh.get_element_by_tag("li", filter.and_operator(
   filter.or_operator(
     filter.value_contains("JavaScript"), filter.value_contains("Python")
   ),
@@ -59,11 +59,11 @@ This library let you do exactly the same by chaining method calls along the diff
 For each axis, xpath-helper provides 3 methods, like for instance `get_element(filter)`, `get_element_by_tag(tag, filter)`, `get_child_by_svg_tag(svgTag, filter)` for the `descendant`  axis aliased as `element`. Find the complete API [here](https://krypton-org.github.io/jrebecchi/xpath-helper).
 
 ```python
-from xpath_helper import XPathHelper, filter
+from xpath_helper import xh, filter
 
 # Find an element into the page, move to its parent, 
 # find a brother node of the parent positioned after it.
-el = XPathHelper().get_element_by_tag(
+el = xh.get_element_by_tag(
     'p', filter.attribute_contains('class', 'very-nice-p')
 ).get_parent().get_following_sibling_by_tag('p')
 str(el) # "//p[contains(@class, 'very-nice-p')]/../following-sibling::p"
@@ -71,7 +71,7 @@ str(el) # "//p[contains(@class, 'very-nice-p')]/../following-sibling::p"
 # Find an element into the page, move to its ancestor 
 # containing 'very-nice-p' ass CSS class, 
 # find a brother node of the ancestor positioned before it.
-el = XPathHelper().get_element_by_tag(
+el = xh.get_element_by_tag(
     'p', filter.attribute_contains('class', 'very-nice-p')
 ).get_ancestor_by_tag(
   'div'
@@ -81,9 +81,9 @@ str(el) # "//p[contains(@class, 'very-nice-p')]/../following-sibling::p//p[conta
 
 It is also possible to keep a relative path in a variable and re-use it after.
 ```python
-from xpath_helper import XPathHelper, filter
+from xpath_helper import xh, filter
 # Store the path of a modal window
-modal = XPathHelper().get_element(filter.attribute_contains('class', 'modal'))
+modal = xh.get_element(filter.attribute_contains('class', 'modal'))
 # Find the Submit button inside the modal window
 submit_button = modal.get_element_by_tag('button', filter.value_equals('Submit'))
 # Find the Cancel button inside the modal window
@@ -98,48 +98,48 @@ To select elements more precisely you can add filters: filtering on attributes, 
 Find below a few examples of filters on attributes.
 
 ```python
-from xpath_helper import XPathHelper, filter
+from xpath_helper import xh, filter
 # Looks for an element that has a class attribute equals to 'foo'
-el = XPathHelper().get_element(filter.attribute_equals('class', 'foo'))
+el = xh.get_element(filter.attribute_equals('class', 'foo'))
 # Looks for an element that has a class attribute containing 'bar'
-el = XPathHelper().get_element(filter.attribute_contains('class', 'bar'))
+el = xh.get_element(filter.attribute_contains('class', 'bar'))
 # Looks for an element that has the attribute 'alt'
-img = XPathHelper().get_element_by_tag('img', filter.has_attribute('alt'))
+img = xh.get_element_by_tag('img', filter.has_attribute('alt'))
 # Looks for all the li element with a data-attribute superior to 3
-li = XPathHelper().get_element_by_tag('li', filter.attribute_greater_than('data-index', 3))
+li = xh.get_element_by_tag('li', filter.attribute_greater_than('data-index', 3))
 ```
 ### Values
 Find below a few examples of filters on node values.
 ```python
-from xpath_helper import XPathHelper, filter
+from xpath_helper import xh, filter
 
 # Looks for a button whose text is 'Submit'
-button = XPathHelper().get_element_by_tag('button', filter.value_equals('Submit'))
+button = xh.get_element_by_tag('button', filter.value_equals('Submit'))
 # Looks for an element whose text contains 'foobar'
-el = XPathHelper().get_element(filter.value_contains('foobar'))
+el = xh.get_element(filter.value_contains('foobar'))
 # Looks for all the li element with a value superior to 3
-li = XPathHelper().get_element_by_tag('li', filter.value_greater_than(3))
+li = xh.get_element_by_tag('li', filter.value_greater_than(3))
 ```
 ### Position
 Find below a few examples of filters on node position.
 ```python
-from xpath_helper import XPathHelper, filter
+from xpath_helper import xh, filter
 
 # Looks for the first li element in ul list
-first = XPathHelper().get_element_by_tag('ul').get_element_by_tag('li', filter.get_first())
+first = xh.get_element_by_tag('ul').get_element_by_tag('li', filter.get_first())
 # Looks for the first li element in ul list
-last = XPathHelper().get_element_by_tag('ul').get_element_by_tag('li', filter.get_last())
+last = xh.get_element_by_tag('ul').get_element_by_tag('li', filter.get_last())
 # Looks for the third li element in ul list
-third = XPathHelper().get_element_by_tag('ul').get_element_by_tag('li', filter.get(3))
+third = xh.get_element_by_tag('ul').get_element_by_tag('li', filter.get(3))
 ```
 ### Conditional expression
 Find below a few examples of filters with conditional expression.
 
 ```python
-from xpath_helper import XPathHelper, filter
+from xpath_helper import xh, filter
 
 # Find an element that has a CSS class 'a-link' and contains an attribute href
-el = XPathHelper().get_element(
+el = xh.get_element(
   filter.attribute_contains('class', 'a-link').and_operator(
     filter.has_attribute('href')
   )
@@ -147,7 +147,7 @@ el = XPathHelper().get_element(
 str(el) # "//*[contains(@class, 'a-link') and (@href)]"
 
 # Find an element that has a CSS class 'foo' or a CSS class 'bar'
-el = XPathHelper().get_element(
+el = xh.get_element(
   filter.attribute_contains('class', 'foo').or_operator(
     filter.attribute_contains('class', 'bar')
   )
@@ -155,7 +155,7 @@ el = XPathHelper().get_element(
 str(el) # "//*[contains(@class, 'foo') or (contains(@class, 'bar'))]"
 
 # Build complex logical expression combining and & or
-el = XPathHelper().get_element(
+el = xh.get_element(
   filter.and_operator(
     filter.or_operator(
       filter.value_contains("JavaScript"),
@@ -170,14 +170,14 @@ str(el) # "//*[((text()[contains(., 'JavaScript')] or text()[contains(., 'Pyhton
 Navigating into SVG elements from an HTML file can be tricky with XPath, that is why a subset of functions have been added. They are all ending with `...by_svg_tag` and can be used as below.
 
 ```python
-from xpath_helper import XPathHelper, filter
+from xpath_helper import xh, filter
 
 # Store the path of a modal window
-path = XPathHelper().get_element_by_svg_tag('path', filter.attribute_equals('d', 'M 310 130 L 90 130 L 90 183.63'))
+path = xh.get_element_by_svg_tag('path', filter.attribute_equals('d', 'M 310 130 L 90 130 L 90 183.63'))
 str(path) # "//*[local-name() = 'path'][@d='M 310 130 L 90 130 L 90 183.63']"
 
 # Find the Submit button inside the modal window
-g = XPathHelper().get_element_by_svg_tag(
+g = xh.get_element_by_svg_tag(
   'path', filter.attribute_equals('id', 'id-path')
 ).get_ancestor_by_svg_tag('g')
 str(g) # "//*[local-name() = 'path'][@id='id-path']/ancestor::*[local-name() = 'g']"

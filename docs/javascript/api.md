@@ -1,12 +1,10 @@
 # JavaScript API
-## XPathHelper
+## XPathHelper: (xh)
 ```{eval-rst}
 .. js:autoclass:: XPathHelper
   :members:
 ```
-
-## Filter
-
+## Filter: (filter)
 ### ValidExpressionFilter
 ```{eval-rst}
 .. js:autoclass:: ValidExpressionFilter

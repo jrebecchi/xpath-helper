@@ -1,4 +1,4 @@
-import { XPathHelper, filter } from "../src/xpath-helper";
+import { xh, filter } from "../src/xpath-helper";
 import * as xpath from "xpath";
 import { DOMParser } from "xmldom";
 import * as fs from "fs";
@@ -12,7 +12,7 @@ beforeEach(async function () {
 });
 describe("Filter", () => {
   it("- and", () => {
-    const h1Path = new XPathHelper().getElementByTag(
+    const h1Path = xh.getElementByTag(
       "h1",
       filter.and(
         filter.valueContains("motherfudging"),
@@ -24,7 +24,7 @@ describe("Filter", () => {
     expect(h1?.textContent?.includes("motherfudging")).toBeTruthy();
   });
   it("- or", () => {
-    const h1Path = new XPathHelper().getElementByTag(
+    const h1Path = xh.getElementByTag(
       "h1",
       filter
         .valueContains("motherfudging")
@@ -36,11 +36,11 @@ describe("Filter", () => {
   });
   it("- empty", () => {
     const aFilter = filter.hasAttribute("Toto");
-    let h1Path = new XPathHelper().getElementByTag("h1", aFilter);
+    let h1Path = xh.getElementByTag("h1", aFilter);
     let h1 = findByXpath(h1Path.toString());
     expect(h1).toBeNull();
     aFilter.empty();
-    h1Path = new XPathHelper().getElementByTag("h1", aFilter);
+    h1Path = xh.getElementByTag("h1", aFilter);
     h1 = findByXpath(h1Path.toString());
     expect(h1).not.toBeNull();
   });
@@ -50,7 +50,7 @@ describe("Filter", () => {
     expect(filter.isEmpty()).toBeTruthy();
   });
   it("- hasAttribute", () => {
-    const bodyPath = new XPathHelper().getElementByTag(
+    const bodyPath = xh.getElementByTag(
       "body",
       filter.hasAttribute("data-new-gr-c-s-check-loaded")
     );
@@ -58,7 +58,7 @@ describe("Filter", () => {
     expect(body).not.toBeNull();
   });
   it("- attributeContains", () => {
-    const bodyPath = new XPathHelper().getElementByTag(
+    const bodyPath = xh.getElementByTag(
       "body",
       filter.attributeContains("data-new-gr-c-s-check-loaded", "8")
     );
@@ -66,7 +66,7 @@ describe("Filter", () => {
     expect(body).not.toBeNull();
   });
   it("- attributeEquals", () => {
-    const bodyPath = new XPathHelper().getElementByTag(
+    const bodyPath = xh.getElementByTag(
       "body",
       filter.attributeEquals("data-new-gr-c-s-check-loaded", "8.884.0")
     );
@@ -74,7 +74,7 @@ describe("Filter", () => {
     expect(body).not.toBeNull();
   });
   it("- attributeNotEquals", () => {
-    const bodyPath = new XPathHelper().getElementByTag(
+    const bodyPath = xh.getElementByTag(
       "body",
       filter.attributeNotEquals("data-new-gr-c-s-check-loaded", "toto")
     );
@@ -82,7 +82,7 @@ describe("Filter", () => {
     expect(body).not.toBeNull();
   });
   it("- attributeLessThan", () => {
-    const liPath = new XPathHelper().getElementByTag(
+    const liPath = xh.getElementByTag(
       "li",
       filter.attributeLessThan("data-number", 21)
     );
@@ -90,7 +90,7 @@ describe("Filter", () => {
     expect(li).not.toBeNull();
   });
   it("- attributeLessThanOrEqualsTo", () => {
-    const liPath = new XPathHelper().getElementByTag(
+    const liPath = xh.getElementByTag(
       "li",
       filter.attributeLessThanOrEqualTo("data-number", 20)
     );
@@ -99,7 +99,7 @@ describe("Filter", () => {
   });
 
   it("- attributeGreaterThan", () => {
-    const liPath = new XPathHelper().getElementByTag(
+    const liPath = xh.getElementByTag(
       "li",
       filter.attributeGreaterThan("data-number", 24)
     );
@@ -108,7 +108,7 @@ describe("Filter", () => {
   });
 
   it("- attributeGreaterThanOrEqualsTo", () => {
-    const liPath = new XPathHelper().getElementByTag(
+    const liPath = xh.getElementByTag(
       "li",
       filter.attributeGreaterThanOrEqualTo("data-number", 25)
     );
@@ -116,7 +116,7 @@ describe("Filter", () => {
     expect(li).not.toBeNull();
   });
   it("- valueContains", () => {
-    const liPath = new XPathHelper().getElementByTag(
+    const liPath = xh.getElementByTag(
       "li",
       filter.valueContains("Stuff doesn't weigh a ton (in fact it'")
     );
@@ -124,7 +124,7 @@ describe("Filter", () => {
     expect(li).not.toBeNull();
   });
   it("- valueEquals", () => {
-    const liPath = new XPathHelper().getElementByTag(
+    const liPath = xh.getElementByTag(
       "li",
       filter.valueEquals(20)
     );
@@ -133,7 +133,7 @@ describe("Filter", () => {
   });
 
   it("- valueNotEquals", () => {
-    const liPath = new XPathHelper().getElementByTag(
+    const liPath = xh.getElementByTag(
       "li",
       filter.valueGreaterThan(14).and(filter.valueNotEquals(20))
     );
@@ -143,7 +143,7 @@ describe("Filter", () => {
   });
 
   it("- valueLessThan", () => {
-    const liPath = new XPathHelper().getElementByTag(
+    const liPath = xh.getElementByTag(
       "li",
       filter.valueLessThan(16)
     );
@@ -151,7 +151,7 @@ describe("Filter", () => {
     expect(li).not.toBeNull();
   });
   it("- valueLessThanOrEqualsTo", () => {
-    const liPath = new XPathHelper().getElementByTag(
+    const liPath = xh.getElementByTag(
       "li",
       filter.valueLessThanOrEqualTo(15)
     );
@@ -159,7 +159,7 @@ describe("Filter", () => {
     expect(li).not.toBeNull();
   });
   it("- valueGreaterThan", () => {
-    const liPath = new XPathHelper().getElementByTag(
+    const liPath = xh.getElementByTag(
       "li",
       filter.valueGreaterThan(19)
     );
@@ -167,7 +167,7 @@ describe("Filter", () => {
     expect(li).not.toBeNull();
   });
   it("- valueGreaterThanOrEqualsTo", () => {
-    const liPath = new XPathHelper().getElementByTag(
+    const liPath = xh.getElementByTag(
       "li",
       filter.valueGreaterThanOrEqualTo(20)
     );
@@ -175,7 +175,7 @@ describe("Filter", () => {
     expect(li).not.toBeNull();
   });
   it("- get", () => {
-    const pPath = new XPathHelper()
+    const pPath = xh
       .getElementByTag("body")
       .getElementByTag("p", filter.get(2));
     const p = findByXpath(pPath.toString());
@@ -185,7 +185,7 @@ describe("Filter", () => {
     ).toBeTruthy();
   });
   it("- getFirst", () => {
-    const pPath = new XPathHelper()
+    const pPath = xh
       .getElementByTag("body")
       .getElementByTag("p", filter.getFirst());
     const p = findByXpath(pPath.toString());
@@ -193,7 +193,7 @@ describe("Filter", () => {
     expect(p?.textContent?.includes("For real")).toBeTruthy();
   });
   it("- getLast", () => {
-    const pPath = new XPathHelper()
+    const pPath = xh
       .getElement(filter.attributeEquals("class", "tleft"))
       .getElementByTag("p", filter.getLast());
     const p = findByXpath(pPath.toString());
@@ -201,7 +201,7 @@ describe("Filter", () => {
     expect(p?.textContent?.includes("He's happy")).toBeTruthy();
   });
   it("- not", () => {
-    const pPath = new XPathHelper()
+    const pPath = xh
       .getElementByTag("body")
       .getElementByTag("p", filter.not(filter.attributeEquals("class", "st")));
 

@@ -1,4 +1,4 @@
-import { XPathHelper, filter } from "../src/xpath-helper";
+import { xh, filter } from "../src/xpath-helper";
 import * as xpath from "xpath";
 import { DOMParser } from "xmldom";
 import * as fs from "fs";
@@ -13,8 +13,7 @@ beforeEach(async function () {
 
 describe("Elaborated cases", () => {
   it("- using or/and operators ", () => {
-    const liPath = new XPathHelper()
-      .getElementByTag("a")
+    const liPath = xh.getElementByTag("a")
       .getAncestorByTag("ul")
       .getElementByTag(
         "li",
@@ -34,7 +33,7 @@ describe("Elaborated cases", () => {
     expect(li?.textContent?.includes("awesome")).toBeTruthy();
   });
   it("- testing or/and operator priority", () => {
-    const liPath = new XPathHelper().getElementByTag(
+    const liPath = xh.getElementByTag(
       "li",
       filter.and(
         filter.or(

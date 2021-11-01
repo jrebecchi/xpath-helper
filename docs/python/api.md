@@ -1,12 +1,12 @@
 # Python API
 
-## XPathHelper
+## XPathHelper: (xh)
 ```{eval-rst}
 .. module:: xpath_helper
 .. autoclass:: XPathHelper
   :members:
 ```
-## Filter
+## Filter: (filter)
 
 
 ### ValidExpressionFilter

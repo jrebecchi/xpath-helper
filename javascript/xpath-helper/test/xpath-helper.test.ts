@@ -1,4 +1,4 @@
-import { XPathHelper, filter } from "../src/xpath-helper";
+import { xh, filter } from "../src/xpath-helper";
 import * as xpath from "xpath";
 import { DOMParser } from "xmldom";
 import * as fs from "fs";
@@ -13,7 +13,7 @@ beforeEach(async function () {
 describe("XPathHelper", () => {
   describe("- General methods", () => {
     it("getParent", () => {
-      const liPath = new XPathHelper()
+      const liPath = xh
         .getElementByTag("a", filter.valueContains("secure connection"))
         .getParent();
       const li = findByXpath(liPath.toString());
@@ -21,7 +21,7 @@ describe("XPathHelper", () => {
       expect(li?.textContent?.includes("It's over a,")).toBeTruthy();
     });
     it("getElementByXpath", () => {
-      const liPath = new XPathHelper()
+      const liPath = xh
         .getElementByTag("a", filter.valueContains("secure connection"))
         .getElementByXpath("/..");
       const li = findByXpath(liPath.toString());
@@ -30,7 +30,7 @@ describe("XPathHelper", () => {
     });
 
     it("empty", () => {
-      const liPath = new XPathHelper()
+      const liPath = xh
         .getElementByTag("a", filter.valueContains("secure connection"))
         .getParent();
       const li = findByXpath(liPath.toString());
@@ -43,13 +43,13 @@ describe("XPathHelper", () => {
   });
   describe("- Descendant axis", () => {
     it("getElementByTag", () => {
-      const title = new XPathHelper().getElementByTag("h1");
+      const title = xh.getElementByTag("h1");
       const h1 = findByXpath(title.toString());
       expect(h1).not.toBeNull();
       expect(h1?.textContent).toBe("The best motherfudging website");
     });
     it("getElement", () => {
-      const paragraph = new XPathHelper().getElement(
+      const paragraph = xh.getElement(
         filter.attributeEquals("class", "st")
       );
       const p = findByXpath(paragraph.toString());
@@ -57,7 +57,7 @@ describe("XPathHelper", () => {
       expect(p?.textContent).toBe("For real.");
     });
     it("getElementBySVGTag", () => {
-      const svgLayer = new XPathHelper().getElementBySVGTag(
+      const svgLayer = xh.getElementBySVGTag(
         "g",
         filter.attributeEquals("id", "Layer1")
       );
@@ -68,7 +68,7 @@ describe("XPathHelper", () => {
 
   describe("- Descendant-or-self axis", () => {
     it("getDescendantOrSelfByTag", () => {
-      const title = new XPathHelper()
+      const title = xh
         .getElementByTag("h1")
         .getDescendantOrSelfByTag("h1", filter.getFirst());
       const h1 = findByXpath(title.toString());
@@ -76,7 +76,7 @@ describe("XPathHelper", () => {
       expect(h1 && h1.textContent).toBe("The best motherfudging website");
     });
     it("getDescendantOrSelf", () => {
-      const paragraph = new XPathHelper()
+      const paragraph = xh
         .getElementByTag("p")
         .getDescendantOrSelf(filter.attributeEquals("class", "mfw"));
       const span = findByXpath(paragraph.toString());
@@ -84,7 +84,7 @@ describe("XPathHelper", () => {
       expect(span?.textContent).toBe("motherfudgingwebsite");
     });
     it("getDescendantOrSelfBySVGTag", () => {
-      const svgLayer = new XPathHelper()
+      const svgLayer = xh
         .getElementBySVGTag("g", filter.attributeEquals("id", "Layer1"))
         .getDescendantOrSelfBySVGTag(
           "path",
@@ -97,7 +97,7 @@ describe("XPathHelper", () => {
 
   describe("- Child axis", () => {
     it("getChildByTag", () => {
-      const licenseTerm = new XPathHelper()
+      const licenseTerm = xh
         .getElementByTag("p")
         .getChildByTag("a", filter.attributeEquals("href", "LICENSE.txt"));
       const a = findByXpath(licenseTerm.toString());
@@ -105,7 +105,7 @@ describe("XPathHelper", () => {
       expect(a?.textContent).toBe("license terms");
     });
     it("getChild", () => {
-      const paragraph = new XPathHelper()
+      const paragraph = xh
         .getElement(filter.attributeEquals("class", "tleft"))
         .getChild(filter.getFirst());
       const p = findByXpath(paragraph.toString());
@@ -117,13 +117,13 @@ describe("XPathHelper", () => {
       ).toBeTruthy();
     });
     it("getChildBySVGTag", () => {
-      const gPath = new XPathHelper()
+      const gPath = xh
         .getElementBySVGTag("g", filter.attributeEquals("id", "Layer1"))
         .getChildBySVGTag("path", filter.attributeEquals("id", "Shape"));
       let path = findByXpath(gPath.toString());
       expect(path).not.toBeNull();
 
-      const gPath2 = new XPathHelper()
+      const gPath2 = xh
         .getElementBySVGTag("g", filter.attributeEquals("id", "Layer1"))
         .getChildBySVGTag("path", filter.attributeEquals("id", "Shape5"));
       path = findByXpath(gPath2.toString());
@@ -133,7 +133,7 @@ describe("XPathHelper", () => {
 
   describe("- Ancestor axis", () => {
     it("getAncestorByTag", () => {
-      const ulPath = new XPathHelper()
+      const ulPath = xh
         .getElementByTag("a", filter.attributeContains("href", "wiki/HTTPS"))
         .getAncestorByTag("ul");
       const ul = findByXpath(ulPath.toString());
@@ -145,7 +145,7 @@ describe("XPathHelper", () => {
       expect(li?.textContent?.includes("secure connection")).not.toBeNull();
     });
     it("getAncestor", () => {
-      const liPath = new XPathHelper()
+      const liPath = xh
         .getElementByTag("a", filter.attributeContains("href", "wiki/HTTPS"))
         .getAncestor(filter.valueContains("It's over a,"));
       const li = findByXpath(liPath.toString());
@@ -153,7 +153,7 @@ describe("XPathHelper", () => {
       expect(li?.textContent?.includes("secure connection")).not.toBeNull();
     });
     it("getAncestorBySVGTag", () => {
-      const gPath = new XPathHelper()
+      const gPath = xh
         .getElement(filter.attributeEquals("id", "Shape8"))
         .getAncestorBySVGTag("g", filter.attributeEquals("stroke", "none"));
       const g = findByXpath(gPath.toString());
@@ -163,7 +163,7 @@ describe("XPathHelper", () => {
 
   describe("- Ancestor-or-self axis", () => {
     it("getAncestorOrSelfByTag", () => {
-      const ulPath = new XPathHelper()
+      const ulPath = xh
         .getElementByTag("a", filter.attributeContains("href", "wiki/HTTPS"))
         .getAncestorOrSelfByTag("ul")
         .getAncestorOrSelfByTag("ul");
@@ -176,7 +176,7 @@ describe("XPathHelper", () => {
       expect(li?.textContent?.includes("secure connection")).not.toBeNull();
     });
     it("getAncestorOrSelf", () => {
-      const liPath = new XPathHelper()
+      const liPath = xh
         .getElementByTag("a", filter.attributeContains("href", "wiki/HTTPS"))
         .getAncestorOrSelf(filter.valueContains("It's over a,"))
         .getAncestorOrSelf(filter.valueContains("It's over a,"));
@@ -185,7 +185,7 @@ describe("XPathHelper", () => {
       expect(li?.textContent?.includes("secure connection")).not.toBeNull();
     });
     it("getAncestorOrSelfBySVGTag", () => {
-      const gPath = new XPathHelper()
+      const gPath = xh
         .getElement(filter.attributeEquals("id", "Shape8"))
         .getAncestorOrSelfBySVGTag(
           "g",
@@ -202,7 +202,7 @@ describe("XPathHelper", () => {
 
   describe("- Following axis", () => {
     it("getFollowingByTag", () => {
-      const liPath = new XPathHelper()
+      const liPath = xh
         .getElementByTag("i", filter.valueEquals("almost"))
         .getFollowingByTag(
           "li",
@@ -214,14 +214,14 @@ describe("XPathHelper", () => {
         li?.textContent?.includes("Doesn't load mbumive images or scripts.")
       ).toBeTruthy();
 
-      const aPath = new XPathHelper()
+      const aPath = xh
         .getElementByTag("i", filter.valueEquals("even more"))
         .getFollowingByTag("a", filter.valueEquals("IPoAC"));
       const a = findByXpath(aPath.toString());
       expect(a).not.toBeNull();
     });
     it("getFollowing", () => {
-      const liPath = new XPathHelper()
+      const liPath = xh
         .getElementByTag("a", filter.attributeContains("href", "letsencrypt"))
         .getFollowing(filter.attributeGreaterThan("data-number", 21));
       const li = findByXpath(liPath.toString());
@@ -229,7 +229,7 @@ describe("XPathHelper", () => {
       expect(li?.textContent).toBe("20");
     });
     it("getFollowingBySVGTag", () => {
-      const svgPath = new XPathHelper()
+      const svgPath = xh
         .getElement(
           filter
             .attributeLessThan("width", 640)
@@ -243,7 +243,7 @@ describe("XPathHelper", () => {
 
   describe("- Following-sibling axis", () => {
     it("getFollowingSiblingByTag", () => {
-      const liPath = new XPathHelper()
+      const liPath = xh
         .getElementByTag("i", filter.valueEquals("almost"))
         .getFollowingSiblingByTag(
           "li",
@@ -252,14 +252,14 @@ describe("XPathHelper", () => {
       const li = findByXpath(liPath.toString());
       expect(li).toBeNull();
 
-      const aPath = new XPathHelper()
+      const aPath = xh
         .getElementByTag("i", filter.valueEquals("even more"))
         .getFollowingSiblingByTag("a", filter.valueEquals("ARPANET"));
       const a = findByXpath(aPath.toString());
       expect(a).not.toBeNull();
     });
     it("getFollowingSibling", () => {
-      const liPath = new XPathHelper()
+      const liPath = xh
         .getElementByTag("li", filter.attributeLessThan("data-number", 21))
         .getFollowingSibling(filter.valueGreaterThanOrEqualTo(20));
       const li = findByXpath(liPath.toString());
@@ -267,7 +267,7 @@ describe("XPathHelper", () => {
       expect(li?.textContent).toBe("20");
     });
     it("getFollowingSiblingBySVGTag", () => {
-      const pathPath = new XPathHelper()
+      const pathPath = xh
         .getElement(
           filter
             .attributeLessThan("width", 640)
@@ -284,7 +284,7 @@ describe("XPathHelper", () => {
 
   describe("- Preceding axis", () => {
     it("getPrecedingByTag", () => {
-      const iPath = new XPathHelper()
+      const iPath = xh
         .getElementByTag(
           "li",
           filter.valueContains("Doesn't load mbumive images or scripts.")
@@ -293,21 +293,21 @@ describe("XPathHelper", () => {
       const i = findByXpath(iPath.toString());
       expect(i).not.toBeNull();
 
-      const iPath2 = new XPathHelper()
+      const iPath2 = xh
         .getElementByTag("a", filter.valueEquals("ARPANET"))
         .getPrecedingByTag("i", filter.valueEquals("even more"));
       const i2 = findByXpath(iPath2.toString());
       expect(i2).not.toBeNull();
     });
     it("getPreceding", () => {
-      const aPath = new XPathHelper()
+      const aPath = xh
         .getElement(filter.attributeGreaterThan("data-number", 21))
         .getPreceding(filter.attributeContains("href", "letsencrypt"));
       const a = findByXpath(aPath.toString());
       expect(a).not.toBeNull();
     });
     it("getPrecedingBySVGTag", () => {
-      const rectPath = new XPathHelper()
+      const rectPath = xh
         .getElementBySVGTag("svg", filter.attributeEquals("width", "298px"))
         .getPrecedingBySVGTag(
           "rect",
@@ -322,7 +322,7 @@ describe("XPathHelper", () => {
 
   describe("- Preceding-sibling axis", () => {
     it("getPrecedingSiblingByTag", () => {
-      const iPath = new XPathHelper()
+      const iPath = xh
         .getElementByTag(
           "li",
           filter.valueContains("Doesn't load mbumive images or scripts.")
@@ -331,14 +331,14 @@ describe("XPathHelper", () => {
       const i = findByXpath(iPath.toString());
       expect(i).toBeNull();
 
-      const aPath = new XPathHelper()
+      const aPath = xh
         .getElementByTag("i", filter.valueEquals("even more"))
         .getFollowingSiblingByTag("a", filter.valueEquals("ARPANET"));
       const a = findByXpath(aPath.toString());
       expect(a).not.toBeNull();
     });
     it("getPrecedingSibling", () => {
-      const liPath = new XPathHelper()
+      const liPath = xh
         .getElementByTag("li", filter.valueGreaterThanOrEqualTo(20))
         .getPrecedingSibling(
           filter.attributeLessThanOrEqualTo("data-number", 21)
@@ -348,7 +348,7 @@ describe("XPathHelper", () => {
       expect(li?.textContent).toBe("15");
     });
     it("getPrecedingSiblingBySVGTag", () => {
-      const rectPath = new XPathHelper()
+      const rectPath = xh
         .getElementBySVGTag("path", filter.attributeContains("d", "m423"))
         .getPrecedingSiblingBySVGTag(
           "rect",
