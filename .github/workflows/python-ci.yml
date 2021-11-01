@@ -43,4 +43,4 @@ jobs:
       - name: Run tests
         run: |
           cd ./python/xpath-helper
-          poetry run pytest --cov=locomotive
+          poetry run pytest
