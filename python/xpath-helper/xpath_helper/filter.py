@@ -27,7 +27,7 @@ class ValidExpressionFilter:
         if (current_path != None):
             self.sb = current_path
 
-    def and_condition(self, *filters):
+    def and_operator(self, *filters):
         """Adds one or more filter expression to the current one with the AND logical operator.
 
         Args:
@@ -46,7 +46,7 @@ class ValidExpressionFilter:
         expression += ")"
         return ValidExpressionFilter(self.sb + [expression])
 
-    def or_condition(self, *filters):
+    def or_operator(self, *filters):
         """Adds one or more filter expression to the current one with the OR logical operator.
 
         Args:
@@ -302,7 +302,7 @@ class EmptyFilter(ValidExpressionFilter):
         """
         return ValidExpressionFilter(self.sb + ["last()"])
 
-    def not_expression(self, filter):
+    def not_operator(self, filter):
         """Reverses the filter <code>filter</code>. Returns true when the filter returns false and true when the filter returns false.
 
         Args:

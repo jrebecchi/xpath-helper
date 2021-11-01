@@ -1,10 +1,16 @@
-# xpath-helper
 ```{include} ../README.md
 ```
-## Contents
+```{toctree}
+:maxdepth: 3
+:hidden:
+xpath-axes.md
+browser-console.md
+```
+
 
 ```{toctree}
 :maxdepth: 3
+:hidden:
 :caption: JavaScript
 javascript/index.md
 javascript/api.rst
@@ -12,13 +18,8 @@ javascript/api.rst
 
 ```{toctree}
 :maxdepth: 3
+:hidden:
 :caption: Python
 python/index.md
 python/api.rst
-```
-
-```{toctree}
-:maxdepth: 3
-:caption: Cookbook
-browser-console.md
 ```

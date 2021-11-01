@@ -1,4 +1,4 @@
-# API
+# JavaScript API
 ## XPathHelper
 ```{eval-rst}
 .. js:autoclass:: XPathHelper
