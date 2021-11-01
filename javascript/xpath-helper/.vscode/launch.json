@@ -6,7 +6,7 @@
           "type": "node",
           "request": "launch",
           "name": "JS - Jest Current File",
-          "program": "${workspaceFolder}/javascript/xpath-helper/node_modules/.bin/jest",
+          "program": "${workspaceFolder}/node_modules/.bin/jest",
           "args": [
               "${fileBasenameNoExtension}",
               "--config",
@@ -16,7 +16,7 @@
           "internalConsoleOptions": "neverOpen",
           "disableOptimisticBPs": true,
           "windows": {
-              "program": "${workspaceFolder}/javascript/xpath-helper/node_modules/jest/bin/jest",
+              "program": "${workspaceFolder}/node_modules/jest/bin/jest",
           },
           "protocol": "inspector"
       }

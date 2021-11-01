@@ -1,0 +1,13 @@
+div.sphinxsidebarwrapper p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+div.sphinxsidebarwrapper h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+div.sphinxsidebarwrapper .logo {
+    margin-bottom: 10px;
+}

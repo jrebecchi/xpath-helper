@@ -1,7 +1,5 @@
 from xpath_helper import __version__
-from xpath_helper import XPathHelper
-from xpath_helper import filter
-
+from xpath_helper import XPathHelper, filter
 
 def test_version():
     assert __version__ == '0.1.0'
@@ -196,7 +194,7 @@ def test_get_following(html_doc):
 
 def test_get_following_by_svg_tag(html_doc):
     svg_path = XPathHelper().get_element(
-        filter.attribute_less_than("width", 640).and_condition(
+        filter.attribute_less_than("width", 640).and_operator(
             filter.attribute_greater_than_or_equal_to("width", 620))
     ).get_following_by_svg_tag("svg", filter.attribute_equals("width", "298px"))
     elements = html_doc.xpath(str(svg_path))
@@ -229,7 +227,7 @@ def test_get_following_sibling_by_svg_tag(html_doc):
     path_path = XPathHelper().get_element(
         filter
         .attribute_less_than("width", 640)
-        .and_condition(filter.attribute_greater_than_or_equal_to("width", 620))
+        .and_operator(filter.attribute_greater_than_or_equal_to("width", 620))
     ).get_following_sibling_by_svg_tag(
         "path",
         filter.attribute_contains("d", "m423")
@@ -266,7 +264,7 @@ def test_get_preceding_by_svg_tag(html_doc):
         "rect",
         filter
         .attribute_less_than("width", 640)
-        .and_condition(filter.attribute_greater_than_or_equal_to("width", 620))
+        .and_operator(filter.attribute_greater_than_or_equal_to("width", 620))
     )
     elements = html_doc.xpath(str(rect_path))
     assert len(elements) != 0
@@ -299,7 +297,7 @@ def test_get_preceding_sibling_by_svg_tag(html_doc):
     "rect",
     filter
       .attribute_less_than("width", 640)
-      .and_condition(filter.attribute_greater_than_or_equal_to("width", 620))
+      .and_operator(filter.attribute_greater_than_or_equal_to("width", 620))
      )
     elements = html_doc.xpath(str(rect_path))
     assert len(elements) != 0
