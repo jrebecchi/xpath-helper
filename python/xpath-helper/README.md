@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/jrebecchi/xpath-helper/raw/master/docs/_static/logo-with-text.png" height="50px" alt="xpath-helper"/>
+  <img src="https://raw.githubusercontent.com/jrebecchi/xpath-helper/main/docs/_static/logo-with-text.png" height="100px" alt="xpath-helper"/>
 </p>
 <p align="center">
   <i>Build complicated XPath queries without the hassle - JavaScript & Python</i><br/><br/>
