@@ -6,11 +6,11 @@
   <a href="https://coveralls.io/github/jrebecchi/xpath-helper?branch=master">
     <img src="https://coveralls.io/repos/github/jrebecchi/xpath-helper/badge.svg?branch=master">
   </a>
-  <a href="https://github.com/jrebecchi/xpath-helper/actions">
-    <img src="https://img.shields.io/github/workflow/status/jrebecchi/xpath-helper/Node CI?label=tests">
+  <a href="https://github.com/jrebecchi/xpath-helper/actions/workflows/python-ci.yml">
+    <img src="https://github.com/jrebecchi/xpath-helper/actions/workflows/python-ci.yml/badge.svg">
   </a>
-  <a href="https://heroku.com/deploy?template=https://github.com/jrebecchi/krypton-heroku">
-    <img src="https://img.shields.io/badge/heroku-deploy-blueviolet?logo=heroku">
+  <a href="https://github.com/jrebecchi/xpath-helper/actions/workflows/javascript-ci.yml">
+    <img src="https://github.com/jrebecchi/xpath-helper/actions/workflows/javascript-ci.yml/badge.svg">
   </a>
 </p>
 
@@ -46,8 +46,7 @@ const nextP = p.getFollowingSiblingByTag('p');
 nextP.toString() // "//p[contains(@class, 'very-nice-p')]/following-sibling::p"
 
 // Find the modal containing a button with text "Register" 
-const modal = xh
-  .getElement(filter.valueEquals('Register'))
+const modal = xh.getElement(filter.valueEquals('Register'))
   .getAncestor(filter.attributeEquals('class', 'modal'));
 modal.toString() // "//*[text() = 'Register']/ancestor::*[@class='modal']"
 
