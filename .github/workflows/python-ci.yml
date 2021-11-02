@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.5','3.6', '3.7', '3.8']
+        python-version: ['3.6', '3.7', '3.8', '3.9']
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -38,9 +38,20 @@ jobs:
           python -m pip install --upgrade pip
           pip install poetry
           poetry install
-
+      
+      - name: Lint
+        run: |
+          cd ./python/xpath-helper
+          poetry run pylint --errors-only xpath_helper
 
       - name: Run tests
         run: |
           cd ./python/xpath-helper
-          poetry run pytest
+          poetry run pytest --cov=xpath_helper
+      
+      - name: Upload coverage
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        run: |
+          cd ./python/xpath-helper
+          poetry run coveralls
