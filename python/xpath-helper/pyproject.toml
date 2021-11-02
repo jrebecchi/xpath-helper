@@ -30,6 +30,7 @@ include = [
 ]
 [tool.poetry.dependencies]
 python = ">=3.6,<4.0"
+coveralls = "^3.2.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
