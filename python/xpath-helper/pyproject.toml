@@ -5,7 +5,7 @@ classifiers = [
   "Intended Audience :: Information Technology",
   "License :: OSI Approved :: MIT License",
   "Natural Language :: English",
-  "Programming Language :: Python :: 3.5",
+  "Programming Language :: Python :: 3.6",
   "Topic :: Software Development :: Code Generators",
   "Topic :: Software Development :: Libraries :: Python Modules",
   "Topic :: Text Processing :: Markup",
@@ -29,11 +29,13 @@ include = [
     "README.md"
 ]
 [tool.poetry.dependencies]
-python = ">3.5"
+python = ">=3.6,<4.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
 lxml = "^4.6.3"
+pytest-cov = "^3.0.0"
+pylint = "^2.11.1"
 
 [build-system]
 build-backend = "poetry.core.masonry.api"
