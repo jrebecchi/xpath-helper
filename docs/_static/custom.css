@@ -11,3 +11,27 @@ div.sphinxsidebarwrapper h3 {
 div.sphinxsidebarwrapper .logo {
     margin-bottom: 10px;
 }
+
+div.sphinxsidebar {
+    position: fixed;
+    margin-left: 0;
+    height: 100%;
+    overflow: auto;
+}
+
+div.sphinxsidebarwrapper {
+    padding: 18px 10px;
+    margin-bottom: 30px;
+}
+
+.js.function {
+    margin-top: 25px;
+}
+
+.py.method {
+    margin-top: 25px;
+}
+
+.caption[role="heading"] {
+    font-size: 17px;
+}
