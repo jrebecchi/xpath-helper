@@ -47,10 +47,10 @@ jobs:
       - name: Run tests
         run: |
           cd ./python/xpath-helper
-          poetry run pytest --cov=xpath_helper --cov-report xml
+          poetry run pytest --cov=xpath_helper
       
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@1.1.3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: ./python/xpath-helper/coverage.xml
+          path-to-lcov: ./python/xpath-helper/.coverage
