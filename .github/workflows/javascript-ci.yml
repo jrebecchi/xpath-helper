@@ -54,10 +54,9 @@ jobs:
           cd ./javascript/xpath-helper
           npm run coverage
           less ./coverage/lcov.info
-      
-      - name: Coveralls GitHub Action
-        uses: coverallsapp/github-action@1.1.3
+
+      - name: Codecov
+        uses: codecov/codecov-action@v2.1.0
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: ./javascript/xpath-helper/coverage/lcov.info
-          flag-name: JavaScript Coverage
+          working-directory: ./javascript/xpath-helper
+          name: JavaScript Coverage
