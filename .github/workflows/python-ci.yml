@@ -48,10 +48,3 @@ jobs:
         run: |
           cd ./python/xpath-helper
           poetry run pytest --cov=xpath_helper
-      
-      - name: Upload coverage
-        env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-        run: |
-          cd ./python/xpath-helper
-          poetry run coveralls
