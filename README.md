@@ -3,8 +3,8 @@
 </p>
 <p align="center">
   <i>Build complicated XPath queries without the hassle - JavaScript & Python</i><br/><br/>
-  <a href="https://coveralls.io/github/jrebecchi/xpath-helper?branch=master">
-    <img src="https://coveralls.io/repos/github/jrebecchi/xpath-helper/badge.svg?branch=master">
+  <a href="https://codecov.io/gh/jrebecchi/xpath-helper">
+    <img src="https://codecov.io/gh/jrebecchi/xpath-helper/branch/main/graph/badge.svg?token=0TJOZ64X10"/>
   </a>
   <a href="https://github.com/jrebecchi/xpath-helper/actions/workflows/python-ci.yml">
     <img src="https://github.com/jrebecchi/xpath-helper/actions/workflows/python-ci.yml/badge.svg">
