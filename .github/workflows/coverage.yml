@@ -31,4 +31,4 @@ jobs:
         uses: codecov/codecov-action@v2.1.0
         with:
           # Comma-separated list of files to upload
-          files: ./javascript/xpath-helper/coverage/lcov.info
+          files: ./javascript/xpath-helper/coverage/*
