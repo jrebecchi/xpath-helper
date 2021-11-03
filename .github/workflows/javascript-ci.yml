@@ -53,6 +53,7 @@ jobs:
         run: |
           cd ./javascript/xpath-helper
           npm run coverage
+          less ./coverage/lcov.info
       
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@1.1.3
