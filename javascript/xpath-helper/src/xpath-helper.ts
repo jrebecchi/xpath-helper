@@ -8,7 +8,6 @@ import { EmptyFilter, IFilter } from "./filter";
  */
 export class XPathHelper {
   private sb: string[];
-
   /**
    * Creates an instance of XPathHelper.
    * @param {Array<string>} [currentPath] current path

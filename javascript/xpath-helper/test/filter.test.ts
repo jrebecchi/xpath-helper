@@ -44,7 +44,6 @@ describe("Filter", () => {
     h1 = findByXpath(h1Path.toString());
     expect(h1).not.toBeNull();
   });
-
   it("- isEmpty", () => {
     expect(filter.hasAttribute("Toto").isEmpty()).toBeFalsy();
     expect(filter.isEmpty()).toBeTruthy();
@@ -97,7 +96,6 @@ describe("Filter", () => {
     const li = findByXpath(liPath.toString());
     expect(li).not.toBeNull();
   });
-
   it("- attributeGreaterThan", () => {
     const liPath = xh.getElementByTag(
       "li",
@@ -106,7 +104,6 @@ describe("Filter", () => {
     const li = findByXpath(liPath.toString());
     expect(li).not.toBeNull();
   });
-
   it("- attributeGreaterThanOrEqualsTo", () => {
     const liPath = xh.getElementByTag(
       "li",
@@ -141,7 +138,6 @@ describe("Filter", () => {
     expect(li).not.toBeNull();
     expect(li?.textContent).toBe("15");
   });
-
   it("- valueLessThan", () => {
     const liPath = xh.getElementByTag(
       "li",

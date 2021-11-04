@@ -28,7 +28,6 @@ describe("XPathHelper", () => {
       expect(li).not.toBeNull();
       expect(li?.textContent?.includes("It's over a,")).toBeTruthy();
     });
-
     it("empty", () => {
       const liPath = xh
         .getElementByTag("a", filter.valueContains("secure connection"))
@@ -36,7 +35,6 @@ describe("XPathHelper", () => {
       const li = findByXpath(liPath.toString());
       expect(li).not.toBeNull();
       expect(li?.textContent?.includes("It's over a,")).toBeTruthy();
-
       liPath.empty();
       expect(liPath.toString()).toBe("");
     });
@@ -65,7 +63,6 @@ describe("XPathHelper", () => {
       expect(g).not.toBeNull();
     });
   });
-
   describe("- Descendant-or-self axis", () => {
     it("getDescendantOrSelfByTag", () => {
       const title = xh
@@ -94,7 +91,6 @@ describe("XPathHelper", () => {
       expect(path).not.toBeNull();
     });
   });
-
   describe("- Child axis", () => {
     it("getChildByTag", () => {
       const licenseTerm = xh
@@ -130,7 +126,6 @@ describe("XPathHelper", () => {
       expect(path).toBeNull();
     });
   });
-
   describe("- Ancestor axis", () => {
     it("getAncestorByTag", () => {
       const ulPath = xh
@@ -160,7 +155,6 @@ describe("XPathHelper", () => {
       expect(g).not.toBeNull();
     });
   });
-
   describe("- Ancestor-or-self axis", () => {
     it("getAncestorOrSelfByTag", () => {
       const ulPath = xh
@@ -199,7 +193,6 @@ describe("XPathHelper", () => {
       expect(g).not.toBeNull();
     });
   });
-
   describe("- Following axis", () => {
     it("getFollowingByTag", () => {
       const liPath = xh
@@ -240,7 +233,6 @@ describe("XPathHelper", () => {
       expect(svg).not.toBeNull();
     });
   });
-
   describe("- Following-sibling axis", () => {
     it("getFollowingSiblingByTag", () => {
       const liPath = xh
@@ -281,7 +273,6 @@ describe("XPathHelper", () => {
       expect(path).not.toBeNull();
     });
   });
-
   describe("- Preceding axis", () => {
     it("getPrecedingByTag", () => {
       const iPath = xh
@@ -319,7 +310,6 @@ describe("XPathHelper", () => {
       expect(rect).not.toBeNull();
     });
   });
-
   describe("- Preceding-sibling axis", () => {
     it("getPrecedingSiblingByTag", () => {
       const iPath = xh
