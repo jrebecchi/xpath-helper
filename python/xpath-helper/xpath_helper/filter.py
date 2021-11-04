@@ -1,9 +1,10 @@
+import functools
+from typing import List, Optional
+
 """
 The following Filter classes provide a simple, chainable and decomposable api
 to create XPath filter expression
 """
-
-import functools
 
 """
 Shortcut to design any attribute name
@@ -15,10 +16,11 @@ ANY_ATTRIBUTE = "*"
 XPath Filter containing a valid expression.
 """
 
-class ValidExpressionFilter:
-    sb = []
 
-    def __init__(self, current_path=None):
+class ValidExpressionFilter:
+    sb: List[str] = []
+
+    def __init__(self, current_path: Optional[List[str]]=None):
         """Creates an instance of ValidExpressionFilter.
 
         Args:
@@ -27,7 +29,7 @@ class ValidExpressionFilter:
         if (current_path != None):
             self.sb = current_path
 
-    def and_operator(self, *filters):
+    def and_operator(self, *filters: 'EmptyFilter') -> 'ValidExpressionFilter':
         """Adds one or more filter expression to the current one with the AND logical operator.
 
         Args:
@@ -46,7 +48,7 @@ class ValidExpressionFilter:
         expression += ")"
         return ValidExpressionFilter(self.sb + [expression])
 
-    def or_operator(self, *filters):
+    def or_operator(self, *filters: 'EmptyFilter') -> 'ValidExpressionFilter':
         """Adds one or more filter expression to the current one with the OR logical operator.
 
         Args:
@@ -78,7 +80,7 @@ class ValidExpressionFilter:
         """
         self.sb = []
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         """Returns true if filter is empty.
 
         Returns:
@@ -101,7 +103,7 @@ class EmptyFilter(ValidExpressionFilter):
         """
         super().__init__(currentPath)
 
-    def has_attribute(self, attribute: str):
+    def has_attribute(self, attribute: str) -> ValidExpressionFilter:
         """Selects the nodes that have the attribute <code>attribute</code>.
 
         Args:
@@ -112,7 +114,7 @@ class EmptyFilter(ValidExpressionFilter):
         """
         return ValidExpressionFilter(self.sb + ["@" + attribute])
 
-    def attribute_contains(self, attribute, value):
+    def attribute_contains(self, attribute: str, value: str) -> ValidExpressionFilter:
         """Selects the nodes with the attribute <code>attribute</code> containing the value <code><value</code>.
 
         Args:
@@ -123,9 +125,9 @@ class EmptyFilter(ValidExpressionFilter):
             ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
         return ValidExpressionFilter(self.sb + ["contains(@" + attribute + ", " + replace_apostrophes(value) + ")",
-                                       ])
+                                                ])
 
-    def attribute_equals(self, attribute, value):
+    def attribute_equals(self, attribute: str, value: str) -> ValidExpressionFilter:
         """Selects the nodes with the attribute <code>attribute</code>, whose value equals <code><value</code>.
 
         Args:
@@ -136,9 +138,9 @@ class EmptyFilter(ValidExpressionFilter):
             ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.
         """
         return ValidExpressionFilter(self.sb + ["@" + attribute + "=" + replace_apostrophes(value) + "",
-                                       ])
+                                                ])
 
-    def attribute_not_equals(self, attribute, value):
+    def attribute_not_equals(self, attribute: str, value: str) -> ValidExpressionFilter:
         """Selects the nodes with the attribute <code>attribute</code>, whose value doesn't equal <code><value</code>.
 
         Args:
@@ -150,7 +152,7 @@ class EmptyFilter(ValidExpressionFilter):
         """
         return ValidExpressionFilter(self.sb + ["@" + attribute + "!=" + replace_apostrophes(value)])
 
-    def attribute_less_than(self, attribute, value):
+    def attribute_less_than(self, attribute: str, value: str) -> ValidExpressionFilter:
         """Selects the nodes with the attribute <code>attribute</code>, whose value is less than <code><value<code>.
 
         Args:
@@ -162,7 +164,7 @@ class EmptyFilter(ValidExpressionFilter):
         """
         return ValidExpressionFilter(self.sb + ["@" + attribute + "<" + str(value)])
 
-    def attribute_less_than_or_equal_to(self, attribute, value):
+    def attribute_less_than_or_equal_to(self, attribute: str, value: str) -> ValidExpressionFilter:
         """Selects the nodes with the attribute <code>attribute</code>, whose value is less than or equal to <code><value</code>.
 
         Args:
@@ -174,7 +176,7 @@ class EmptyFilter(ValidExpressionFilter):
         """
         return ValidExpressionFilter(self.sb + ["@" + attribute + "<=" + str(value)])
 
-    def attribute_greater_than(self, attribute, value):
+    def attribute_greater_than(self, attribute: str, value: str) -> ValidExpressionFilter:
         """Selects the nodes with the attribute <code>attribute</code>, whose value is greater than <code><value</code>.
 
         Args:
@@ -186,7 +188,7 @@ class EmptyFilter(ValidExpressionFilter):
         """
         return ValidExpressionFilter(self.sb + ["@" + attribute + ">" + str(value)])
 
-    def attribute_greater_than_or_equal_to(self, attribute, value):
+    def attribute_greater_than_or_equal_to(self, attribute: str, value: str) -> ValidExpressionFilter:
         """Selects the nodes with the attribute <code>attribute</code>, whose value is greater than or equal to <code><value</code>.
 
         Args:
@@ -198,7 +200,7 @@ class EmptyFilter(ValidExpressionFilter):
         """
         return ValidExpressionFilter(self.sb + ["@" + attribute + ">=" + str(value)])
 
-    def value_contains(self, value):
+    def value_contains(self, value: str) -> ValidExpressionFilter:
         """Selects the nodes containing the value <code><value</code>.
 
         Args:
@@ -209,7 +211,7 @@ class EmptyFilter(ValidExpressionFilter):
         """
         return ValidExpressionFilter(self.sb + ["text()[contains(., " + replace_apostrophes(value) + ")]"])
 
-    def value_equals(self, value):
+    def value_equals(self, value: str) -> ValidExpressionFilter:
         """Selects the nodes whose value equals <code><value</code>.
 
         Args:
@@ -220,7 +222,7 @@ class EmptyFilter(ValidExpressionFilter):
         """
         return ValidExpressionFilter(self.sb + ["text() = " + replace_apostrophes(value)])
 
-    def value_not_equals(self, value):
+    def value_not_equals(self, value: str) -> ValidExpressionFilter:
         """Selects the nodes with whose value doesn't equal <code><value</code>.
 
         Args:
@@ -231,7 +233,7 @@ class EmptyFilter(ValidExpressionFilter):
         """
         return ValidExpressionFilter(self.sb + ["text() !=" + replace_apostrophes(value)])
 
-    def value_less_than(self, value):
+    def value_less_than(self, value: str) -> ValidExpressionFilter:
         """Selects the nodes whose value is less than <code><value</code>.
 
         Args:
@@ -242,7 +244,7 @@ class EmptyFilter(ValidExpressionFilter):
         """
         return ValidExpressionFilter(self.sb + ["text() <" + str(value)])
 
-    def value_less_than_or_equal_to(self, value):
+    def value_less_than_or_equal_to(self, value: str) -> ValidExpressionFilter:
         """Selects the nodes whose value is less than or equal to <code><value</code>.
 
         Args:
@@ -253,7 +255,7 @@ class EmptyFilter(ValidExpressionFilter):
         """
         return ValidExpressionFilter(self.sb + ["text() <=" + str(value)])
 
-    def value_greater_than(self, value):
+    def value_greater_than(self, value: str) -> ValidExpressionFilter:
         """Selects the nodes  whose value is greater than <code><value</code>.
 
         Args:
@@ -264,7 +266,7 @@ class EmptyFilter(ValidExpressionFilter):
         """
         return ValidExpressionFilter(self.sb + ["text() >" + str(value)])
 
-    def value_greater_than_or_equal_to(self, value):
+    def value_greater_than_or_equal_to(self, value: str) -> ValidExpressionFilter:
         """Selects the nodes whose value is greater than or equal to <code><value</code>.
 
         Args:
@@ -275,7 +277,7 @@ class EmptyFilter(ValidExpressionFilter):
         """
         return ValidExpressionFilter(self.sb + ["text() >=" + str(value)])
 
-    def get(self, index):
+    def get(self, index: int):
         """Selects the node element who is positioned at the <code>index</code> position in its parent children list.
 
         Args:
@@ -302,7 +304,7 @@ class EmptyFilter(ValidExpressionFilter):
         """
         return ValidExpressionFilter(self.sb + ["last()"])
 
-    def not_operator(self, filter):
+    def not_operator(self, filter: ValidExpressionFilter):
         """Reverses the filter <code>filter</code>. Returns true when the filter returns false and true when the filter returns false.
 
         Args:
@@ -314,7 +316,7 @@ class EmptyFilter(ValidExpressionFilter):
         return ValidExpressionFilter(self.sb + ["not( " + add_openrand(filter) + " )"])
 
 
-def add_openrand(filter: EmptyFilter, separator="", is_last=True):
+def add_openrand(filter: EmptyFilter, separator="", is_last: Optional[bool] = True) -> str:
     """Adds operand between filters
 
     Args:
@@ -325,7 +327,7 @@ def add_openrand(filter: EmptyFilter, separator="", is_last=True):
     Returns:
         str: opperand with and / or separator
     """
-    suffix = ""
+    suffix: str = ""
     if filter and not filter.is_empty():
         expression = str(filter)
         suffix = expression
@@ -334,7 +336,7 @@ def add_openrand(filter: EmptyFilter, separator="", is_last=True):
     return suffix
 
 
-def replace_apostrophes(input):
+def replace_apostrophes(input: str) -> str:
     """Treats the presence of apostrophes so it doesn't break the XPath filter expression.
 
     Args:
@@ -347,15 +349,12 @@ def replace_apostrophes(input):
         return str(input)
 
     if "'" in input:
-        prefix = ""
+        prefix: str = ""
         elements = input.split("'")
         output = "concat("
         for s in elements:
             output += prefix + "'" + s + "'"
             prefix = ',"\'",'
-
-        if output[-1] == ",":
-            output = output.substring(0, len(output) - 2)
 
         output += ")"
         return output

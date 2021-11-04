@@ -378,10 +378,6 @@ function replaceApostrophes(input: string | number) {
       prefix = ',"\'",';
     }
 
-    if (output.endsWith(",")) {
-      output = output.substring(0, output.length - 2);
-    }
-
     output += ")";
     return output;
   } else {
