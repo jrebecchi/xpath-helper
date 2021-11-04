@@ -19,7 +19,7 @@ A chainable API to build complex XPath queries along the different [XPath axes](
 - [**Documentation**](https://krypton-org.github.io/jrebecchi/xpath-helper) — Consult the quick start guide and the online documentation.
 
 ## Installation
-`xpath-helper` requires python 3.5+ and can be installed using pip:
+`xpath-helper` requires python 3.6+ and can be installed using pip:
 ```bash
 pip install xpath-helper
 ```
