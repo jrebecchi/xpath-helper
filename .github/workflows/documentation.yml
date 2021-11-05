@@ -2,10 +2,9 @@ name: Documentation
 
 on:
   push:
-    branches:
-      - master
-    tags:
-      - '*'
+    branches: [ main ]
+    tags: ['*']
+  workflow_dispatch:
 
 jobs:
   build:
