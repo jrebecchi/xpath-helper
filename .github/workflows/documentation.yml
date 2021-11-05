@@ -23,11 +23,14 @@ jobs:
 
     - name: Install dependencies
       run: |
+        npm install -g typedoc@0.19.2 typescript@4.0.8
+        cd ./javascript/xpath-helper
         npm install
-        npm install -g typedoc@0.19.2 typescript@4.0.8 @types/node @types/jest
         
     - name: Build documentation
-      run: python docs/build.py
+      run: |
+        cd ./javascript/xpath-helper
+        python ../../docs/build.py
 
     - name: Deploy to GitHub pages
       if: success()
