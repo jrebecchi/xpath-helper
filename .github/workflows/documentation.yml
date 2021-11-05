@@ -24,7 +24,7 @@ jobs:
     - name: Install dependencies
       run: |
         npm install
-        npm install -g typedoc@0.19.2 typescript
+        npm install -g typedoc@0.19.2 typescript@4.0.8
     - name: Build documentation
       run: python docs/build.py
 
