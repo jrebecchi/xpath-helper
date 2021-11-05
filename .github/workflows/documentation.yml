@@ -1,0 +1,46 @@
+name: Documentation
+
+on:
+  push:
+    branches: [ main ]
+    tags: ['*']
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '14.x'
+
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '3.6'
+        
+    - name: Upgrade npm
+      run: npm install -g npm
+
+    - name: Install dependencies
+      run: |
+        npm install -g typedoc@0.19.2 typescript@4.0.8
+        cd ./javascript/xpath-helper
+        npm install
+        
+    - name: Build documentation
+      run: |
+        cd ./javascript/xpath-helper
+        python ../../docs/build.py
+
+    - name: Deploy to GitHub pages
+      if: success()
+      uses: crazy-max/ghaction-github-pages@v2
+      with:
+        target_branch: gh-pages
+        build_dir: docs/_build
+        committer_name: github-actions
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
