@@ -11,7 +11,7 @@
 
 ### ValidExpressionFilter
 ```{eval-rst}
-.. module:: filter
+.. module:: xpath_helper.filter
 .. autoclass:: ValidExpressionFilter
   :members:
 ```

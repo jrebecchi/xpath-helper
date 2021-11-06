@@ -14,9 +14,9 @@
   </a>
 </p>
 
-A chainable API to build complex XPath queries along the different [XPath axes](https://krypton-org.github.io/jrebecchi/xpath-helper). Available both in Python and JavaScript.
+A chainable API to build complex XPath queries along the different [XPath axes](https://jrebecchi.github.io/xpath-helper/xpath-axes.html). Available both in Python and JavaScript.
 
-- [**Documentation**](https://krypton-org.github.io/jrebecchi/xpath-helper) — Consult the quick start guide and the online documentation.
+- [**Documentation**](https://jrebecchi.github.io/xpath-helper/) — Consult the quick start guide and the online documentation.
 
 ### Installation
 #### JavaScript
@@ -26,13 +26,13 @@ npm install xpath-helper
 ```
 
 #### Python
-`xpath-helper` requires python 3.5+ and can be installed using pip:
+`xpath-helper` requires python 3.6+ and can be installed using pip:
 ```bash
 pip install xpath-helper
 ```
 
 ### Quick-start
-You can [chain method call](https://krypton-org.github.io/jrebecchi/xpath-helper) on the different [XPath axes](https://krypton-org.github.io/jrebecchi/xpath-helper) and easily add [filters](https://krypton-org.github.io/jrebecchi/xpath-helper).
+You can chain method call on the different [XPath axes](https://jrebecchi.github.io/xpath-helper/xpath-axes.html) and easily add filters.
 #### JavaScript
 ```javascript
 import { xh, filter } from 'xpath-helper';
@@ -60,7 +60,7 @@ const li = xh.getElementByTag("li",
 ));
 li.toString() // "//li[((text()[contains(., 'JavaScript')] or text()[contains(., 'Python')]) and @data-description)]"
 ```
-***See the [JavaScript documentation](https://krypton-org.github.io/jrebecchi/xpath-helper) for more details.***
+***See the [JavaScript documentation](https://jrebecchi.github.io/xpath-helper/javascript/) for more details.***
 
 #### Python
 ```python
@@ -91,7 +91,7 @@ li = xh.get_element_by_tag("li", filter.and_operator(
 ))
 str(li) # "//li[((text()[contains(., 'JavaScript')] or text()[contains(., 'Python')]) and @data-description)]"
 ```
-***See the [Python documentation](https://krypton-org.github.io/jrebecchi/xpath-helper) for more details.***
+***See the [Python documentation](https://jrebecchi.github.io/xpath-helper/python/) for more details.***
 
 ## License
 

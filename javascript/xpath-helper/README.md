@@ -11,9 +11,9 @@
   </a>
 </p>
 
-A chainable API to build complex XPath queries along the different [XPath axes](https://krypton-org.github.io/jrebecchi/xpath-helper). Available both in Python and JavaScript.
+A chainable API to build complex XPath queries along the different [XPath axes](https://jrebecchi.github.io/xpath-helper/xpath-axes.html). Available both in Python and JavaScript.
 
-- [**Documentation**](https://krypton-org.github.io/jrebecchi/xpath-helper) — Consult the quick start guide and the online documentation.
+- [**Documentation**](https://jrebecchi.github.io/xpath-helper/javascript/index.html) — Consult the quick start guide and the online documentation.
 
 ## Installation
 `xpath-helper` can be installed using npm:
@@ -21,7 +21,7 @@ A chainable API to build complex XPath queries along the different [XPath axes](
 npm install xpath-helper
 ```
 ## Quick-start
-You can [chain method call](https://krypton-org.github.io/jrebecchi/xpath-helper) on the different [XPath axes](https://krypton-org.github.io/jrebecchi/xpath-helper) and easily add [filters](https://krypton-org.github.io/jrebecchi/xpath-helper).
+You can chain method call on the different [XPath axes](https://jrebecchi.github.io/xpath-helper/xpath-axes.html) and easily add filters.
 ```javascript
 import { xh, filter } from 'xpath-helper';
 
@@ -49,14 +49,14 @@ const li = xh.getElementByTag("li",
 ));
 li.toString() // "//li[((text()[contains(., 'JavaScript')] or text()[contains(., 'Python')]) and @data-description)]"
 ```
-
+getDescendantOrSelf
 ## Chaining
 
-XPath natively lets your build complex queries chaining them along its different axes. Read this [article to understand the different XPath axes](https://krypton-org.github.io/jrebecchi/xpath-helper).
+XPath natively lets your build complex queries chaining them along its different axes. Read this [article to understand the different XPath axes](https://jrebecchi.github.io/xpath-helper/xpath-axes.html).
 
-This library let you do exactly the same by chaining method calls along the different axes: [`descendant`](https://krypton-org.github.io/jrebecchi/xpath-helper) aliased as [`element`](https://krypton-org.github.io/jrebecchi/xpath-helper), [`descendant-or-self`](https://krypton-org.github.io/jrebecchi/xpath-helper), [`child`](https://krypton-org.github.io/jrebecchi/xpath-helper), [`parent`](https://krypton-org.github.io/jrebecchi/xpath-helper), [`ancestor`](https://krypton-org.github.io/jrebecchi/xpath-helper), [`ancestor-or-self`](https://krypton-org.github.io/jrebecchi/xpath-helper), [`preceding`](https://krypton-org.github.io/jrebecchi/xpath-helper), [`preceding-sibling`](https://krypton-org.github.io/jrebecchi/xpath-helper), [`following`](https://krypton-org.github.io/jrebecchi/xpath-helper), [`following-sibling`](https://krypton-org.github.io/jrebecchi/xpath-helper).
+This library let you do exactly the same by chaining method calls along the different axes: [`descendant`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#XPathHelper.getDescendant) aliased as [`element`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#XPathHelper.getElement), [`descendant-or-self`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#XPathHelper.getDescendantOrSelf), [`child`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#XPathHelper.getChild), [`parent`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#XPathHelper.getParent), [`ancestor`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#XPathHelper.getAncestor), [`ancestor-or-self`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#XPathHelper.getAncestorOrSelf), [`preceding`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#XPathHelper.getPreceding), [`preceding-sibling`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#XPathHelper.getPrecedingSibling), [`following`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#XPathHelper.getFollowing), [`following-sibling`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#XPathHelper.getFollowingSibling).
 
-For each axis, xpath-helper provides 3 methods, like for instance `getElement(filter)`, `getElementByTag(tag, filter)`, `get_child_by_svg_tag(svgTag, filter)` for the `descendant`  axis aliased as `element`. Find the complete API [here](https://krypton-org.github.io/jrebecchi/xpath-helper).
+For each axis, xpath-helper provides 3 methods, like for instance `getElement(filter)`, `getElementByTag(tag, filter)`, `get_child_by_svg_tag(svgTag, filter)` for the `descendant`  axis aliased as `element`. Find the complete API [here](https://jrebecchi.github.io/xpath-helper/javascript/api.html#xpathhelper-xh).
 
 ```javascript
 import { xh, filter } from 'xpath-helper';
@@ -88,9 +88,9 @@ const submitButton = modal.getElementByTag('button', filter.valueEquals('Submit'
 const cancelButton = modal.getElementByTag('button', filter.valueEquals('Cancel'));
 ```
 ## Filters
-To select elements more precisely you can add filters: filtering on attributes, on element values, element position, and combining them with conditional operators: [`and(...)`](https://krypton-org.github.io/jrebecchi/xpath-helper), [`or(...)`](https://krypton-org.github.io/jrebecchi/xpath-helper), and [`not(...)`](https://krypton-org.github.io/jrebecchi/xpath-helper).
+To select elements more precisely you can add filters: [filtering on attributes](https://jrebecchi.github.io/xpath-helper/javascript/api.html#EmptyFilter.attributeContains), on [element values](https://jrebecchi.github.io/xpath-helper/javascript/api.html#EmptyFilter.valueContains), [element position](https://jrebecchi.github.io/xpath-helper/javascript/api.html#EmptyFilter.get), and combining them with conditional operators: [`and(...)`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#ValidExpressionFilter.and), [`or(...)`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#ValidExpressionFilter.or), and [`not(...)`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#EmptyFilter.not).
 
-***The complete filter API can be found [here](https://krypton-org.github.io/jrebecchi/xpath-helper).***
+***The complete filter API can be found [here](https://jrebecchi.github.io/xpath-helper/javascript/api.html#filter-filter).***
 
 ### Attributes
 Find below a few examples of filters on attributes.

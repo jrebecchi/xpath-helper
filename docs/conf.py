@@ -1,6 +1,6 @@
 import sys
 import os
-sys.path.append(os.path.abspath('../python/xpath-helper/xpath_helper'))
+sys.path.append(os.path.abspath('../python/xpath-helper'))
 # Configuration file for the Sphinx documentation builder.
 #
 # This file only contains a selection of the most common options. For a full

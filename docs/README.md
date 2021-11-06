@@ -1,9 +1,9 @@
-Online documentation is at https://krypton-org.github.io/krypton-auth.
+Online documentation is at https://jrebecchi.github.io/xpath-helper/.
 
 # Instructions for building the documentation
 
 ```bash
-npm install -g typedoc
+npm install -g typedoc@0.19.2 typescript@4.0.8
 python build.py
 ```
 
@@ -15,7 +15,4 @@ python build.py
 
 - `_templates/about.html`: fork of alabaster about.html with links to GH Actions and Coveralls instead of Travis-CI and Codecov.
 
-# Extensions
-
-- [mozilla/sphinx-js](https://github.com/mozilla/sphinx-js): sphinx_js
 
