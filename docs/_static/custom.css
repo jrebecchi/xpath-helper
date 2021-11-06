@@ -42,6 +42,10 @@ div.sphinxsidebarwrapper {
     margin-top: 25px;
 }
 
+.js.attribute {
+    margin-top: 25px;
+}
+
 .py.method {
     margin-top: 25px;
 }
