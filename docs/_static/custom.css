@@ -1,3 +1,17 @@
+body {
+    padding: 0;
+}
+
+div.document {
+    width: 1240px;
+    margin: 20px auto 0 auto;
+}
+
+div.sphinxsidebarwrapper {
+    padding: 19px 15px;
+    margin-bottom: 30px;
+}
+
 div.sphinxsidebarwrapper p {
     margin-top: 0px;
     margin-bottom: 0px;
@@ -9,11 +23,11 @@ div.sphinxsidebarwrapper h3 {
 }
 
 div.sphinxsidebarwrapper .logo {
-    margin-bottom: 10px;
+    margin: 0 40px 15px;
+    width: 150px;
 }
 
 div.sphinxsidebar {
-    position: fixed;
     margin-left: 0;
     height: 100%;
     overflow: auto;
