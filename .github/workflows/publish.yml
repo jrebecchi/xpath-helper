@@ -1,0 +1,48 @@
+name: Upload Python Package
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14.x'
+
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.6'
+
+    - name: Install javascript dependencies
+      run: |
+        cd ./javascript/xpath-helper
+        npm install -g npm
+        npm ci
+        
+    - name: Build and publish the JavaScript package
+      env:
+        POETRY_PYPI_TOKEN_PYPI: ${{ secrets.POETRY_PYPI_TOKEN_PYPI }}
+      run: |
+        cd ./javascript/xpath-helper
+        npm run build
+        npm run publish
+
+    - name: Install python dependencies
+      run: |
+        cd ./python/xpath-helper
+        python -m pip install --upgrade pip
+        pip install poetry
+    - name: Build and publish the python package
+      env:
+        POETRY_PYPI_TOKEN_PYPI: ${{ secrets.POETRY_PYPI_TOKEN_PYPI }}
+      run: |
+        cd ./javascript/xpath-helper
+        poetry build
+        poetry publish
