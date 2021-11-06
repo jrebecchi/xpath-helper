@@ -56,7 +56,10 @@ XPath natively lets your build complex queries chaining them along its different
 
 This library let you do exactly the same by chaining method calls along the different axes: [`descendant`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#XPathHelper.getDescendant) aliased as [`element`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#XPathHelper.getElement), [`descendant-or-self`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#XPathHelper.getDescendantOrSelf), [`child`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#XPathHelper.getChild), [`parent`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#XPathHelper.getParent), [`ancestor`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#XPathHelper.getAncestor), [`ancestor-or-self`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#XPathHelper.getAncestorOrSelf), [`preceding`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#XPathHelper.getPreceding), [`preceding-sibling`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#XPathHelper.getPrecedingSibling), [`following`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#XPathHelper.getFollowing), [`following-sibling`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#XPathHelper.getFollowingSibling).
 
-For each axis, xpath-helper provides 3 methods, like for instance `getElement(filter)`, `getElementByTag(tag, filter)`, `get_child_by_svg_tag(svgTag, filter)` for the `descendant`  axis aliased as `element`. Find the complete API [here](https://jrebecchi.github.io/xpath-helper/javascript/api.html#xpathhelper-xh).
+For each axis, xpath-helper provides 3 methods, like for instance `getElement(filter)`, `getElementByTag(tag, filter)`, `get_child_by_svg_tag(svgTag, filter)` for the `descendant`  axis aliased as `element`.
+
+***The complete filter API can be found [here](https://jrebecchi.github.io/xpath-helper/javascript/api.html#xpathhelper-xh).***
+
 
 ```javascript
 import { xh, filter } from 'xpath-helper';
@@ -88,7 +91,7 @@ const submitButton = modal.getElementByTag('button', filter.valueEquals('Submit'
 const cancelButton = modal.getElementByTag('button', filter.valueEquals('Cancel'));
 ```
 ## Filters
-To select elements more precisely you can add filters: [filtering on attributes](https://jrebecchi.github.io/xpath-helper/javascript/api.html#EmptyFilter.attributeContains), on [element values](https://jrebecchi.github.io/xpath-helper/javascript/api.html#EmptyFilter.valueContains), [element position](https://jrebecchi.github.io/xpath-helper/javascript/api.html#EmptyFilter.get), and combining them with conditional operators: [`and(...)`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#ValidExpressionFilter.and), [`or(...)`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#ValidExpressionFilter.or), and [`not(...)`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#EmptyFilter.not).
+To select elements more precisely you can add filters: [on attributes](https://jrebecchi.github.io/xpath-helper/javascript/api.html#EmptyFilter.attributeContains), on [element values](https://jrebecchi.github.io/xpath-helper/javascript/api.html#EmptyFilter.valueContains), [element position](https://jrebecchi.github.io/xpath-helper/javascript/api.html#EmptyFilter.get), and combine them with conditional operators: [`and(...)`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#ValidExpressionFilter.and), [`or(...)`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#ValidExpressionFilter.or), and [`not(...)`](https://jrebecchi.github.io/xpath-helper/javascript/api.html#EmptyFilter.not).
 
 ***The complete filter API can be found [here](https://jrebecchi.github.io/xpath-helper/javascript/api.html#filter-filter).***
 
