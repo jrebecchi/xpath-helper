@@ -33,7 +33,7 @@ jobs:
       run: |
         cd ./javascript/xpath-helper
         npm run build
-        npm run publish
+        npm publish
 
     - name: Install python dependencies
       run: |
