@@ -3,6 +3,9 @@
 </p>
 <p align="center">
   <i>Build complicated XPath queries without the hassle - JavaScript & Python</i><br/><br/>
+  <a href="https://jrebecchi.github.io/xpath-helper/python/index.html">
+    <img src="https://img.shields.io/badge/docs-master-blue.svg?style=flat">
+  </a>
   <a href="https://codecov.io/gh/jrebecchi/xpath-helper">
     <img src="https://codecov.io/gh/jrebecchi/xpath-helper/branch/main/graph/badge.svg?token=0TJOZ64X10"/>
   </a>
