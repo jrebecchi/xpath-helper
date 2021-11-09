@@ -52,7 +52,6 @@ const li = xh.getElementByTag("li",
 ));
 li.toString() // "//li[((text()[contains(., 'JavaScript')] or text()[contains(., 'Python')]) and @data-description)]"
 ```
-getDescendantOrSelf
 ## Chaining
 
 XPath natively lets your build complex queries chaining them along its different axes. Read this [article to understand the different XPath axes](https://jrebecchi.github.io/xpath-helper/xpath-axes.html).
