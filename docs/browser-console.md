@@ -14,7 +14,7 @@ import('https://unpkg.com/xpath-helper@latest/dist/mjs/xpath-helper.js').then(m 
 ```javascript
 const { xh, filter } = xpathHelperModule
 ```
- - Create you-r first path
+ - Create your first path
 
 ```javascript
 const img = xh.getElementByTag('img', filter.attributeContains('alt', 'xpath-helper')).toString()
