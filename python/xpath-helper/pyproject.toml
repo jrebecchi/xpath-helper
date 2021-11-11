@@ -30,14 +30,13 @@ include = [
     "README.md"
 ]
 [tool.poetry.dependencies]
-python = ">=3.6,<4.0"
-coveralls = "^3.2.0"
+python = ">=3.5"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
 lxml = "^4.6.3"
-pytest-cov = "^3.0.0"
-pylint = "^2.11.1"
+pytest-cov = {version = "^3.0.0", python = ">=3.6"}
+pylint = {version = "^2.11.1", python = ">=3.6, < 4.0"}
 
 [build-system]
 build-backend = "poetry.core.masonry.api"

@@ -29,7 +29,7 @@ npm install xpath-helper
 ```
 
 #### Python
-`xpath-helper` requires python 3.6+ and can be installed using pip:
+`xpath-helper` requires python 3.5+ and can be installed using pip:
 ```bash
 pip install xpath-helper
 ```
