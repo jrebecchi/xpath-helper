@@ -23,6 +23,15 @@ A chainable API to build complex XPath queries along the different [XPath axes](
 ```bash
 npm install xpath-helper
 ```
+It can be also be imported as a JavaScript module. 
+```javascript
+<script type="module" >
+  import { xh, filter} from 'https://unpkg.com/xpath-helper@latest/dist/mjs/xpath-helper.js';
+  console.log(
+    xh.getElementByTag('body').getElementByTag('h1', filter.valueEquals('hello')).toString()
+  );
+</script> 
+``` 
 ## Quick-start
 You can chain method call on the different [XPath axes](https://jrebecchi.github.io/xpath-helper/xpath-axes.html) and easily add filters.
 ```javascript
