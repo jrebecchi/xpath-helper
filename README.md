@@ -40,15 +40,15 @@ You can chain method call on the different [XPath axes](https://jrebecchi.github
 ```javascript
 import { xh, filter } from 'xpath-helper';
 
-// Find a paragraph <p> containing a CSS class 'very-nice-p'
+// Finds a paragraph <p> containing a CSS class 'very-nice-p'
 const p = xh.getElementByTag('p', filter.attributeContains('class', 'very-nice-p'));
 p.toString() // "//p[contains(@class, 'very-nice-p')]"
 
-// Find the paragraph that is following the above one
+// Finds the paragraph that is following the above one
 const nextP = p.getFollowingSiblingByTag('p');
 nextP.toString() // "//p[contains(@class, 'very-nice-p')]/following-sibling::p"
 
-// Find the modal containing a button with text "Register" 
+// Finds the modal containing a button with text "Register" 
 const modal = xh.getElement(filter.valueEquals('Register'))
   .getAncestor(filter.attributeEquals('class', 'modal'));
 modal.toString() // "//*[text() = 'Register']/ancestor::*[@class='modal']"
@@ -69,15 +69,15 @@ li.toString() // "//li[((text()[contains(., 'JavaScript')] or text()[contains(.,
 ```python
 from xpath_helper import xh, filter
 
-# Find a paragraph <p> containing a CSS class 'very-nice-p'
+# Finds a paragraph <p> containing a CSS class 'very-nice-p'
 p = xh.get_element_by_tag('p', filter.attribute_contains('class', 'very-nice-p'))
 str(p) # "//p[contains(@class, 'very-nice-p')]"
 
-# Find the paragraph that is following the above one
+# Finds the paragraph that is following the above one
 next_p = p.get_following_sibling_by_tag('p')
 str(next_p) # "//p[contains(@class, 'very-nice-p')]/following-sibling::p"
 
-# Find the modal containing a button with text "Register" 
+# Finds the modal containing a button with text "Register" 
 modal = xh.get_element(
   filter.value_equals('Register')
 ).get_ancestor(

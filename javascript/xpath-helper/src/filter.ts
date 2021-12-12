@@ -282,7 +282,7 @@ export class EmptyFilter extends ValidExpressionFilter {
   }
 
   /**
-   * Selects the nodes  whose value is greater than ``value``.
+   * Selects the nodes whose value is greater than ``value``.
    * @param {number} value - node value
    * @returns {ValidExpressionFilter} a new instance of ValidExpressionFilter with the newly formed expression.
    * @memberof EmptyFilter

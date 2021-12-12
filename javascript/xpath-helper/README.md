@@ -37,15 +37,15 @@ You can chain method call on the different [XPath axes](https://jrebecchi.github
 ```javascript
 import { xh, filter } from 'xpath-helper';
 
-// Find a paragraph <p> containing a CSS class 'very-nice-p'
+// Finds a paragraph <p> containing a CSS class 'very-nice-p'
 const p = xh.getElementByTag('p', filter.attributeContains('class', 'very-nice-p'));
 p.toString(); // "//p[contains(@class, 'very-nice-p')]"
 
-// Find the paragraph that is following the above one
+// Finds the paragraph that is following the above one
 const nextP = p.getFollowingSiblingByTag('p');
 nextP.toString(); // "//p[contains(@class, 'very-nice-p')]/following-sibling::p"
 
-// Find the modal containing a button with text "Register" 
+// Finds the modal containing a button with text "Register" 
 const modal = xh
   .getElement(filter.valueEquals('Register'))
   .getAncestor(filter.attributeEquals('class', 'modal'));
@@ -69,22 +69,22 @@ This library let you do exactly the same by chaining method calls along the diff
 
 For each axis, xpath-helper provides 3 methods, like for instance `getElement(filter)`, `getElementByTag(tag, filter)`, `getElementBySVGTag(svgTag, filter)` for the `descendant`  axis aliased as `element`.
 
-***The complete filter API can be found [here](https://jrebecchi.github.io/xpath-helper/javascript/api.html#xpathhelper-xh).***
+***The complete JavaScript API can be found [here](https://jrebecchi.github.io/xpath-helper/javascript/api.html#xpathhelper-xh).***
 
 
 ```javascript
 import { xh, filter } from 'xpath-helper';
 
-// Find an element into the page, move to its parent, 
-// find a brother node of the parent positioned after it.
+// Finds an element into the page, moves to its parent, 
+// finds a brother node of the parent positioned after it.
 const el = xh.getElementByTag('p', filter.attributeContains('class', 'very-nice-p'))
   .getParent()
   .getFollowingSiblingByTag('p');
 el.toString(); // "//p[contains(@class, 'very-nice-p')]/../following-sibling::p"
 
-// Find an element into the page, move to its ancestor 
+// Finds an element into the page, moves to its ancestor 
 // containing 'very-nice-p' ass CSS class, 
-// find a brother node of the ancestor positioned before it.
+// finds a brother node of the ancestor positioned before it.
 el = xh.getElementByTag('p', filter.attributeContains('class', 'very-nice-p'))
   .getAncestorByTag('div')
   .getPrecedingSibling(filter.hasAttribute('data-foo-bar'));
@@ -94,11 +94,11 @@ el.toString(); // "//p[contains(@class, 'very-nice-p')]/../following-sibling::p/
 It is also possible to keep a relative path in a variable and re-use it after.
 ```javascript
 import { xh, filter } from 'xpath-helper';
-// Store the path of a modal window
+// Stores the path of a modal window
 const modal = xh.getElement(filter.attributeContains('class', 'modal'));
-// Find the Submit button inside the modal window
+// Finds the Submit button inside the modal window
 const submitButton = modal.getElementByTag('button', filter.valueEquals('Submit'));
-// Find the Cancel button inside the modal window
+// Finds the Cancel button inside the modal window
 const cancelButton = modal.getElementByTag('button', filter.valueEquals('Cancel'));
 ```
 ## Filters
@@ -150,7 +150,7 @@ Find below a few examples of filters with conditional expression.
 ```javascript
 import { xh, filter } from 'xpath-helper';
 
-// Find an element that has a CSS class 'a-link' and contains an attribute href
+// Finds an element that has a CSS class 'a-link' and contains an attribute href
 let el = xh.getElement(
   filter.attributeContains('class', 'a-link').and(
     filter.hasAttribute('href')
@@ -158,7 +158,7 @@ let el = xh.getElement(
 );
 el.toString(); // "//*[contains(@class, 'a-link') and (@href)]"
 
-// Find an element that has a CSS class 'foo' or a CSS class 'bar'
+// Finds an element that has a CSS class 'foo' or a CSS class 'bar'
 el = xh.getElement(
   filter.attributeContains('class', 'foo').or(
     filter.attributeContains('class', 'bar')
@@ -166,7 +166,7 @@ el = xh.getElement(
 );
 el.toString(); // "//*[contains(@class, 'foo') or (contains(@class, 'bar'))]"
 
-// Build complex logical expression combining and & or
+// Builds a complex logical expression combining and & or
 el = xh.getElement(
   filter.and(
     filter.or(
@@ -184,13 +184,13 @@ Navigating into SVG elements from an HTML file can be tricky with XPath, that is
 ```javascript
 import { xh, filter } from 'xpath-helper';
 
-// Store the path of a modal window
+// Stores the path of a modal window
 const path = xh.getElementBySVGTag('path', 
   filter.attributeEquals('d', 'M 310 130 L 90 130 L 90 183.63')
 );
 path.toString(); // "//*[local-name() = 'path'][@d='M 310 130 L 90 130 L 90 183.63']"
     
-// Find the Submit button inside the modal window
+// Finds the Submit button inside the modal window
 const g = xh.getElementBySVGTag('path', filter.attributeEquals('id', 'id-path'))
   .getAncestorBySVGTag('g');
 g.toString(); // "//*[local-name() = 'path'][@id='id-path']/ancestor::*[local-name() = 'g']"
