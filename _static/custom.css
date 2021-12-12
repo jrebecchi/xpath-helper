@@ -1,0 +1,55 @@
+body {
+    padding: 0;
+}
+
+div.document {
+    width: 1240px;
+    margin: 20px auto 0 auto;
+}
+
+div.sphinxsidebarwrapper {
+    padding: 19px 15px;
+    margin-bottom: 30px;
+}
+
+div.sphinxsidebarwrapper p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+div.sphinxsidebarwrapper h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+div.sphinxsidebarwrapper .logo {
+    margin: 0 40px 15px;
+    width: 150px;
+}
+
+div.sphinxsidebar {
+    margin-left: 0;
+    height: 100%;
+    overflow: auto;
+}
+
+div.sphinxsidebarwrapper {
+    padding: 18px 10px;
+    margin-bottom: 30px;
+}
+
+.js.function {
+    margin-top: 25px;
+}
+
+.js.attribute {
+    margin-top: 25px;
+}
+
+.py.method {
+    margin-top: 25px;
+}
+
+.caption[role="heading"] {
+    font-size: 17px;
+}

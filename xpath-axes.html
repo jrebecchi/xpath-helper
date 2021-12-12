@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>XPath axes &#8212; xpath-helper  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Try it in your browser" href="browser-console.html" />
+    <link rel="prev" title="Installation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+
+<p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/logo.svg" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=jrebecchi&repo=xpath-helper&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">XPath axes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#axes-explanation">Axes explanation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#self-axis">Self Axis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#child-axis">Child Axis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parent-axis">Parent Axis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#descendant-axis">Descendant Axis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#descendant-or-self-axis">Descendant-or-self Axis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ancestor-axis">Ancestor Axis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ancestor-or-self-axis">Ancestor-or-self Axis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#preceding-axis">Preceding Axis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#preceding-sibling-axis">Preceding-sibling Axis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#following-axis">Following Axis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#following-sibling-axis">Following-sibling Axis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="browser-console.html">Try it in your browser</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">JavaScript</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="javascript/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript/index.html#quick-start">Quick-start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript/index.html#chaining">Chaining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript/index.html#filters">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript/index.html#svg">SVG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript/api.html">JavaScript API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/index.html#quick-start">Quick-start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/index.html#chaining">Chaining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/index.html#filters">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/index.html#svg">SVG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/api.html">Python API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Installation</a></li>
+      <li>Next: <a href="browser-console.html" title="next chapter">Try it in your browser</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="xpath-axes">
+<h1>XPath axes<a class="headerlink" href="#xpath-axes" title="Permalink to this headline">¶</a></h1>
+<p>XPath lets you search for elements along its different axes.If you are currently positionned as self, the other nodes are relatively located from you on the axes as below.</p>
+<img alt="xpath-helper - xpath axes" class="align-center" src="_images/xpath-axes.jpg" />
+<p>XPath natively lets you build complex queries chaining them along its different axes. You can navigate like in the example below.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">div</span><span class="p">[</span><span class="n">text</span><span class="p">()</span> <span class="o">=</span> <span class="s1">&#39;A text&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">ancestor</span><span class="p">::</span><span class="o">*</span><span class="p">[</span><span class="nd">@class</span><span class="o">=</span><span class="s1">&#39;a-class&#39;</span><span class="p">]</span><span class="o">/../</span><span class="n">following</span><span class="o">-</span><span class="n">sibling</span><span class="p">::[</span><span class="nd">@href</span><span class="o">=</span><span class="s1">&#39;nav.html&#39;</span><span class="p">]</span>
+<span class="o">|-------</span><span class="n">descendant</span><span class="o">------|---------</span><span class="n">ancestor</span><span class="o">----------|</span><span class="n">parent</span><span class="o">|--------</span><span class="n">following</span><span class="o">-</span><span class="n">sibling</span><span class="o">---------|</span>
+</pre></div>
+</div>
+<p>The following xpath query will select an HTML/XML element like bellow.</p>
+<img alt="xpath-helper - xpath explanation" class="align-center" src="_images/xpath-explanation.jpg" />
+<section id="axes-explanation">
+<h2>Axes explanation<a class="headerlink" href="#axes-explanation" title="Permalink to this headline">¶</a></h2>
+<p>Below a description made by <a class="reference external" href="https://our.umbraco.com/documentation/reference/templating/macros/xslt/xpath-axes-and-their-shortcuts">umbraco</a> of the different xpath axes.</p>
+<section id="self-axis">
+<h3>Self Axis<a class="headerlink" href="#self-axis" title="Permalink to this headline">¶</a></h3>
+<p>While it is rarely used, the self axis returns the node in reference.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span>/self::*[@class = &#39;foobar&#39;]
+</pre></div>
+</div>
+</section>
+<section id="child-axis">
+<h3>Child Axis<a class="headerlink" href="#child-axis" title="Permalink to this headline">¶</a></h3>
+<p>We mentioned the child axis earlier, and used its shortcut right off. The child axis select the nodes immediately below the node in reference. While the verbose method is rarely used, it is here for reference.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span>/child::*[@class = &#39;foobar&#39;]
+/*[@class = &#39;foobar&#39;]
+</pre></div>
+</div>
+</section>
+<section id="parent-axis">
+<h3>Parent Axis<a class="headerlink" href="#parent-axis" title="Permalink to this headline">¶</a></h3>
+<p>The parent axis allows us to see the node immediately above the node in reference.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span>/parent::*[@class = &#39;foobar&#39;]
+/..
+</pre></div>
+</div>
+</section>
+<section id="descendant-axis">
+<h3>Descendant Axis<a class="headerlink" href="#descendant-axis" title="Permalink to this headline">¶</a></h3>
+<p>Next we have descendant. The descendant axis retrieves all nodes below the node in reference no matter the depth.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span>/descendant::*[@class = &#39;foobar&#39;]
+//*[@class = &#39;foobar&#39;]
+</pre></div>
+</div>
+</section>
+<section id="descendant-or-self-axis">
+<h3>Descendant-or-self Axis<a class="headerlink" href="#descendant-or-self-axis" title="Permalink to this headline">¶</a></h3>
+<p>The descendant-or-self axis returns all nodes below the current node, but also returns the node in reference to the command.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span>/descendant-or-self::*[@class = &#39;foobar&#39;]
+</pre></div>
+</div>
+</section>
+<section id="ancestor-axis">
+<h3>Ancestor Axis<a class="headerlink" href="#ancestor-axis" title="Permalink to this headline">¶</a></h3>
+<p>The ancestor axis selects all nodes that are ancestors, or the parent, and the parent’s parent, and so on, to the node in reference.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span>/ancestor::*[@class = &#39;foobar&#39;]
+</pre></div>
+</div>
+</section>
+<section id="ancestor-or-self-axis">
+<h3>Ancestor-or-self Axis<a class="headerlink" href="#ancestor-or-self-axis" title="Permalink to this headline">¶</a></h3>
+<p>The ancestor-or-self axis selects all nodes that are ancestors, or the parent, and the parent’s parent, and so on, including the node in reference.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span>/ancestor-or-self::*[@class = &#39;foobar&#39;]
+</pre></div>
+</div>
+</section>
+<section id="preceding-axis">
+<h3>Preceding Axis<a class="headerlink" href="#preceding-axis" title="Permalink to this headline">¶</a></h3>
+<p>The preceding axis selects all nodes no matter the depth, that are located on parent-level and who are also located before (preceding) its parent of the node in reference.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span>/preceding::*[@class = &#39;foobar&#39;]
+</pre></div>
+</div>
+</section>
+<section id="preceding-sibling-axis">
+<h3>Preceding-sibling Axis<a class="headerlink" href="#preceding-sibling-axis" title="Permalink to this headline">¶</a></h3>
+<p>The preceding axis selects all nodes that are located on the same level who are also located before (preceding) the node in reference.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span>/preceding-sibling::*[@class = &#39;foobar&#39;]
+</pre></div>
+</div>
+</section>
+<section id="following-axis">
+<h3>Following Axis<a class="headerlink" href="#following-axis" title="Permalink to this headline">¶</a></h3>
+<p>The preceding axis selects all nodes no matter the depth, that are located on parent-level and who are also located after (following) its parent of the node in reference.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span>/following::*[@class = &#39;foobar&#39;]
+</pre></div>
+</div>
+</section>
+<section id="following-sibling-axis">
+<h3>Following-sibling Axis<a class="headerlink" href="#following-sibling-axis" title="Permalink to this headline">¶</a></h3>
+<p>The preceding axis selects all nodes that are located on the same level who are located after (following) the node in reference.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span>/following-sibling::*[@class = &#39;foobar&#39;]
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2021, Johann Rebecchi.
+      
+      |
+      <a href="_sources/xpath-axes.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

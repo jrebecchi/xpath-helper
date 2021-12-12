@@ -1,0 +1,863 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Python API &#8212; xpath-helper  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Installation" href="index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+
+<p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/logo.svg" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=jrebecchi&repo=xpath-helper&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p><h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../xpath-axes.html">XPath axes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../browser-console.html">Try it in your browser</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">JavaScript</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/index.html#quick-start">Quick-start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/index.html#chaining">Chaining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/index.html#filters">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/index.html#svg">SVG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/api.html">JavaScript API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#quick-start">Quick-start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#chaining">Chaining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#filters">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#svg">SVG</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-xpath_helper">XPathHelper: (xh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#filter-filter">Filter: (filter)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-xpath_helper.filter">ValidExpressionFilter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#emptyfilter">EmptyFilter</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Installation</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="python-api">
+<h1>Python API<a class="headerlink" href="#python-api" title="Permalink to this headline">¶</a></h1>
+<section id="module-xpath_helper">
+<span id="xpathhelper-xh"></span><h2>XPathHelper: (xh)<a class="headerlink" href="#module-xpath_helper" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xpath_helper.</span></span><span class="sig-name descname"><span class="pre">XPathHelper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">currentPath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#xpath_helper.XPathHelper" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.empty">
+<span class="sig-name descname"><span class="pre">empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#xpath_helper.XPathHelper.empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Empties the current path.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_ancestor">
+<span class="sig-name descname"><span class="pre">get_ancestor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_ancestor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes filtered by &lt;code&gt;filter&lt;/code&gt;,
+that are ancestors, or the parent, and the parent’s parent, and so on, to the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_ancestor_by_svg_tag">
+<span class="sig-name descname"><span class="pre">get_ancestor_by_svg_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svg_tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_ancestor_by_svg_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the SVG nodes with SVG tag &lt;code&gt;svg_tag&lt;/code&gt; filtered by &lt;code&gt;filter&lt;/code&gt;,
+that are ancestors, or the parent, and the parent’s parent, and so on, to the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>svg_tag (str): SVG tag name
+filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_ancestor_by_tag">
+<span class="sig-name descname"><span class="pre">get_ancestor_by_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_ancestor_by_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with tag &lt;code&gt;tag&lt;/code&gt; filtered by &lt;code&gt;filter&lt;/code&gt;,
+that are ancestors, or the parent, and the parent’s parent, and so on, to the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tag (str): tag name
+filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_ancestor_or_self">
+<span class="sig-name descname"><span class="pre">get_ancestor_or_self</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_ancestor_or_self" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes filtered by &lt;code&gt;filter&lt;/code&gt;,
+that are ancestors, or the parent, and the parent’s parent, and so on, including the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_ancestor_or_self_by_svg_tag">
+<span class="sig-name descname"><span class="pre">get_ancestor_or_self_by_svg_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svg_tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_ancestor_or_self_by_svg_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the SVG nodes with SVG tag &lt;code&gt;svg_tag&lt;/code&gt; filtered by &lt;code&gt;filter&lt;/code&gt;,
+that are ancestors, or the parent, and the parent’s parent, and so on, including the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>svg_tag (str): SVG tag name
+filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_ancestor_or_self_by_tag">
+<span class="sig-name descname"><span class="pre">get_ancestor_or_self_by_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_ancestor_or_self_by_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with tag &lt;code&gt;tag&lt;/code&gt; filtered by &lt;code&gt;filter&lt;/code&gt;,
+that are ancestors, or the parent, and the parent’s parent, and so on, including the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tag (str): tag name
+filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_child">
+<span class="sig-name descname"><span class="pre">get_child</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_child" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes filtered by &lt;code&gt;filter&lt;/code&gt; immediately below the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_child_by_svg_tag">
+<span class="sig-name descname"><span class="pre">get_child_by_svg_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svg_tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_child_by_svg_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the SVG nodes with SVG tag &lt;code&gt;svg_tag&lt;/code&gt; filtered by &lt;code&gt;filter&lt;/code&gt;, immediately below the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>svg_tag (str): SVG tag name
+filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_child_by_tag">
+<span class="sig-name descname"><span class="pre">get_child_by_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_child_by_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with tag &lt;code&gt;tag&lt;/code&gt; filtered by &lt;code&gt;filter&lt;/code&gt;, immediately below the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tag (str): tag name
+filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_descendant">
+<span class="sig-name descname"><span class="pre">get_descendant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_descendant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes filtered by &lt;code&gt;filter&lt;/code&gt;, below the node in reference no matter the depth.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_descendant_by_svg_tag">
+<span class="sig-name descname"><span class="pre">get_descendant_by_svg_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svg_tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_descendant_by_svg_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the SVG nodes with SVG tag &lt;code&gt;svg_tag&lt;/code&gt; filtered by &lt;code&gt;filter&lt;/code&gt;, below the node in reference no matter the depth.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>svg_tag (str): SVG tag name
+filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_descendant_by_tag">
+<span class="sig-name descname"><span class="pre">get_descendant_by_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_descendant_by_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with tag &lt;code&gt;tag&lt;/code&gt; filtered by &lt;code&gt;filter&lt;/code&gt;, below the node in reference no matter the depth.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tag (str): tag name
+filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_descendant_or_self">
+<span class="sig-name descname"><span class="pre">get_descendant_or_self</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_descendant_or_self" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes filtered by &lt;code&gt;filter&lt;/code&gt;, below the current node, but also returns the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_descendant_or_self_by_svg_tag">
+<span class="sig-name descname"><span class="pre">get_descendant_or_self_by_svg_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svg_tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_descendant_or_self_by_svg_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the SVG nodes with SVG tag &lt;code&gt;svg_tag&lt;/code&gt; filtered by &lt;code&gt;filter&lt;/code&gt;, below the current node, but also returns the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>svg_tag (str): SVG tag name
+filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_descendant_or_self_by_tag">
+<span class="sig-name descname"><span class="pre">get_descendant_or_self_by_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_descendant_or_self_by_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with tag &lt;code&gt;tag&lt;/code&gt; filtered by &lt;code&gt;filter&lt;/code&gt;, below the current node, but also returns the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tag (str): tag name
+filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_element">
+<span class="sig-name descname"><span class="pre">get_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes filtered by &lt;code&gt;filter&lt;/code&gt;, below the node in reference no matter the depth.
+This self method is a synonym of &lt;code&gt;get_descendant&lt;/code&gt;.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_element_by_svg_tag">
+<span class="sig-name descname"><span class="pre">get_element_by_svg_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svg_tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_element_by_svg_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the SVG nodes with SVG tag &lt;code&gt;svg_tag&lt;/code&gt; filtered by &lt;code&gt;filter&lt;/code&gt;, below the node in reference no matter the depth.
+This method is a synonym of &lt;code&gt;get_descendant_by_svg_tag&lt;/code&gt;.</p>
+<blockquote>
+<div><dl class="simple">
+<dt>Args:</dt><dd><p>svg_tag (str): SVG tag name
+filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_element_by_tag">
+<span class="sig-name descname"><span class="pre">get_element_by_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_element_by_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with tag &lt;code&gt;tag&lt;/code&gt; filtered by &lt;code&gt;filter&lt;/code&gt;, below the node in reference no matter the depth.
+This method is a synonym of &lt;code&gt;get_descendant_by_tag&lt;/code&gt;.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tag (str): tag name
+filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_element_by_xpath">
+<span class="sig-name descname"><span class="pre">get_element_by_xpath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xpath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_element_by_xpath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects an element with an XPath selector &lt;code&gt;xpath&lt;/code&gt;.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>xpath (str): [description]</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_following">
+<span class="sig-name descname"><span class="pre">get_following</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_following" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes filtered by &lt;code&gt;filter&lt;/code&gt;, that are located on parent-level
+and also after (following) its parent of the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_following_by_svg_tag">
+<span class="sig-name descname"><span class="pre">get_following_by_svg_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svg_tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_following_by_svg_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the SVG nodes with SVG tag &lt;code&gt;svg_tag&lt;/code&gt; filtered by &lt;code&gt;filter&lt;/code&gt;,
+that are located on parent-level and also after (following) its parent of the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>svg_tag (str): SVG tag name
+filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_following_by_tag">
+<span class="sig-name descname"><span class="pre">get_following_by_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_following_by_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with tag &lt;code&gt;tag&lt;/code&gt; filtered by &lt;code&gt;filter&lt;/code&gt;,
+that are located on parent-level and also after (following) its parent of the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tag (str): tag name
+filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_following_sibling">
+<span class="sig-name descname"><span class="pre">get_following_sibling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_following_sibling" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes filtered by &lt;code&gt;filter&lt;/code&gt;,
+that are located on the same level who are located after (following) the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_following_sibling_by_svg_tag">
+<span class="sig-name descname"><span class="pre">get_following_sibling_by_svg_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svg_tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_following_sibling_by_svg_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the SVG nodes with SVG tag &lt;code&gt;svg_tag&lt;/code&gt; filtered by &lt;code&gt;filter&lt;/code&gt;,
+that are located on the same level who are located after (following) the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>svg_tag (str): SVG tag name
+filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_following_sibling_by_tag">
+<span class="sig-name descname"><span class="pre">get_following_sibling_by_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_following_sibling_by_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with tag &lt;code&gt;tag&lt;/code&gt; filtered by &lt;code&gt;filter&lt;/code&gt;,
+that are located on the same level who are located after (following) the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tag (str): tag name
+filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_parent">
+<span class="sig-name descname"><span class="pre">get_parent</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the parent of the current element.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_preceding">
+<span class="sig-name descname"><span class="pre">get_preceding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_preceding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes filtered by &lt;code&gt;filter&lt;/code&gt;, that are located on parent-level
+and also before (preceding) its parent of the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_preceding_by_svg_tag">
+<span class="sig-name descname"><span class="pre">get_preceding_by_svg_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svg_tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_preceding_by_svg_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the SVG nodes with SVG tag &lt;code&gt;svg_tag&lt;/code&gt; filtered by &lt;code&gt;filter&lt;/code&gt;,
+that are located on parent-level and also before (preceding) its parent of the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>svg_tag (str): SVG tag name
+filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_preceding_by_tag">
+<span class="sig-name descname"><span class="pre">get_preceding_by_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_preceding_by_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with tag &lt;code&gt;tag&lt;/code&gt; filtered by &lt;code&gt;filter&lt;/code&gt;,
+that are located on parent-level and also before (preceding) its parent of the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tag (str): tag name
+filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_preceding_sibling">
+<span class="sig-name descname"><span class="pre">get_preceding_sibling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_preceding_sibling" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes filtered by &lt;code&gt;filter&lt;/code&gt;, that are located on the same level
+who are also located before (preceding) the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_preceding_sibling_by_svg_tag">
+<span class="sig-name descname"><span class="pre">get_preceding_sibling_by_svg_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svg_tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_preceding_sibling_by_svg_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the SVG nodes with SVG tag &lt;code&gt;svg_tag&lt;/code&gt; filtered by &lt;code&gt;filter&lt;/code&gt;,
+that are located on the same level who are also located before (preceding) the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>svg_tag (str): SVG tag name
+filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.XPathHelper.get_preceding_sibling_by_tag">
+<span class="sig-name descname"><span class="pre">get_preceding_sibling_by_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.XPathHelper" title="xpath_helper.xpath_helper.XPathHelper"><span class="pre">xpath_helper.xpath_helper.XPathHelper</span></a></span></span><a class="headerlink" href="#xpath_helper.XPathHelper.get_preceding_sibling_by_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with tag &lt;code&gt;tag&lt;/code&gt; filtered by &lt;code&gt;filter&lt;/code&gt;,
+that are located on the same level who are also located before (preceding) the node in reference.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tag (string): [description]
+filter (Filter): filter to apply</p>
+</dd>
+<dt>Returns:</dt><dd><p>XPathHelper: a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="filter-filter">
+<h2>Filter: (filter)<a class="headerlink" href="#filter-filter" title="Permalink to this headline">¶</a></h2>
+<section id="module-xpath_helper.filter">
+<span id="validexpressionfilter"></span><h3>ValidExpressionFilter<a class="headerlink" href="#module-xpath_helper.filter" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="xpath_helper.filter.ValidExpressionFilter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xpath_helper.filter.</span></span><span class="sig-name descname"><span class="pre">ValidExpressionFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#xpath_helper.filter.ValidExpressionFilter" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.ValidExpressionFilter.and_operator">
+<span class="sig-name descname"><span class="pre">and_operator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">filters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xpath_helper.filter.EmptyFilter" title="xpath_helper.filter.EmptyFilter"><span class="pre">xpath_helper.filter.EmptyFilter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a></span></span><a class="headerlink" href="#xpath_helper.filter.ValidExpressionFilter.and_operator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds one or more filter expression to the current one with the AND logical operator.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>filters (list[Filter]): List of filters List of filters that will be added with the AND logical operator</p>
+</dd>
+<dt>Returns:</dt><dd><p>ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.ValidExpressionFilter.empty">
+<span class="sig-name descname"><span class="pre">empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#xpath_helper.filter.ValidExpressionFilter.empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Empties the current path.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.ValidExpressionFilter.is_empty">
+<span class="sig-name descname"><span class="pre">is_empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#xpath_helper.filter.ValidExpressionFilter.is_empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if filter is empty.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>bool: true if filter is empty</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.ValidExpressionFilter.or_operator">
+<span class="sig-name descname"><span class="pre">or_operator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">filters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xpath_helper.filter.EmptyFilter" title="xpath_helper.filter.EmptyFilter"><span class="pre">xpath_helper.filter.EmptyFilter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a></span></span><a class="headerlink" href="#xpath_helper.filter.ValidExpressionFilter.or_operator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds one or more filter expression to the current one with the OR logical operator.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>filters (list[Filter]): List of filters that will be added with the OR logical operator</p>
+</dd>
+<dt>Returns:</dt><dd><p>ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="emptyfilter">
+<h3>EmptyFilter<a class="headerlink" href="#emptyfilter" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="xpath_helper.filter.EmptyFilter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xpath_helper.filter.</span></span><span class="sig-name descname"><span class="pre">EmptyFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">currentPath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#xpath_helper.filter.EmptyFilter" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.EmptyFilter.attribute_contains">
+<span class="sig-name descname"><span class="pre">attribute_contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a></span></span><a class="headerlink" href="#xpath_helper.filter.EmptyFilter.attribute_contains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with the attribute &lt;code&gt;attribute&lt;/code&gt; containing the value &lt;code&gt;&lt;value&lt;/code&gt;.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>attribute (str): attribute name
+value (str): attribute value</p>
+</dd>
+<dt>Returns:</dt><dd><p>ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.EmptyFilter.attribute_equals">
+<span class="sig-name descname"><span class="pre">attribute_equals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a></span></span><a class="headerlink" href="#xpath_helper.filter.EmptyFilter.attribute_equals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with the attribute &lt;code&gt;attribute&lt;/code&gt;, whose value equals &lt;code&gt;&lt;value&lt;/code&gt;.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>attribute (str): attribute name
+value (str | int | float): attribute value</p>
+</dd>
+<dt>Returns:</dt><dd><p>ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.EmptyFilter.attribute_greater_than">
+<span class="sig-name descname"><span class="pre">attribute_greater_than</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a></span></span><a class="headerlink" href="#xpath_helper.filter.EmptyFilter.attribute_greater_than" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with the attribute &lt;code&gt;attribute&lt;/code&gt;, whose value is greater than &lt;code&gt;&lt;value&lt;/code&gt;.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>attribute (str): attribute name
+value (int | float): attribute value</p>
+</dd>
+<dt>Returns:</dt><dd><p>ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.EmptyFilter.attribute_greater_than_or_equal_to">
+<span class="sig-name descname"><span class="pre">attribute_greater_than_or_equal_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a></span></span><a class="headerlink" href="#xpath_helper.filter.EmptyFilter.attribute_greater_than_or_equal_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with the attribute &lt;code&gt;attribute&lt;/code&gt;, whose value is greater than or equal to &lt;code&gt;&lt;value&lt;/code&gt;.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>attribute (str): attribute name
+value (int | float): attribute value</p>
+</dd>
+<dt>Returns:</dt><dd><p>ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.EmptyFilter.attribute_less_than">
+<span class="sig-name descname"><span class="pre">attribute_less_than</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a></span></span><a class="headerlink" href="#xpath_helper.filter.EmptyFilter.attribute_less_than" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with the attribute &lt;code&gt;attribute&lt;/code&gt;, whose value is less than &lt;code&gt;&lt;value&lt;code&gt;.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>attribute (str): attribute name
+value (int | float): attribute value</p>
+</dd>
+<dt>Returns:</dt><dd><p>ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.EmptyFilter.attribute_less_than_or_equal_to">
+<span class="sig-name descname"><span class="pre">attribute_less_than_or_equal_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a></span></span><a class="headerlink" href="#xpath_helper.filter.EmptyFilter.attribute_less_than_or_equal_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with the attribute &lt;code&gt;attribute&lt;/code&gt;, whose value is less than or equal to &lt;code&gt;&lt;value&lt;/code&gt;.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>attribute (str): attribute name
+value (int | float): attribute value</p>
+</dd>
+<dt>Returns:</dt><dd><p>ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.EmptyFilter.attribute_not_equals">
+<span class="sig-name descname"><span class="pre">attribute_not_equals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a></span></span><a class="headerlink" href="#xpath_helper.filter.EmptyFilter.attribute_not_equals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with the attribute &lt;code&gt;attribute&lt;/code&gt;, whose value doesn’t equal &lt;code&gt;&lt;value&lt;/code&gt;.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>attribute (str): attribute name
+value (str | int | float): attribute value</p>
+</dd>
+<dt>Returns:</dt><dd><p>ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.EmptyFilter.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#xpath_helper.filter.EmptyFilter.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the node element who is positioned at the &lt;code&gt;index&lt;/code&gt; position in its parent children list.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>index (int): index of the element in the list</p>
+</dd>
+<dt>Returns:</dt><dd><p>ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.EmptyFilter.get_first">
+<span class="sig-name descname"><span class="pre">get_first</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#xpath_helper.filter.EmptyFilter.get_first" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the node element who is positioned first in its parent children list.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.EmptyFilter.get_last">
+<span class="sig-name descname"><span class="pre">get_last</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#xpath_helper.filter.EmptyFilter.get_last" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the node element who is positioned last in its parent children list.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.EmptyFilter.has_attribute">
+<span class="sig-name descname"><span class="pre">has_attribute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a></span></span><a class="headerlink" href="#xpath_helper.filter.EmptyFilter.has_attribute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes that have the attribute &lt;code&gt;attribute&lt;/code&gt;.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>attribute (str): attribute name</p>
+</dd>
+<dt>Returns:</dt><dd><p>ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.EmptyFilter.not_operator">
+<span class="sig-name descname"><span class="pre">not_operator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#xpath_helper.filter.EmptyFilter.not_operator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverses the filter &lt;code&gt;filter&lt;/code&gt;. Returns true when the filter returns false and true when the filter returns false.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>filter ([type]): [description]</p>
+</dd>
+<dt>Returns:</dt><dd><p>ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.EmptyFilter.value_contains">
+<span class="sig-name descname"><span class="pre">value_contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a></span></span><a class="headerlink" href="#xpath_helper.filter.EmptyFilter.value_contains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes containing the value &lt;code&gt;&lt;value&lt;/code&gt;.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>value (str): value</p>
+</dd>
+<dt>Returns:</dt><dd><p>ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.EmptyFilter.value_equals">
+<span class="sig-name descname"><span class="pre">value_equals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a></span></span><a class="headerlink" href="#xpath_helper.filter.EmptyFilter.value_equals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes whose value equals &lt;code&gt;&lt;value&lt;/code&gt;.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>value (str | int | float): value</p>
+</dd>
+<dt>Returns:</dt><dd><p>ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.EmptyFilter.value_greater_than">
+<span class="sig-name descname"><span class="pre">value_greater_than</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a></span></span><a class="headerlink" href="#xpath_helper.filter.EmptyFilter.value_greater_than" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes  whose value is greater than &lt;code&gt;&lt;value&lt;/code&gt;.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>value (int | float): value</p>
+</dd>
+<dt>Returns:</dt><dd><p>ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.EmptyFilter.value_greater_than_or_equal_to">
+<span class="sig-name descname"><span class="pre">value_greater_than_or_equal_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a></span></span><a class="headerlink" href="#xpath_helper.filter.EmptyFilter.value_greater_than_or_equal_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes whose value is greater than or equal to &lt;code&gt;&lt;value&lt;/code&gt;.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>value (int | float): value</p>
+</dd>
+<dt>Returns:</dt><dd><p>ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.EmptyFilter.value_less_than">
+<span class="sig-name descname"><span class="pre">value_less_than</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a></span></span><a class="headerlink" href="#xpath_helper.filter.EmptyFilter.value_less_than" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes whose value is less than &lt;code&gt;&lt;value&lt;/code&gt;.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>value (int | float): value</p>
+</dd>
+<dt>Returns:</dt><dd><p>ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.EmptyFilter.value_less_than_or_equal_to">
+<span class="sig-name descname"><span class="pre">value_less_than_or_equal_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a></span></span><a class="headerlink" href="#xpath_helper.filter.EmptyFilter.value_less_than_or_equal_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes whose value is less than or equal to &lt;code&gt;&lt;value&lt;/code&gt;.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>value (int | float): value</p>
+</dd>
+<dt>Returns:</dt><dd><p>ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xpath_helper.filter.EmptyFilter.value_not_equals">
+<span class="sig-name descname"><span class="pre">value_not_equals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#xpath_helper.filter.ValidExpressionFilter" title="xpath_helper.filter.ValidExpressionFilter"><span class="pre">xpath_helper.filter.ValidExpressionFilter</span></a></span></span><a class="headerlink" href="#xpath_helper.filter.EmptyFilter.value_not_equals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with whose value doesn’t equal &lt;code&gt;&lt;value&lt;/code&gt;.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>value (str | int | float): value</p>
+</dd>
+<dt>Returns:</dt><dd><p>ValidExpressionFilter: a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2021, Johann Rebecchi.
+      
+      |
+      <a href="../_sources/python/api.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

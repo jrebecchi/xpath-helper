@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Installation &#8212; xpath-helper  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python API" href="api.html" />
+    <link rel="prev" title="JavaScript API" href="../javascript/api.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+
+<p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/logo.svg" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=jrebecchi&repo=xpath-helper&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p><h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../xpath-axes.html">XPath axes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../browser-console.html">Try it in your browser</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">JavaScript</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/index.html#quick-start">Quick-start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/index.html#chaining">Chaining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/index.html#filters">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/index.html#svg">SVG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript/api.html">JavaScript API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#quick-start">Quick-start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#chaining">Chaining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#filters">Filters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#attributes">Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#values">Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#position">Position</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conditional-expression">Conditional expression</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#svg">SVG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../javascript/api.html" title="previous chapter">JavaScript API</a></li>
+      <li>Next: <a href="api.html" title="next chapter">Python API</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <p align="center">
+  <img src="https://raw.githubusercontent.com/jrebecchi/xpath-helper/main/docs/_static/logo-with-text.png" height="100px" alt="xpath-helper"/>
+</p>
+<p align="center">
+  <i>Build complicated XPath queries without the hassle - JavaScript & Python</i><br/><br/>
+  <a href="https://jrebecchi.github.io/xpath-helper/python/index.html">
+    <img src="https://img.shields.io/badge/docs-master-blue.svg?style=flat">
+  </a>
+  <a href="https://codecov.io/gh/jrebecchi/xpath-helper">
+    <img src="https://codecov.io/gh/jrebecchi/xpath-helper/branch/main/graph/badge.svg?token=0TJOZ64X10"/>
+  </a>
+  <a href="https://github.com/jrebecchi/xpath-helper/actions/workflows/python-ci.yml">
+    <img src="https://github.com/jrebecchi/xpath-helper/actions/workflows/python-ci.yml/badge.svg">
+  </a>
+</p>
+<p>A chainable API to build complex XPath queries along the different <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/xpath-axes.html">XPath axes</a>. Available both in Python and JavaScript.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://jrebecchi.github.io/xpath-helper/python/index.html"><strong>Documentation</strong></a> — Consult the quick start guide and the online documentation.</p></li>
+</ul>
+<section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">xpath-helper</span></code> requires python 3.5+ and can be installed using pip:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install xpath-helper
+</pre></div>
+</div>
+</section>
+<section id="quick-start">
+<h1>Quick-start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
+<p>You can chain method call on the different <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/xpath-axes.html">XPath axes</a> and easily add filters.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">xpath_helper</span> <span class="kn">import</span> <span class="n">xh</span><span class="p">,</span> <span class="nb">filter</span>
+
+<span class="c1"># Finds a paragraph &lt;p&gt; containing a CSS class &#39;very-nice-p&#39;</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">xh</span><span class="o">.</span><span class="n">get_element_by_tag</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">attribute_contains</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;very-nice-p&#39;</span><span class="p">))</span>
+<span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="c1"># &quot;//p[contains(@class, &#39;very-nice-p&#39;)]&quot;</span>
+
+<span class="c1"># Finds the paragraph that is following the above one</span>
+<span class="n">next_p</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get_following_sibling_by_tag</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+<span class="nb">str</span><span class="p">(</span><span class="n">next_p</span><span class="p">)</span> <span class="c1"># &quot;//p[contains(@class, &#39;very-nice-p&#39;)]/following-sibling::p&quot;</span>
+
+<span class="c1"># Finds the modal containing a button with text &quot;Register&quot; </span>
+<span class="n">modal</span> <span class="o">=</span> <span class="n">xh</span><span class="o">.</span><span class="n">get_element</span><span class="p">(</span><span class="nb">filter</span><span class="o">.</span><span class="n">value_equals</span><span class="p">(</span><span class="s1">&#39;Register&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">get_ancestor</span><span class="p">(</span><span class="nb">filter</span><span class="o">.</span><span class="n">attribute_equals</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;modal&#39;</span><span class="p">))</span>
+<span class="nb">str</span><span class="p">(</span><span class="n">modal</span><span class="p">)</span> <span class="c1"># &quot;//*[text() = &#39;Register&#39;]/ancestor::*[@class=&#39;modal&#39;]&quot;</span>
+
+<span class="c1"># An elaborated filter with a boolean expression</span>
+<span class="n">li</span> <span class="o">=</span> <span class="n">xh</span><span class="o">.</span><span class="n">get_element_by_tag</span><span class="p">(</span><span class="s2">&quot;li&quot;</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">and_operator</span><span class="p">(</span>
+  <span class="nb">filter</span><span class="o">.</span><span class="n">or_operator</span><span class="p">(</span>
+    <span class="nb">filter</span><span class="o">.</span><span class="n">value_contains</span><span class="p">(</span><span class="s2">&quot;JavaScript&quot;</span><span class="p">),</span> <span class="nb">filter</span><span class="o">.</span><span class="n">value_contains</span><span class="p">(</span><span class="s2">&quot;Python&quot;</span><span class="p">)</span>
+  <span class="p">),</span>
+  <span class="nb">filter</span><span class="o">.</span><span class="n">has_attribute</span><span class="p">(</span><span class="s2">&quot;data-description&quot;</span><span class="p">)</span>
+<span class="p">))</span>
+<span class="nb">str</span><span class="p">(</span><span class="n">li</span><span class="p">)</span> <span class="c1"># &quot;//li[((text()[contains(., &#39;JavaScript&#39;)] or text()[contains(., &#39;Python&#39;)]) and @data-description)]&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="chaining">
+<h1>Chaining<a class="headerlink" href="#chaining" title="Permalink to this headline">¶</a></h1>
+<p>XPath natively lets your build complex queries chaining them along its different axes. Read this <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/xpath-axes.html">article to understand the different XPath axes</a>.</p>
+<p>This library let you do exactly the same by chaining method calls along the different axes: <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/python/api.html#xpath_helper.XPathHelper.get_descendant"><code class="docutils literal notranslate"><span class="pre">descendant</span></code></a> aliased as <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/python/api.html#xpath_helper.XPathHelper.get_element"><code class="docutils literal notranslate"><span class="pre">element</span></code></a>, <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/python/api.html#xpath_helper.XPathHelper.get_descendant_or_self"><code class="docutils literal notranslate"><span class="pre">descendant-or-self</span></code></a>, <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/python/api.html#xpath_helper.XPathHelper.get_child"><code class="docutils literal notranslate"><span class="pre">child</span></code></a>, <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/python/api.html#xpath_helper.XPathHelper.get_parent"><code class="docutils literal notranslate"><span class="pre">parent</span></code></a>, <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/python/api.html#xpath_helper.XPathHelper.get_ancestor"><code class="docutils literal notranslate"><span class="pre">ancestor</span></code></a>, <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/python/api.html#xpath_helper.XPathHelper.get_ancestor_or_self"><code class="docutils literal notranslate"><span class="pre">ancestor-or-self</span></code></a>, <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/python/api.html#xpath_helper.XPathHelper.get_preceding"><code class="docutils literal notranslate"><span class="pre">preceding</span></code></a>, <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/python/api.html#xpath_helper.XPathHelper.get_preceding_sibling"><code class="docutils literal notranslate"><span class="pre">preceding-sibling</span></code></a>, <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/python/api.html#xpath_helper.XPathHelper.get_following"><code class="docutils literal notranslate"><span class="pre">following</span></code></a>, <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/python/api.html#xpath_helper.XPathHelper.get_following_sibling"><code class="docutils literal notranslate"><span class="pre">following-sibling</span></code></a>.</p>
+<p>For each axis, xpath-helper provides 3 methods, like for instance <code class="docutils literal notranslate"><span class="pre">get_element(filter)</span></code>, <code class="docutils literal notranslate"><span class="pre">get_element_by_tag(tag,</span> <span class="pre">filter)</span></code>, <code class="docutils literal notranslate"><span class="pre">get_element_by_svg_tag(svgTag,</span> <span class="pre">filter)</span></code> for the <code class="docutils literal notranslate"><span class="pre">descendant</span></code>  axis aliased as <code class="docutils literal notranslate"><span class="pre">element</span></code>.</p>
+<p><em><strong>The complete Python API can be found <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/python/api.html#module-xpath_helper">here</a>.</strong></em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">xpath_helper</span> <span class="kn">import</span> <span class="n">xh</span><span class="p">,</span> <span class="nb">filter</span>
+
+<span class="c1"># Finds an element into the page, moves to its parent, </span>
+<span class="c1"># finds a brother node of the parent positioned after it.</span>
+<span class="n">el</span> <span class="o">=</span> <span class="n">xh</span><span class="o">.</span><span class="n">get_element_by_tag</span><span class="p">(</span>
+    <span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">attribute_contains</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;very-nice-p&#39;</span><span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">get_parent</span><span class="p">()</span><span class="o">.</span><span class="n">get_following_sibling_by_tag</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+<span class="nb">str</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="c1"># &quot;//p[contains(@class, &#39;very-nice-p&#39;)]/../following-sibling::p&quot;</span>
+
+<span class="c1"># Finds an element into the page, moves to its ancestor </span>
+<span class="c1"># containing &#39;very-nice-p&#39; ass CSS class, </span>
+<span class="c1"># finds a brother node of the ancestor positioned before it.</span>
+<span class="n">el</span> <span class="o">=</span> <span class="n">xh</span><span class="o">.</span><span class="n">get_element_by_tag</span><span class="p">(</span>
+    <span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">attribute_contains</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;very-nice-p&#39;</span><span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">get_ancestor_by_tag</span><span class="p">(</span>
+  <span class="s1">&#39;div&#39;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">get_preceding_sibling</span><span class="p">(</span><span class="nb">filter</span><span class="o">.</span><span class="n">has_attribute</span><span class="p">(</span><span class="s1">&#39;data-foo-bar&#39;</span><span class="p">))</span>
+<span class="nb">str</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="c1"># &quot;//p[contains(@class, &#39;very-nice-p&#39;)]/../following-sibling::p//p[contains(@class, &#39;very-nice-p&#39;)]/ancestor::div/preceding-sibling::*[@data-foo-bar]&quot;</span>
+</pre></div>
+</div>
+<p>It is also possible to keep a relative path in a variable and re-use it after.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">xpath_helper</span> <span class="kn">import</span> <span class="n">xh</span><span class="p">,</span> <span class="nb">filter</span>
+<span class="c1"># Stores the path of a modal window</span>
+<span class="n">modal</span> <span class="o">=</span> <span class="n">xh</span><span class="o">.</span><span class="n">get_element</span><span class="p">(</span><span class="nb">filter</span><span class="o">.</span><span class="n">attribute_contains</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;modal&#39;</span><span class="p">))</span>
+<span class="c1"># Finds the Submit button inside the modal window</span>
+<span class="n">submit_button</span> <span class="o">=</span> <span class="n">modal</span><span class="o">.</span><span class="n">get_element_by_tag</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">value_equals</span><span class="p">(</span><span class="s1">&#39;Submit&#39;</span><span class="p">))</span>
+<span class="c1"># Finds the Cancel button inside the modal window</span>
+<span class="n">cancel_button</span> <span class="o">=</span> <span class="n">modal</span><span class="o">.</span><span class="n">get_element_by_tag</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">value_equals</span><span class="p">(</span><span class="s1">&#39;Cancel&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="filters">
+<h1>Filters<a class="headerlink" href="#filters" title="Permalink to this headline">¶</a></h1>
+<p>To select elements more precisely you can add filters: <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/python/api.html#xpath_helper.filter.EmptyFilter.attribute_contains">on attributes</a>, on <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/python/api.html#xpath_helper.filter.EmptyFilter.value_contains">element values</a>, <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/python/api.html#xpath_helper.filter.EmptyFilter.get">element position</a>, and combining them with conditional operators: <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/python/api.html#xpath_helper.filter.ValidExpressionFilter.and_operator"><code class="docutils literal notranslate"><span class="pre">and_operator(...)</span></code></a>, <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/python/api.html#xpath_helper.filter.ValidExpressionFilter.or_operator"><code class="docutils literal notranslate"><span class="pre">or_operator(...)</span></code></a>, and <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/python/api.html#xpath_helper.filter.EmptyFilter.not_operator"><code class="docutils literal notranslate"><span class="pre">not_operator(...)</span></code></a>.</p>
+<p><em><strong>The complete filter API can be found <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/python/api.html#filter-filter">here</a>.</strong></em></p>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
+<p>Find below a few examples of filters on attributes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">xpath_helper</span> <span class="kn">import</span> <span class="n">xh</span><span class="p">,</span> <span class="nb">filter</span>
+<span class="c1"># Looks for an element that has a class attribute equals to &#39;foo&#39;</span>
+<span class="n">el</span> <span class="o">=</span> <span class="n">xh</span><span class="o">.</span><span class="n">get_element</span><span class="p">(</span><span class="nb">filter</span><span class="o">.</span><span class="n">attribute_equals</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">))</span>
+<span class="c1"># Looks for an element that has a class attribute containing &#39;bar&#39;</span>
+<span class="n">el</span> <span class="o">=</span> <span class="n">xh</span><span class="o">.</span><span class="n">get_element</span><span class="p">(</span><span class="nb">filter</span><span class="o">.</span><span class="n">attribute_contains</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">))</span>
+<span class="c1"># Looks for an element that has the attribute &#39;alt&#39;</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">xh</span><span class="o">.</span><span class="n">get_element_by_tag</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">has_attribute</span><span class="p">(</span><span class="s1">&#39;alt&#39;</span><span class="p">))</span>
+<span class="c1"># Looks for all the li element with a data-attribute superior to 3</span>
+<span class="n">li</span> <span class="o">=</span> <span class="n">xh</span><span class="o">.</span><span class="n">get_element_by_tag</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">attribute_greater_than</span><span class="p">(</span><span class="s1">&#39;data-index&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="values">
+<h2>Values<a class="headerlink" href="#values" title="Permalink to this headline">¶</a></h2>
+<p>Find below a few examples of filters on node values.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">xpath_helper</span> <span class="kn">import</span> <span class="n">xh</span><span class="p">,</span> <span class="nb">filter</span>
+
+<span class="c1"># Looks for a button whose text is &#39;Submit&#39;</span>
+<span class="n">button</span> <span class="o">=</span> <span class="n">xh</span><span class="o">.</span><span class="n">get_element_by_tag</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">value_equals</span><span class="p">(</span><span class="s1">&#39;Submit&#39;</span><span class="p">))</span>
+<span class="c1"># Looks for an element whose text contains &#39;foobar&#39;</span>
+<span class="n">el</span> <span class="o">=</span> <span class="n">xh</span><span class="o">.</span><span class="n">get_element</span><span class="p">(</span><span class="nb">filter</span><span class="o">.</span><span class="n">value_contains</span><span class="p">(</span><span class="s1">&#39;foobar&#39;</span><span class="p">))</span>
+<span class="c1"># Looks for all the li element with a value superior to 3</span>
+<span class="n">li</span> <span class="o">=</span> <span class="n">xh</span><span class="o">.</span><span class="n">get_element_by_tag</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">value_greater_than</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="position">
+<h2>Position<a class="headerlink" href="#position" title="Permalink to this headline">¶</a></h2>
+<p>Find below a few examples of filters on node position.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">xpath_helper</span> <span class="kn">import</span> <span class="n">xh</span><span class="p">,</span> <span class="nb">filter</span>
+
+<span class="c1"># Looks for the first li element in ul list</span>
+<span class="n">first</span> <span class="o">=</span> <span class="n">xh</span><span class="o">.</span><span class="n">get_element_by_tag</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_element_by_tag</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">get_first</span><span class="p">())</span>
+<span class="c1"># Looks for the first li element in ul list</span>
+<span class="n">last</span> <span class="o">=</span> <span class="n">xh</span><span class="o">.</span><span class="n">get_element_by_tag</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_element_by_tag</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">get_last</span><span class="p">())</span>
+<span class="c1"># Looks for the third li element in ul list</span>
+<span class="n">third</span> <span class="o">=</span> <span class="n">xh</span><span class="o">.</span><span class="n">get_element_by_tag</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_element_by_tag</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="conditional-expression">
+<h2>Conditional expression<a class="headerlink" href="#conditional-expression" title="Permalink to this headline">¶</a></h2>
+<p>Find below a few examples of filters with conditional expression.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">xpath_helper</span> <span class="kn">import</span> <span class="n">xh</span><span class="p">,</span> <span class="nb">filter</span>
+
+<span class="c1"># Finds an element that has a CSS class &#39;a-link&#39; and contains an attribute href</span>
+<span class="n">el</span> <span class="o">=</span> <span class="n">xh</span><span class="o">.</span><span class="n">get_element</span><span class="p">(</span>
+  <span class="nb">filter</span><span class="o">.</span><span class="n">attribute_contains</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;a-link&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">and_operator</span><span class="p">(</span>
+    <span class="nb">filter</span><span class="o">.</span><span class="n">has_attribute</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">)</span>
+  <span class="p">)</span>
+<span class="p">)</span>
+<span class="nb">str</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="c1"># &quot;//*[contains(@class, &#39;a-link&#39;) and (@href)]&quot;</span>
+
+<span class="c1"># Finds an element that has a CSS class &#39;foo&#39; or a CSS class &#39;bar&#39;</span>
+<span class="n">el</span> <span class="o">=</span> <span class="n">xh</span><span class="o">.</span><span class="n">get_element</span><span class="p">(</span>
+  <span class="nb">filter</span><span class="o">.</span><span class="n">attribute_contains</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">or_operator</span><span class="p">(</span>
+    <span class="nb">filter</span><span class="o">.</span><span class="n">attribute_contains</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+  <span class="p">)</span>
+<span class="p">)</span>
+<span class="nb">str</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="c1"># &quot;//*[contains(@class, &#39;foo&#39;) or (contains(@class, &#39;bar&#39;))]&quot;</span>
+
+<span class="c1"># Builds a complex logical expression combining and &amp; or</span>
+<span class="n">el</span> <span class="o">=</span> <span class="n">xh</span><span class="o">.</span><span class="n">get_element</span><span class="p">(</span>
+  <span class="nb">filter</span><span class="o">.</span><span class="n">and_operator</span><span class="p">(</span>
+    <span class="nb">filter</span><span class="o">.</span><span class="n">or_operator</span><span class="p">(</span>
+      <span class="nb">filter</span><span class="o">.</span><span class="n">value_contains</span><span class="p">(</span><span class="s2">&quot;JavaScript&quot;</span><span class="p">),</span>
+      <span class="nb">filter</span><span class="o">.</span><span class="n">value_contains</span><span class="p">(</span><span class="s2">&quot;Pyhton&quot;</span><span class="p">)</span>
+    <span class="p">),</span>
+      <span class="nb">filter</span><span class="o">.</span><span class="n">value_contains</span><span class="p">(</span><span class="s2">&quot;package&quot;</span><span class="p">)</span>
+  <span class="p">)</span>
+<span class="p">)</span>
+<span class="nb">str</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="c1"># &quot;//*[((text()[contains(., &#39;JavaScript&#39;)] or text()[contains(., &#39;Pyhton&#39;)]) and text()[contains(., &#39;package&#39;)])]&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="svg">
+<h1>SVG<a class="headerlink" href="#svg" title="Permalink to this headline">¶</a></h1>
+<p>Navigating into SVG elements from an HTML file can be tricky with XPath, that is why a subset of functions have been added. They are all ending with <code class="docutils literal notranslate"><span class="pre">...by_svg_tag</span></code> and can be used as below.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">xpath_helper</span> <span class="kn">import</span> <span class="n">xh</span><span class="p">,</span> <span class="nb">filter</span>
+
+<span class="c1"># Stores the path of a modal window</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">xh</span><span class="o">.</span><span class="n">get_element_by_svg_tag</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">attribute_equals</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;M 310 130 L 90 130 L 90 183.63&#39;</span><span class="p">))</span>
+<span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="c1"># &quot;//*[local-name() = &#39;path&#39;][@d=&#39;M 310 130 L 90 130 L 90 183.63&#39;]&quot;</span>
+
+<span class="c1"># Finds the Submit button inside the modal window</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">xh</span><span class="o">.</span><span class="n">get_element_by_svg_tag</span><span class="p">(</span>
+  <span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">attribute_equals</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;id-path&#39;</span><span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">get_ancestor_by_svg_tag</span><span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="nb">str</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="c1"># &quot;//*[local-name() = &#39;path&#39;][@id=&#39;id-path&#39;]/ancestor::*[local-name() = &#39;g&#39;]&quot;</span>
+</pre></div>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2021, Johann Rebecchi.
+      
+      |
+      <a href="../_sources/python/index.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,1147 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>JavaScript API &#8212; xpath-helper  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Installation" href="../python/index.html" />
+    <link rel="prev" title="Installation" href="index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+
+<p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/logo.svg" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=jrebecchi&repo=xpath-helper&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p><h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../xpath-axes.html">XPath axes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../browser-console.html">Try it in your browser</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">JavaScript</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#quick-start">Quick-start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#chaining">Chaining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#filters">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#svg">SVG</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">JavaScript API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#xpathhelper-xh">XPathHelper: (xh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#filter-filter">Filter: (filter)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#validexpressionfilter">ValidExpressionFilter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#emptyfilter">EmptyFilter</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html#quick-start">Quick-start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html#chaining">Chaining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html#filters">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html#svg">SVG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/api.html">Python API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Installation</a></li>
+      <li>Next: <a href="../python/index.html" title="next chapter">Installation</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="javascript-api">
+<h1>JavaScript API<a class="headerlink" href="#javascript-api" title="Permalink to this headline">¶</a></h1>
+<section id="xpathhelper-xh">
+<h2>XPathHelper: (xh)<a class="headerlink" href="#xpathhelper-xh" title="Permalink to this headline">¶</a></h2>
+<dl class="js class">
+<dt class="sig sig-object js" id="XPathHelper">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="n"><span class="pre">XPathHelper</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">currentPath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>exported from</em> <code class="xref js js-mod docutils literal notranslate"><span class="pre">xpath-helper</span></code></p>
+<p>XPathHelper provides a simple and chainnable API to build complicated XPath queries without the hassle.
+After building your XPath query, call the method <code class="docutils literal notranslate"><span class="pre">toString()</span></code> to get the corresponding XPath string.</p>
+<p>Creates an instance of XPathHelper.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>currentPath</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string[]()</span></code></span>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.empty">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">empty</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Empties the current path.</p>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getAncestor">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getAncestor</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getAncestor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>,
+that are ancestors, or the parent, and the parent’s parent, and so on, to the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – filter object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getAncestorBySVGTag">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getAncestorBySVGTag</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svgTag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getAncestorBySVGTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the SVG nodes with SVG tag <code class="docutils literal notranslate"><span class="pre">svgTag</span></code> filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>,
+that are ancestors, or the parent, and the parent’s parent, and so on, to the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>svgTag</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – SVG tag name</p></li>
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getAncestorByTag">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getAncestorByTag</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getAncestorByTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with tag <code class="docutils literal notranslate"><span class="pre">tag</span></code> filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>,
+that are ancestors, or the parent, and the parent’s parent, and so on, to the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – tag name</p></li>
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getAncestorOrSelf">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getAncestorOrSelf</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getAncestorOrSelf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>,
+that are ancestors, or the parent, and the parent’s parent, and so on, including the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – filter object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getAncestorOrSelfBySVGTag">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getAncestorOrSelfBySVGTag</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svgTag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getAncestorOrSelfBySVGTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the SVG nodes with SVG tag <code class="docutils literal notranslate"><span class="pre">svgTag</span></code> filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>,
+that are ancestors, or the parent, and the parent’s parent, and so on, including the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>svgTag</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – SVG tag name</p></li>
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getAncestorOrSelfByTag">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getAncestorOrSelfByTag</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getAncestorOrSelfByTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with tag <code class="docutils literal notranslate"><span class="pre">tag</span></code> filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>,
+that are ancestors, or the parent, and the parent’s parent, and so on, including the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – tag name</p></li>
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getChild">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getChild</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getChild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code> immediately below the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – filter object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getChildBySVGTag">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getChildBySVGTag</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svgTag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getChildBySVGTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the SVG nodes with SVG tag <code class="docutils literal notranslate"><span class="pre">svgTag</span></code> filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>, immediately below the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>svgTag</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – SVG tag name</p></li>
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getChildByTag">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getChildByTag</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getChildByTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with tag <code class="docutils literal notranslate"><span class="pre">tag</span></code> filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>, immediately below the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – tag name</p></li>
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getDescendant">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getDescendant</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getDescendant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>, below the node in reference no matter the depth.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – filter object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getDescendantBySVGTag">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getDescendantBySVGTag</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svgTag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getDescendantBySVGTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the SVG nodes with SVG tag <code class="docutils literal notranslate"><span class="pre">svgTag</span></code> filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>, below the node in reference no matter the depth.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>svgTag</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – SVG tag name</p></li>
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getDescendantByTag">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getDescendantByTag</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getDescendantByTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with tag <code class="docutils literal notranslate"><span class="pre">tag</span></code> filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>, below the node in reference no matter the depth.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – tag name</p></li>
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getDescendantOrSelf">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getDescendantOrSelf</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getDescendantOrSelf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>, below the current node, but also returns the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – filter object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getDescendantOrSelfBySVGTag">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getDescendantOrSelfBySVGTag</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svgTag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getDescendantOrSelfBySVGTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the SVG nodes with SVG tag <code class="docutils literal notranslate"><span class="pre">svgTag</span></code> filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>, below the current node, but also returns the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>svgTag</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – SVG tag name</p></li>
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getDescendantOrSelfByTag">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getDescendantOrSelfByTag</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getDescendantOrSelfByTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with tag <code class="docutils literal notranslate"><span class="pre">tag</span></code> filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>, below the current node, but also returns the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – tag name</p></li>
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getElement">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getElement</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getElement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>, below the node in reference no matter the depth.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – filter object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getElementBySVGTag">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getElementBySVGTag</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svgTag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getElementBySVGTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the SVG nodes with SVG tag <code class="docutils literal notranslate"><span class="pre">svgTag</span></code> filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>, below the node in reference no matter the depth.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>svgTag</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – SVG tag name</p></li>
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getElementByTag">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getElementByTag</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getElementByTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with tag <code class="docutils literal notranslate"><span class="pre">tag</span></code> filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>, below the node in reference no matter the depth.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – tag name</p></li>
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getElementByXpath">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getElementByXpath</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xpath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getElementByXpath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects an element with an XPath selector <code class="docutils literal notranslate"><span class="pre">xpath</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xpath</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – XPath expression</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getFollowing">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getFollowing</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getFollowing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>, that are located on parent-level
+and also after (following) its parent of the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – filter object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getFollowingBySVGTag">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getFollowingBySVGTag</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svgTag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getFollowingBySVGTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the SVG nodes with SVG tag <code class="docutils literal notranslate"><span class="pre">svgTag</span></code> filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>,
+that are located on parent-level and also after (following) its parent of the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>svgTag</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – </p></li>
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – filter object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getFollowingByTag">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getFollowingByTag</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getFollowingByTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with tag <code class="docutils literal notranslate"><span class="pre">tag</span></code> filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>,
+that are located on parent-level and also after (following) its parent of the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – tag name</p></li>
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getFollowingSibling">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getFollowingSibling</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getFollowingSibling" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>,
+that are located on the same level who are located after (following) the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – filter object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getFollowingSiblingBySVGTag">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getFollowingSiblingBySVGTag</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svgTag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getFollowingSiblingBySVGTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the SVG nodes with SVG tag <code class="docutils literal notranslate"><span class="pre">svgTag</span></code> filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>,
+that are located on the same level who are located after (following) the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>svgTag</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – SVG tag name</p></li>
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getFollowingSiblingByTag">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getFollowingSiblingByTag</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getFollowingSiblingByTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with tag <code class="docutils literal notranslate"><span class="pre">tag</span></code> filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>,
+that are located on the same level who are located after (following) the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – tag name</p></li>
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getParent">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getParent</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getParent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the parent of the current element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getPreceding">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getPreceding</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getPreceding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>, that are located on parent-level
+and also before (preceding) its parent of the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – filter object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getPrecedingBySVGTag">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getPrecedingBySVGTag</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svgTag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getPrecedingBySVGTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the SVG nodes with SVG tag <code class="docutils literal notranslate"><span class="pre">svgTag</span></code> filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>,
+that are located on parent-level and also before (preceding) its parent of the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>svgTag</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – SVG tag name</p></li>
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getPrecedingByTag">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getPrecedingByTag</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getPrecedingByTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with tag <code class="docutils literal notranslate"><span class="pre">tag</span></code> filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>,
+that are located on parent-level and also before (preceding) its parent of the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – tag name</p></li>
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getPrecedingSibling">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getPrecedingSibling</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getPrecedingSibling" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>, that are located on the same level
+who are also located before (preceding) the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – filter object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getPrecedingSiblingBySVGTag">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getPrecedingSiblingBySVGTag</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svgTag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getPrecedingSiblingBySVGTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the SVG nodes with SVG tag <code class="docutils literal notranslate"><span class="pre">svgTag</span></code> filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>,
+that are located on the same level who are also located before (preceding) the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>svgTag</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – SVG tag name</p></li>
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.getPrecedingSiblingByTag">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getPrecedingSiblingByTag</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.getPrecedingSiblingByTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with tag <code class="docutils literal notranslate"><span class="pre">tag</span></code> filtered by <code class="docutils literal notranslate"><span class="pre">filter</span></code>,
+that are located on the same level who are also located before (preceding) the node in reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – tag name</p></li>
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>XPathHelper</strong> – returns a new instance of XPathHelper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="XPathHelper.toString">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">XPathHelper</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">toString</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#XPathHelper.toString" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the corresponding Xpath query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>string</strong> – The corresponding XPath query</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="filter-filter">
+<h2>Filter: (filter)<a class="headerlink" href="#filter-filter" title="Permalink to this headline">¶</a></h2>
+<section id="validexpressionfilter">
+<h3>ValidExpressionFilter<a class="headerlink" href="#validexpressionfilter" title="Permalink to this headline">¶</a></h3>
+<dl class="js class">
+<dt class="sig sig-object js" id="ValidExpressionFilter">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="n"><span class="pre">ValidExpressionFilter</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">currentPath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ValidExpressionFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>exported from</em> <code class="xref js js-mod docutils literal notranslate"><span class="pre">filter</span></code></p>
+<dl class="simple">
+<dt><strong>Implements:</strong></dt><dd><ul class="simple">
+<li><p><code class="xref js js-class docutils literal notranslate"><span class="pre">IFilter()</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p>XPath Filter containing a valid expression.</p>
+<p>Creates an instance of ValidExpressionFilter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>currentPath</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string[]()</span></code></span>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="js attribute">
+<dt class="sig sig-object js" id="ValidExpressionFilter.sb">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">ValidExpressionFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">sb</span></span></span><a class="headerlink" href="#ValidExpressionFilter.sb" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>type:</strong> string[]</p>
+<p>Array of string containing the different part of the filter expression.</p>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="ValidExpressionFilter.and">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">ValidExpressionFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">and</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ValidExpressionFilter.and" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds one or more filter expression to the current one with the AND logical operator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filters</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter[]()</span></code></span>) – List of filters that will be added with the AND logical operator</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ValidExpressionFilter</strong> – a new instance of ValidExpressionFilter with the newly formed expression</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="ValidExpressionFilter.empty">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">ValidExpressionFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">empty</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ValidExpressionFilter.empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Empties the current path.</p>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="ValidExpressionFilter.isEmpty">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">ValidExpressionFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">isEmpty</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ValidExpressionFilter.isEmpty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if filter is empty.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>boolean</strong> – true if filter is empty.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="ValidExpressionFilter.or">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">ValidExpressionFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">or</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ValidExpressionFilter.or" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds one or more filter expression to the current one with the OR logical operator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filters</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter[]()</span></code></span>) – List of filters that will be added with the OR logical operator</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ValidExpressionFilter</strong> – a new instance of ValidExpressionFilter with the newly formed expression</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="ValidExpressionFilter.toString">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">ValidExpressionFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">toString</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ValidExpressionFilter.toString" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the EmptyFilter as a valid XPath filter expression.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>string</strong> – a valid XPath filter expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="emptyfilter">
+<h3>EmptyFilter<a class="headerlink" href="#emptyfilter" title="Permalink to this headline">¶</a></h3>
+<dl class="js class">
+<dt class="sig sig-object js" id="EmptyFilter">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="n"><span class="pre">EmptyFilter</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">currentPath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EmptyFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>exported from</em> <code class="xref js js-mod docutils literal notranslate"><span class="pre">filter</span></code></p>
+<dl class="simple">
+<dt><strong>Extends:</strong></dt><dd><ul class="simple">
+<li><p><a class="reference internal" href="#ValidExpressionFilter" title="ValidExpressionFilter"><code class="xref js js-class docutils literal notranslate"><span class="pre">ValidExpressionFilter()</span></code></a></p></li>
+</ul>
+</dd>
+<dt><strong>Implements:</strong></dt><dd><ul class="simple">
+<li><p><code class="xref js js-class docutils literal notranslate"><span class="pre">IFilter()</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p>Empty XPath filter.</p>
+<p>Creates an instance of EmptyFilter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>currentPath</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string[]()</span></code></span>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="js function">
+<dt class="sig sig-object js" id="EmptyFilter.attributeContains">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">EmptyFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">attributeContains</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EmptyFilter.attributeContains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with the attribute <code class="docutils literal notranslate"><span class="pre">attribute</span></code> containing the value <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attribute</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – </p></li>
+<li><p><strong>value</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ValidExpressionFilter</strong> – a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="EmptyFilter.attributeEquals">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">EmptyFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">attributeEquals</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EmptyFilter.attributeEquals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with the attribute <code class="docutils literal notranslate"><span class="pre">attribute</span></code>, whose value equals <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attribute</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – attribute name</p></li>
+<li><p><strong>value</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string|number()</span></code></span>) – value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ValidExpressionFilter</strong> – a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="EmptyFilter.attributeGreaterThan">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">EmptyFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">attributeGreaterThan</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EmptyFilter.attributeGreaterThan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with the attribute <code class="docutils literal notranslate"><span class="pre">attribute</span></code>, whose value is greater than <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attribute</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – attribute name</p></li>
+<li><p><strong>value</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">number()</span></code></span>) – value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ValidExpressionFilter</strong> – a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="EmptyFilter.attributeGreaterThanOrEqualTo">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">EmptyFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">attributeGreaterThanOrEqualTo</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EmptyFilter.attributeGreaterThanOrEqualTo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with the attribute <code class="docutils literal notranslate"><span class="pre">attribute</span></code>, whose value is greater than or equal to <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attribute</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – attribute name</p></li>
+<li><p><strong>value</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">number()</span></code></span>) – value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ValidExpressionFilter</strong> – a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="EmptyFilter.attributeLessThan">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">EmptyFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">attributeLessThan</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EmptyFilter.attributeLessThan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with the attribute <code class="docutils literal notranslate"><span class="pre">attribute</span></code>, whose value is less than <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attribute</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – attribute name</p></li>
+<li><p><strong>value</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">number()</span></code></span>) – value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ValidExpressionFilter</strong> – a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="EmptyFilter.attributeLessThanOrEqualTo">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">EmptyFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">attributeLessThanOrEqualTo</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EmptyFilter.attributeLessThanOrEqualTo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with the attribute <code class="docutils literal notranslate"><span class="pre">attribute</span></code>, whose value is less than or equal to <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attribute</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – attribute name</p></li>
+<li><p><strong>value</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">number()</span></code></span>) – value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ValidExpressionFilter</strong> – a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="EmptyFilter.attributeNotEquals">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">EmptyFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">attributeNotEquals</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EmptyFilter.attributeNotEquals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with the attribute <code class="docutils literal notranslate"><span class="pre">attribute</span></code>, whose value doesn’t equal <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attribute</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – attribute name</p></li>
+<li><p><strong>value</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string|number()</span></code></span>) – value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ValidExpressionFilter</strong> – a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="EmptyFilter.get">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">EmptyFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EmptyFilter.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the node element who is positioned at the <code class="docutils literal notranslate"><span class="pre">index</span></code> position in its parent children list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">number()</span></code></span>) – index value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ValidExpressionFilter</strong> – a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="EmptyFilter.getFirst">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">EmptyFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getFirst</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#EmptyFilter.getFirst" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the node element who is positioned first in its parent children list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>ValidExpressionFilter</strong> – a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="EmptyFilter.getLast">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">EmptyFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getLast</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#EmptyFilter.getLast" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the node element who is positioned last in its parent children list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>ValidExpressionFilter</strong> – a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="EmptyFilter.hasAttribute">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">EmptyFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">hasAttribute</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EmptyFilter.hasAttribute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes that have the attribute <code class="docutils literal notranslate"><span class="pre">attribute</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attribute</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – attribute name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ValidExpressionFilter</strong> – a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="EmptyFilter.not">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">EmptyFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">not</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EmptyFilter.not" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverses the filter <code class="docutils literal notranslate"><span class="pre">filter</span></code>. Returns true when the filter returns false and true when the filter returns false.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filter</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">IFilter()</span></code></span>) – filter object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ValidExpressionFilter</strong> – a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="EmptyFilter.valueContains">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">EmptyFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">valueContains</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EmptyFilter.valueContains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes containing the value <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – node value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ValidExpressionFilter</strong> – a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="EmptyFilter.valueEquals">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">EmptyFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">valueEquals</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EmptyFilter.valueEquals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes whose value equals <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string|number()</span></code></span>) – node value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ValidExpressionFilter</strong> – a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="EmptyFilter.valueGreaterThan">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">EmptyFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">valueGreaterThan</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EmptyFilter.valueGreaterThan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes whose value is greater than <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">number()</span></code></span>) – node value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ValidExpressionFilter</strong> – a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="EmptyFilter.valueGreaterThanOrEqualTo">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">EmptyFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">valueGreaterThanOrEqualTo</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EmptyFilter.valueGreaterThanOrEqualTo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes whose value is greater than or equal to <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">number()</span></code></span>) – node value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ValidExpressionFilter</strong> – a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="EmptyFilter.valueLessThan">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">EmptyFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">valueLessThan</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EmptyFilter.valueLessThan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes whose value is less than <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">number()</span></code></span>) – node value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ValidExpressionFilter</strong> – a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="EmptyFilter.valueLessThanOrEqualTo">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">EmptyFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">valueLessThanOrEqualTo</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EmptyFilter.valueLessThanOrEqualTo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes whose value is less than or equal to <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">number()</span></code></span>) – node value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ValidExpressionFilter</strong> – a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="EmptyFilter.valueNotEquals">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">EmptyFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">valueNotEquals</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EmptyFilter.valueNotEquals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the nodes with whose value doesn’t equal <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string|number()</span></code></span>) – node value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ValidExpressionFilter</strong> – a new instance of ValidExpressionFilter with the newly formed expression.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js attribute">
+<dt class="sig sig-object js" id="EmptyFilter.ANY_ATTRIBUTE">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">EmptyFilter</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">ANY_ATTRIBUTE</span></span></span><a class="headerlink" href="#EmptyFilter.ANY_ATTRIBUTE" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>type:</strong> string</p>
+<p>Shortcut to design any attribute name</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2021, Johann Rebecchi.
+      
+      |
+      <a href="../_sources/javascript/api.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Try it in your browser &#8212; xpath-helper  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="javascript/index.html" />
+    <link rel="prev" title="XPath axes" href="xpath-axes.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+
+<p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/logo.svg" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=jrebecchi&repo=xpath-helper&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="xpath-axes.html">XPath axes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Try it in your browser</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">JavaScript</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="javascript/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript/index.html#quick-start">Quick-start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript/index.html#chaining">Chaining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript/index.html#filters">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript/index.html#svg">SVG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript/api.html">JavaScript API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/index.html#quick-start">Quick-start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/index.html#chaining">Chaining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/index.html#filters">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/index.html#svg">SVG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/api.html">Python API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="xpath-axes.html" title="previous chapter">XPath axes</a></li>
+      <li>Next: <a href="javascript/index.html" title="next chapter">Installation</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="try-it-in-your-browser">
+<h1>Try it in your browser<a class="headerlink" href="#try-it-in-your-browser" title="Permalink to this headline">¶</a></h1>
+<p>You can directly use <code class="docutils literal notranslate"><span class="pre">xpath-helper</span></code> in your browser console to test XPath queries. You will find below an example with the docs of the project</p>
+<ul class="simple">
+<li><p>Open the following page in your browser <a class="reference external" href="https://jrebecchi.github.io/xpath-helper/">https://jrebecchi.github.io/xpath-helper/</a>.</p></li>
+<li><p>Open the browser console by pressing <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code>+<code class="docutils literal notranslate"><span class="pre">F12</span></code> or <code class="docutils literal notranslate"><span class="pre">Cmd</span></code>+<code class="docutils literal notranslate"><span class="pre">F12</span></code> on mac.</p></li>
+<li><p>In the command line at the bottom, import <code class="docutils literal notranslate"><span class="pre">xpath-helper</span></code> module from unpkg</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="p">(</span><span class="s1">&#39;https://unpkg.com/xpath-helper@latest/dist/mjs/xpath-helper.js&#39;</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">m</span> <span class="p">=&gt;</span> <span class="nx">xpathHelperModule</span> <span class="o">=</span> <span class="nx">m</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>import <code class="docutils literal notranslate"><span class="pre">xh</span></code> and <code class="docutils literal notranslate"><span class="pre">filter</span></code> objects</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="p">{</span> <span class="nx">xh</span><span class="p">,</span> <span class="nx">filter</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">xpathHelperModule</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Create your first path</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">img</span> <span class="o">=</span> <span class="nx">xh</span><span class="p">.</span><span class="nx">getElementByTag</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">,</span> <span class="nx">filter</span><span class="p">.</span><span class="nx">attributeContains</span><span class="p">(</span><span class="s1">&#39;alt&#39;</span><span class="p">,</span> <span class="s1">&#39;xpath-helper&#39;</span><span class="p">)).</span><span class="nx">toString</span><span class="p">()</span>
+<span class="c1">//&gt;&gt; img = &quot;//img[contains(@src, &#39;xpath-helper&#39;)]&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Test if your browser actually finds an element</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">elements</span> <span class="o">=</span> <span class="nx">$x</span><span class="p">(</span><span class="nx">img</span><span class="p">)</span>
+<span class="c1">//&gt;&gt; elements = Array [ img ]</span>
+</pre></div>
+</div>
+<p>As you can see, you can directly test you xpath queries built with <code class="docutils literal notranslate"><span class="pre">xpath-helper</span></code>. Afterward, you can re-use the <code class="docutils literal notranslate"><span class="pre">xpath-helper</span></code> expression, or directly the XPath <code class="docutils literal notranslate"><span class="pre">string</span></code> generated, in your script.</p>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2021, Johann Rebecchi.
+      
+      |
+      <a href="_sources/browser-console.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
