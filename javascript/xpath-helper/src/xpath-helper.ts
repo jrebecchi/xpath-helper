@@ -1,4 +1,4 @@
-import { EmptyFilter, IFilter } from "./filter";
+import { EmptyFilter, IFilter } from "./filter.js";
 
 /**
  * XPathHelper provides a simple and chainnable API to build complicated XPath queries without the hassle.
