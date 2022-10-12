@@ -1,6 +1,6 @@
 {
   "name": "xpath-helper",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A simple and chainnable API to build complicated XPath queries without the hassle.",
   "keywords": ["xpath", "helper", "selenium", "test", "selector", "scraping"],
   "main": "dist/cjs/xpath-helper.js",
